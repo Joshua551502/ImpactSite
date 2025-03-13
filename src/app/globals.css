@@ -1,3 +1,39 @@
 body{
     margin: 0px;
 }
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('/fonts/RobotoMono-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 700; /* Variable range */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('/fonts/RobotoMono-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 700; /* Variable range */
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400 900; /* Variable range */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400 900; /* Variable range */
+    font-style: italic;
+}
+/* Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  

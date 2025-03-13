@@ -1,0 +1,116 @@
+.mission {
+    position: relative;
+    max-width: 1440px;
+    height: fit-content;
+    border: 4px solid #ff110000;
+    background-color: black;
+    color: #fff;
+    padding: 10px 70px;
+    overflow: hidden;
+  }
+  
+  .rippleCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows interaction with underlying elements */
+  }
+  
+  .mission img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .title {
+    border-bottom: 1px solid #ffffff60;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Roboto Mono", monospace;
+    font-size: 20px;
+    font-weight: lighter;
+    padding: 5px 0;
+  }
+  
+  .title h1 {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .paragraph {
+    font-family: "Playfair Display", monospace;
+    font-size: 90px;
+    padding: 48px 0;
+    font-weight: bold;
+    color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-image: url("/medias/grassoverlay1.png");
+    background-size: 30%;
+    animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+  }
+  
+  @keyframes bg-animation {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  
+  .subParagraph {
+    width: 580px;
+    font-family: "Roboto Mono", monospace;
+  }
+  
+  @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
+  
+  .EarthText {
+    margin-top: 50px;
+    font-size: 96px;
+    min-width: 100vw;
+    width: auto;
+    white-space: nowrap;
+    overflow-x: visible;
+    font-family: "Playfair Display", monospace;
+    letter-spacing: 20px;
+    opacity: 80%;
+    --duration: 6s;
+    --offset: 1ch;
+    --angle: 295deg;
+    --bright-color: hsl(0, 0%, 100%);
+    --shimmer-gradient: linear-gradient(
+      var(--angle),
+      rgba(255, 255, 255, 0.2) calc(50% - var(--offset)),
+      var(--bright-color) calc(50% - (var(--offset) - 0.5ch)),
+      white,
+      var(--bright-color) calc(50% + (var(--offset) - 0.5ch)),
+      rgba(255, 255, 255, 0.2) calc(50% + var(--offset))
+    );
+  
+    background: var(--shimmer-gradient) 0 0 / 300% 100% no-repeat border-box;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    animation: shimmer var(--duration) infinite both ease-in-out;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: 100% 0;
+    }
+    50% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: 0% 0;
+    }
+  }
+  

@@ -1,0 +1,161 @@
+.footer{
+    height: 480px;
+    padding: 91px 52px 30px 150px;
+    display: flex;
+    column-gap: 100px;
+    position: relative;
+}
+
+.footer h1{
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.signContact{
+
+    width: 100%;
+}
+.signUp, .contactUs{
+
+    width: 100%;
+}
+
+.signUp h1, .contactUs h1, .website h1{
+    border-bottom: 1px solid #c9c9c9;
+    width: 100%;
+    padding: 5px 0;
+    
+}
+.signUp{
+    margin-bottom: 60px;
+}
+.copyright{
+    color: #6D6D6D;
+}
+
+.webCopy{
+
+    width: 120%;
+    position: relative;
+}
+
+.website{
+    padding-left: 25px;
+}
+
+.copyright{
+    position:absolute;
+    bottom: 0;
+    font-size: 16px;    font-family: "Roboto Mono", monospace;
+}
+
+.form, .form input{
+    font-family: "Roboto Mono", monospace;
+}
+
+.formInput{
+    border: none;
+
+    margin: 0 5px;
+}
+
+.formInput:focus{
+    outline: none;
+    border-bottom: 1px solid #949494;
+}
+.messageContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .messageLabel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    color: black;
+    pointer-events: none;
+  }
+  
+  .message {
+    width: 100%;
+    height: 100px;
+    border: 1px solid black;
+    font-size: 14px;
+    padding: 25px 10px 10px;
+    resize: none;
+    box-sizing: border-box;
+  }
+
+  .message:focus {
+    outline: none;
+    border:1px solid #949494;
+  }
+  
+  .messageContainer{
+    margin: 16px 0 20px;
+  }
+
+  .contactForm{
+    font-family: "Roboto Mono", monospace;
+    width: 55%;
+  }
+
+  #contactFormInput{
+    display: flex;
+    justify-content: space-between;
+   
+  }
+
+  #contactFormInput .formInput{
+    margin: 0;
+  }
+
+  .labelText{
+    font-family: "Roboto Mono", monospace;
+  }
+
+  .websiteLabels{
+    margin: 30px 0 0 0;
+    DISPLAY: GRID;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .labelText:hover{
+    text-decoration: underline;
+  }
+
+  .website h1{
+    font-weight: 500;
+  }
+
+  .mediaIcons{
+
+    position: absolute;
+    width: 40px;
+    height: 280px;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+
+  .mediaIcons img{
+    opacity: 0.2;
+  }
+
+
+  .mediaIcons img:hover{
+    opacity: 0.4;
+  }
