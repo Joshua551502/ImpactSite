@@ -9,7 +9,7 @@
 
 .GlassPage{
     width: 100%;
-    height: 100%;
+    height: 700px;
 }
 
 .SpherePage{
@@ -23,17 +23,6 @@
 }
 
 .StoryPage{
-    position: relative;
-    height: 1500px;
+
 }
 
-.GlobeInterface {
-    width: 100%;
-    max-width: 100vw;
-    height: auto; /* Prevent forced full-height */
-    overflow: hidden; /* Stops any part from spilling out */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }

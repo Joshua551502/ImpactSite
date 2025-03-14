@@ -129,9 +129,17 @@ export default function StoryPage() {
 
       ctx.fillStyle = gradient;
       ctx.lineTo(vertexes[0].x, vertexes[0].y);
-      for (let i = 1; i < vertexes.length; i++) {
-        ctx.lineTo(vertexes[i].x, vertexes[i].y);
+
+      for (let i = 1; i < vertexes.length - 1; i++) {
+        const midX = (vertexes[i].x + vertexes[i + 1].x) / 2;
+        const midY = (vertexes[i].y + vertexes[i + 1].y) / 2;
+        ctx.quadraticCurveTo(vertexes[i].x, vertexes[i].y, midX, midY);
       }
+
+      ctx.lineTo(
+        vertexes[vertexes.length - 1].x,
+        vertexes[vertexes.length - 1].y
+      );
       ctx.lineTo(canvas.width, canvas.height);
       ctx.fill();
     }
@@ -165,68 +173,87 @@ export default function StoryPage() {
     const interval = setInterval(update, 1000 / 60);
     return () => clearInterval(interval);
   }, []);
-
   return (
-    <div className={styles.storyPageContainer}>
-      <div className={styles.storyPage}>
-        <div className={styles.border}>
-          <div className={styles.navContainer}>
-            <div className={styles.navWrapper}>
-              <div className={styles.navBar}>
-                <div className={styles.sunMoonContainer}>
-                  <div className={styles.sun}></div>
-                  <div className={styles.moon}></div>
-                </div>
-                <div className={styles.countDown}>
-                  <div className={styles.daysTill}>
-                    {daysTill2030} DAYS TILL 2030
-                  </div>
-                  <div className={styles.numberValues}>{countdown}</div>
-                </div>
+    <div className={styles.StoryPage}>
+      <div className={styles.navContainer}>
+        <div className={styles.navWrapper}>
+          <div className={styles.navBar}>
+            <div className={styles.sunMoonContainer}>
+              <div className={styles.sun}></div>
+              <div className={styles.moon}></div>
+            </div>
+            <div className={styles.countDown}>
+              <div className={styles.daysTill}>
+                {daysTill2030} DAYS TILL 2030
               </div>
-              <div className={styles.navOptionsLeft}>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>MISSION</div>
-                </div>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>INVEST</div>
-                </div>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>WEB3</div>
-                </div>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>PRIVACY</div>
-                </div>
-              </div>
-              <div className={styles.navOptionsRight}>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>MERCH</div>
-                </div>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>DISCORD</div>
-                </div>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>ACCOUNT</div>
-                </div>
-                <div className={styles.navOption}>
-                  <div className={styles.navItem}>LIGHTPAPER</div>
-                </div>
-              </div>
+              <div className={styles.numberValues}>{countdown}</div>
             </div>
           </div>
-          <div ref={contentContainerRef} className={styles.contentContainer}>
-            <div ref={cursorRef} className={styles.customCursor} />
-          </div>
-          <div className={styles.liquidEffect}>
-            <canvas ref={canvasRef} className={styles.canvas}></canvas>
-          </div>
-          <div className={styles.waterText}>
-            <div className={styles.textWater}>
-              "We have a choice: We can enhance life and come to know the
-              universe that made us, or we can squander our 15 billion-year
-              heritage in meaningless self-destruction." - Carl Sagan
+          <div className={styles.navOptionsLeft}>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>MISSION</div>
+            </div>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>INVEST</div>
+            </div>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>WEB3</div>
+            </div>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>PRIVACY</div>
             </div>
           </div>
+          <div className={styles.navOptionsRight}>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>MERCH</div>
+            </div>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>DISCORD</div>
+            </div>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>ACCOUNT</div>
+            </div>
+            <div className={styles.navOption}>
+              <div className={styles.navItem}>LIGHTPAPER</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div ref={contentContainerRef} className={styles.contentContainer}>
+        <div ref={cursorRef} className={styles.customCursor} />
+        <div className={styles.loading}>
+          <div className={styles.loadText}>Loading</div>
+          <div className={styles.percentText}>90%</div>
+        </div>
+        <div className={styles.socials}>
+          <ul className={styles.socialIcons}>
+            <li>
+              <a href="#">
+                <i className="fab fa-facebook-f icon"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fab fa-twitter icon"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i className="fab fa-linkedin-in icon"></i>
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <div className={styles.liquidEffect}>
+        <canvas ref={canvasRef} className={styles.canvas}></canvas>
+      </div>
+      <div className={styles.waterText}>
+        <div className={styles.textWater}>
+          "We have a choice: We can enhance life and come to know the universe
+          that made us, or we can squander our 15 billion-year heritage in
+          meaningless self-destruction." - Carl Sagan
         </div>
       </div>
     </div>

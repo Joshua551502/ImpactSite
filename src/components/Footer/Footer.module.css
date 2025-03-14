@@ -1,9 +1,11 @@
 .footer{
     height: 480px;
-    padding: 91px 52px 30px 150px;
+    padding: 91px 52px 30px 70px;
     display: flex;
     column-gap: 100px;
     position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .footer h1{
@@ -140,7 +142,7 @@
     position: absolute;
     width: 40px;
     height: 280px;
-    right: 0;
+    right: 20px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;

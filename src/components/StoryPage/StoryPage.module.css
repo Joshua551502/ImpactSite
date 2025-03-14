@@ -1,28 +1,10 @@
-.storyPageContainer{
-    border: 1px solid #ff1100;
-    width: 100%;
-    overflow: hidden;
+.StoryPage{
+height: 1024px;
+border-top: 40px solid #00000090;
+border-left: 40px solid #00000090;
+border-right: 40px solid #00000090;
+position: relative;
 }
-.storyPage{
-    height: 1024px;
-
-    
-
-}
-.border {
-    border-top: 40px solid #00000090;
-    border-left: 40px solid #00000090;
-    border-right: 40px solid #00000090;
-    height: 1024px;
-    width: 100%;
-    position: absolute; /* Ensures z-index applies */
-    z-index: 2; /* Higher than the cursor */
-    background: white; /* Prevents transparency */
-
-    width: 80%;
-}
-
-
 .navContainer{
 
     width: 100%;
@@ -33,60 +15,14 @@
     padding: 39px 39px 0 39px;
 }
 
-
-
 .navBar{
     border-top: 1px solid #000;
     margin-top: 0px;
-    width: calc(100% + 78px);
+    width: 100%;
     margin-left: -39px;
     position: relative;
 
 }
-.navOptionsLeft{
-
-    position: absolute;
-    width: 373px;
-    top: 0;
-    left: 0;
-    
-    display: flex;
-}
-.navOptionsRight{
-
-    position: absolute;
-    width: 373px;
-    top: 0;
- 
-    right: 0;
-
-    display: flex;
-    justify-content: flex-end;
-}
-.navOption{
-
-    height: 40px;
-
-    padding: 10px 20px;
-
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.navOption:hover{
-    background-color: #000;
-    color: #fff;
-    
-}
-
-.navItem{
-    font-family: 'Roboto Mono', monospace;
-    text-shadow: none;
-    font-size: 16px;
-    font-weight: 700;
-}
-
 .sunMoonContainer{
 
     width: 30px;
@@ -114,13 +50,85 @@
     background: linear-gradient( #FFFFFF, #646464);
 }
 
+.countDown{
+
+    width: 285px;
+    margin: 0 auto;
+
+    height: 64px;
+    margin-top: 17.5px;
+
+}
+
+
+.daysTill{
+
+    text-shadow: none;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    color: #0FBF89;    font-size: 18px;
+}
+
+.numberValues{
+    text-shadow: none;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    color: #000;
+    font-size: 40px;
+    margin-top: -10px;
+    font-weight: 400;
+}
+
+
+.navOptionsLeft{
+
+    position: absolute;
+    width: 373px;
+    top: 0;
+    left: 0;
+    
+    display: flex;
+}
+.navOptionsRight{
+
+    position: absolute;
+    width: 373px;
+    top: 0;
+ 
+    right: 80px;
+
+    display: flex;
+    justify-content: flex-end;
+}
+.navOption{
+
+    height: 19px;
+
+    padding: 10px 20px;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.navOption:hover{
+    background-color: #000;
+    color: #fff;
+    
+}
+
+.navItem{
+    font-family: 'Roboto Mono', monospace;
+    text-shadow: none;
+    font-size: 16px;
+    font-weight: 700;
+}
 .contentContainer{
 
     height: 100%;
     position: relative;
     overflow-x: hidden;
 }
-
 .customCursor {
     position: absolute;
     width: 30px;
@@ -162,13 +170,13 @@
 .canvas{
 width: 100%;
 
-
 }
+
 
 .waterText{
     border-top: 1px solid #fff;
     position:absolute;
-    width: 100%;
+    width: 110%;
     bottom: 0;
     z-index: 3;
     height: 35px;
@@ -180,6 +188,7 @@ width: 100%;
     display: flex;
     align-items: center;
     justify-items: center;
+
 
 }
 
@@ -194,34 +203,106 @@ width: 100%;
     width: 100%;
     transform: translateX(50%);
  
-    text-align: center;
+    text-align: left;
+    text-wrap: none;
 }
 
-.countDown{
-
-    width: 285px;
-    margin: 0 auto;
-
-    height: 64px;
-    margin-top: 17.5px;
+.loading{
+    position:absolute;
+    top: 45%;
+    right: 50%;
+    transform: translate(50%, -50%);
 
 }
 
-
-.daysTill{
-
-    text-shadow: none;
+.loadText{
+    color: #0DA388;
     font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    font-size: 14px;
     text-align: center;
-    color: #0FBF89;    font-size: 18px;
 }
 
-.numberValues{
-    text-shadow: none;
-    font-family: 'Roboto Mono', monospace;
-    text-align: center;
-    color: #000;
-    font-size: 40px;
-    margin-top: -10px;
-    font-weight: 400;
+.percentText {
+    font-family: "Playfair Display", monospace;
+    font-weight: 500;
+    font-size: 120px;
+    background: linear-gradient( #0DA388, #4289BF); /* Adjust colors */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+.socialIcons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+position:absolute;
+right: 0;
+top: 45%;
+
+    width: fit-content;
+transform: translateY(-50%);
+  }
+  
+  .socialIcons li {
+    list-style: none;
+  }
+  
+  .socialIcons li a {
+    width: 50px;
+    height: 50px;
+    background-color: #c2c2c2;
+    text-align: center;
+    line-height: 60px;
+    font-size: 28px;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #fff;
+    transition: 0.5s;
+  }
+  
+  .socialIcons li a .icon {
+    position: relative;
+    color: #262626;
+    transition: 0.5s;
+    z-index: 3;
+  }
+  
+  .socialIcons li a:hover .icon {
+    color: #fff;
+    transform: rotateY(360deg);
+  }
+  
+  .socialIcons li a:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    z-index: 2;
+  }
+  
+  .socialIcons li a:hover:before {
+    top: 0;
+  }
+  
+  .socialIcons li:nth-child(1) a:before {
+    background: #3b5999;
+  }
+  
+  .socialIcons li:nth-child(2) a:before {
+    background: #55acee;
+  }
+  
+  .socialIcons li:nth-child(3) a:before {
+    background: #0077b5;
+  }
+  
+  .socialIcons li:nth-child(4) a:before {
+    background: #dd4b39;
+  }
+  

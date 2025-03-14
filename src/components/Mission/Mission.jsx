@@ -25,9 +25,12 @@ export default function Mission() {
     const paragraph = document.querySelector(`.${styles.paragraph}`);
 
     const resizeCanvas = () => {
-      canvas.width = missionSection.clientWidth * canvasSettings.ratio;
-      canvas.height = missionSection.clientHeight * canvasSettings.ratio;
+      canvas.width = missionSection.offsetWidth * canvasSettings.ratio;
+      canvas.height = missionSection.offsetHeight * canvasSettings.ratio;
     };
+    
+    
+    
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
@@ -68,7 +71,8 @@ export default function Mission() {
 
     const handleMouseMove = (e) => addRipple(e.clientX, e.clientY);
 
-    paragraph.addEventListener("mousemove", handleMouseMove);
+    missionSection.addEventListener("mousemove", handleMouseMove);
+
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -94,6 +98,7 @@ export default function Mission() {
   }, []);
 
   return (
+    <div id="missionSection" className={styles.missionContainer}>
     <div id="missionSection" className={styles.mission}>
       <canvas ref={canvasRef} className={styles.rippleCanvas}></canvas>
       <div className={styles.title}>
@@ -118,6 +123,7 @@ export default function Mission() {
       <div className={styles.EarthText}>
         EARTH EXCHANGE & CLIMATE CREDIT IMPACT
       </div>
+    </div>
     </div>
   );
 }

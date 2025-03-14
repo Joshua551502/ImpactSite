@@ -15,12 +15,21 @@ export default function Home() {
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   return (
+    <>
+     <Head>
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      
     <main className={styles.main}>
       <div className={styles.GlassPage}>
         <Scene />
       </div>
       <div className={styles.SpherePage}>
-        {/* Embed the Slideshow as an Iframe */}
         <iframe
           key={iframeLoaded} // Forces a reload when iframeLoaded changes
           src="/slideshow.html"
@@ -30,20 +39,19 @@ export default function Home() {
           onLoad={() => setIframeLoaded(true)}
         ></iframe>
       </div>
-      <div className={styles.StoryPage}>
-        <StoryPage />
-      </div>
+
+      <StoryPage />
 
       <div className={styles.Mission}>
         <Mission />
       </div>
 
-      <div className={styles.GlobeContainer}>
-        <GlobeInterface />
-      </div>
+      <GlobeInterface />
+
       <div className={styles.Footer}>
         <Footer />
       </div>
     </main>
+    </>
   );
 }
