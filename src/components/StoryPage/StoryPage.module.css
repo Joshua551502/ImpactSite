@@ -25,13 +25,13 @@
   
   
   .countDown{
-  
+    
       width: 285px;
       margin: 0 auto;
   
       height: 64px;
       margin-top: 70px;
-  
+
   }
   
   
@@ -151,7 +151,7 @@
   .waterText{
       border-top: 1px solid #fff;
       position:absolute;
-      width: 110%;
+      width: 100%;
       bottom: 0;
       z-index: 3;
       height: 35px;
@@ -164,10 +164,12 @@
       align-items: center;
       justify-items: center;
       z-index: 99;
+    left: 0;
   
   }
   
   .textWater{
+
       font-family: 'Roboto Mono', monospace;
       text-shadow: none;
       font-size: 12px;
@@ -177,7 +179,10 @@
       right: 50%;
       width: 100%;
       transform: translateX(50%);
-   
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Standard */
       text-align: left;
       text-wrap: none;
       text-align: center;
@@ -309,13 +314,19 @@
     font-size: 120px;
     background: linear-gradient( #0DA388, #4289BF); /* Adjust colors */
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
   }
   
   .waveText {
     width: 100%;
     margin-top: 100px;
-  
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -347,7 +358,7 @@
 
   .scenePage{
     height: 90%;
-    opacity: 20%;
+
   }.loading {
     transition: opacity 1.5s ease-in-out;
   }
@@ -361,5 +372,10 @@
   
   .fadeIn {
     opacity: 1;
+  }
+  @keyframes glowing {
+    0% { box-shadow: 0 0 10px #0DA388; }
+    50% { box-shadow: 0 0 30px #0DA388, 0 0 60px #0DA388; }
+    100% { box-shadow: 0 0 10px #0DA388; }
   }
   

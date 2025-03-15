@@ -15,6 +15,9 @@ export default function StoryPage() {
   const [loadingText, setLoadingText] = useState("Loading");
   const [isLoaded, setIsLoaded] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("white");
+  const [glowing, setGlowing] = useState(false);
+
+  
   useEffect(() => {
     const scene = document.querySelector(".scenePage");
     if (scene) {
@@ -247,17 +250,17 @@ export default function StoryPage() {
   }, []);
 
 
-  useEffect(() => {
-    if (loadingPercentage >= 100) {
+useEffect(() => {
+  if (loadingPercentage >= 100) {
+    setTimeout(() => {
+      setGlowing(true); // Start glowing effect
       setTimeout(() => {
         setIsLoaded(true); // Start fading out loading screen
         setTimeout(() => setBackgroundColor("black"), 1500); // Change background after fade-out
-      }, 1000); // 2-second delay before starting fade-out
-    }
-  }, [loadingPercentage]);
-  
-  
-  
+      }, 1500); // Delay before fade-out
+    }, 1000); // Delay before glow effect starts
+  }
+}, [loadingPercentage]);
   
   return (
     <div

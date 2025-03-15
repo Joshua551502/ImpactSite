@@ -2,7 +2,6 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./Mission.module.css";
 import linkicon from "../../../public/medias/linkicon.png";
-import { useLayoutEffect } from "react";
 
 const rippleSettings = {
   maxSize: 250,
@@ -11,21 +10,20 @@ const rippleSettings = {
 };
 
 const canvasSettings = {
-  blur: 20, // Slight blur to mimic water
-  ratio: 0.9,
+  blur: 20,
+  ratio: 1,
 };
 
 export default function Mission() {
   const canvasRef = useRef(null);
   const ripples = useRef([]);
-  const earthTextRef = useRef(null); // Reference for EarthText div
+  const earthTextRef = useRef(null);
+  const paragraphRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-
     const missionSection = document.getElementById("missionSection");
-    const paragraph = document.querySelector(`.${styles.paragraph}`);
 
     const resizeCanvas = () => {
       canvas.width = missionSection.offsetWidth * canvasSettings.ratio;
@@ -70,7 +68,6 @@ export default function Mission() {
     };
 
     const handleMouseMove = (e) => addRipple(e.clientX, e.clientY);
-
     missionSection.addEventListener("mousemove", handleMouseMove);
 
     const animate = () => {
@@ -92,49 +89,61 @@ export default function Mission() {
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
-      paragraph.removeEventListener("mousemove", handleMouseMove);
+      missionSection.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       if (earthTextRef.current) {
         const newRight = `${Math.max(0, 700 - window.scrollY * 0.8)}px`;
         earthTextRef.current.style.right = newRight;
-
-        console.log(`ScrollY: ${window.scrollY}, Right: ${newRight}`);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
-    
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          paragraphRef.current.classList.add(styles.fadeIn);
+        } else {
+          paragraphRef.current.classList.remove(styles.fadeIn);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (paragraphRef.current) {
+      observer.observe(paragraphRef.current);
+    }
+
+    return () => {
+      if (paragraphRef.current) {
+        observer.unobserve(paragraphRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div id="missionSection" className={styles.missionContainer}>
-      <div id="missionSection" className={styles.mission}>
+      <div className={styles.mission}>
         <canvas ref={canvasRef} className={styles.rippleCanvas}></canvas>
         <div className={styles.title}>
           <h1>Mission</h1>
           <img src="/medias/linkicon.png" alt="icon" />
         </div>
-        <div className={styles.paragraph}>
+        <div ref={paragraphRef} className={`${styles.paragraph} ${styles.hidden}`}>
           We’re on a mission to help put back what we have broken and support
           those who believe in the same vision.
         </div>
         <div className={styles.subParagraph}>
-          An earth exchange centre for global impact causes and climate credits
-          offsetting through carbon capture. <br />
-          <br />
-          The platform provides the climate ecosystem with enterprise-grade
-          middleware, enabling high-integrity, interoperable, and efficient
-          climate markets. <br />
-          <br />
-          The industry standard for on-chain democratized and decentralized
-          climate data showing the transparent traceability.
+          An earth exchange centre for global impact causes and climate credits offsetting through carbon capture.
         </div>
         <div className={styles.earthTextContainer}>
           <div ref={earthTextRef} className={styles.EarthText}>

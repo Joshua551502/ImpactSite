@@ -27,22 +27,26 @@ export default function Model() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  useFrame(() => {
+  useFrame(({ clock }) => {
     if (sphere.current) {
-      // Slow rotation
-      sphere.current.rotation.y += 0.005;
-      sphere.current.rotation.x += 0.002;
-
-      // Apply parallax effect
-      sphere.current.position.x = parallax.x * 0.5; // Adjust strength of parallax
-      sphere.current.position.y = parallax.y * 0.5;
+      const time = clock.getElapsedTime(); // Get the elapsed time for smooth animation
+  
+      // Automatic slow rotation
+      sphere.current.rotation.y = time * 0.6; // Adjust speed as needed
+      sphere.current.rotation.x = time * 0.05;
+  
+      // Apply parallax effect on top of the automatic rotation
+      sphere.current.rotation.y += parallax.x * 0.3; // Adjust sensitivity
+      sphere.current.rotation.x += parallax.y * 0.3;
     }
-
+  
     if (text.current) {
-      text.current.position.x = parallax.x * 0.3; // Less movement for text
+      // Apply parallax effect ONLY to text position
+      text.current.position.x = parallax.x * 0.3;
       text.current.position.y = parallax.y * 0.3;
     }
   });
+  
 
   return (
     <group scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]}>

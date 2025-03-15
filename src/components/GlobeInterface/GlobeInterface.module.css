@@ -1,7 +1,10 @@
 .globeInterfaceContainer {
   width: 100%;
   background-color: black;
-  transition: background-color 0.4s ease; /* Smooth transition */
+  transition: background-color 0.4s ease; /* Smooth transition */-webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard */
 }
 
 .globeInterfaceContainer:hover {

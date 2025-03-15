@@ -27,6 +27,7 @@ margin: 0 auto;
   .mission img {
     width: 40px;
     height: 40px;
+    cursor: pointer;
   }
   
   .title {
@@ -37,7 +38,10 @@ margin: 0 auto;
     font-family: "Roboto Mono", monospace;
     font-size: 20px;
     font-weight: lighter;
-    padding: 5px 0;
+    padding: 5px 0; -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
   }
   
   .title h1 {
@@ -57,6 +61,10 @@ margin: 0 auto;
     background-image: url("/medias/grassoverlay1.png");
     background-size: 30%;
     animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
   }
   .paragraph {
     filter: brightness(1.2);
@@ -76,7 +84,10 @@ margin: 0 auto;
   
   .subParagraph {
     width: 580px;
-    font-family: "Roboto Mono", monospace;
+    font-family: "Roboto Mono", monospace; -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
   }
   
   @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
@@ -87,7 +98,10 @@ margin: 0 auto;
     position: relative;
   }
   .EarthText {
-
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard */
     position: absolute;
     bottom: 0;
     right: 600px;
@@ -154,3 +168,12 @@ margin: 0 auto;
     opacity: 80%;
     transition: right 0.2s linear; /* Smooth animation */
   }
+  .hidden {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+  
+  .fadeIn {
+    opacity: 1;
+  }
+  
