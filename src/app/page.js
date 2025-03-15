@@ -1,57 +1,68 @@
 "use client"; // Ensures dynamic execution
 import Head from "next/head";
-
-import Mission from "@/components/Mission/Mission";
-import styles from "./page.module.css";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
-import Footer from "@/components/Footer/Footer";
-import GlobeInterface from "@/components/GlobeInterface/GlobeInterface";
+import React, { useEffect, useRef, useState } from "react";
+import Nav from "@/components/Nav/Nav";
 import StoryPage from "@/components/StoryPage/StoryPage";
+import Mission from "@/components/Mission/Mission";
+import GlobeInterface from "@/components/GlobeInterface/GlobeInterface";
+import Footer from "@/components/Footer/Footer";
+import styles from "./page.module.css";
 
 const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
 
 export default function Home() {
-  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const smoothCursor = useRef({ x: 0, y: 0 });
+  const cursorRef = useRef(null);
+
+  useEffect(() => {
+    const moveCursor = (e) => {
+      setCursorPos({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", moveCursor);
+    return () => window.removeEventListener("mousemove", moveCursor);
+  }, []);
+
+  useEffect(() => {
+    let animationFrameId;
+    const smoothMove = () => {
+      // Smooth movement interpolation
+      smoothCursor.current.x += (cursorPos.x - smoothCursor.current.x) * 0.1;
+      smoothCursor.current.y += (cursorPos.y - smoothCursor.current.y) * 0.1;
+
+      cursorRef.current?.style.setProperty(
+        "transform",
+        `translate3d(${smoothCursor.current.x - 10}px, 
+                      ${smoothCursor.current.y - 10}px, 0)`
+      );
+
+      animationFrameId = requestAnimationFrame(smoothMove);
+    };
+    smoothMove();
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [cursorPos]);
 
   return (
     <>
-     <Head>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-          crossOrigin="anonymous"
-        />
-      </Head>
-      
-    <main className={styles.main}>
-      <div className={styles.GlassPage}>
-        <Scene />
-      </div>
-      <div className={styles.SpherePage}>
-        <iframe
-          key={iframeLoaded} // Forces a reload when iframeLoaded changes
-          src="/slideshow.html"
-          width="100%"
-          height="470px"
-          frameBorder="0"
-          onLoad={() => setIframeLoaded(true)}
-        ></iframe>
-      </div>
+      <main className={styles.main}>
+        {/* Custom Cursor */}
+        <div ref={cursorRef} className={styles.cursor} />
 
-      <StoryPage />
+        {/* Navigation */}
+        <Nav />
 
-      <div className={styles.Mission}>
-        <Mission />
-      </div>
-
-      <GlobeInterface />
-
-      <div className={styles.Footer}>
-        <Footer />
-      </div>
-    </main>
+        {/* Main Content */}
+        <StoryPage />
+        <div className={styles.Mission}>
+          <Mission />
+        </div>
+        <GlobeInterface />
+        <div className={styles.Footer}>
+          <Footer />
+        </div>
+      </main>
     </>
   );
 }

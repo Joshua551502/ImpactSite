@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./GlobeInterface.module.css";
 
-
-import common from "@/assets/images/carousel-card/common.svg";
-import auora from "@/assets/images/carousel-card/auora.svg";
-import auorabg from "@/assets/images/carousel-card/aurora-bg.png";
-import firstImage from "@/assets/images/carousel-card/first-image.png";
-import profilePicture from "@/assets/images/carousel-card/profilePicture.png";
-import thirteen from "@/assets/images/carousel-card/carousel-card-sdgs/13.png";
-import fourteen from "@/assets/images/carousel-card/carousel-card-sdgs/14.png";
-import qrcode from "@/assets/images/carousel-card/qrcode.png";
-
 export default function GlobeInterface() {
   const [daysTill2030, setDaysTill2030] = useState(0);
   const [countdown, setCountdown] = useState("00.00.00.00");
@@ -60,6 +50,7 @@ export default function GlobeInterface() {
     setIsModalOpen(false);
   };
   return (
+    <div className={styles.globeInterfaceContainer}>
     <div className={styles.GlobeInterface}>
       <div className={styles.topNav}>
         <button className={styles.navButton} onClick={toggleMonitor}>
@@ -320,7 +311,7 @@ export default function GlobeInterface() {
             </div>
           </div>
       </div>
-      
+      </div>
     </div>
   );
 }

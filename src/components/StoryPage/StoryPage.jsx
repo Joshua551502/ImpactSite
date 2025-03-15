@@ -1,6 +1,8 @@
+"use client"; // Ensures dynamic execution
 import React, { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import styles from "./StoryPage.module.css";
-
+const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
 export default function StoryPage() {
   const cursorRef = useRef(null);
   const contentContainerRef = useRef(null);
@@ -9,6 +11,76 @@ export default function StoryPage() {
   const [daysTill2030, setDaysTill2030] = useState(0);
   const [countdown, setCountdown] = useState("00.00.00.00");
   const [isHovered, setIsHovered] = useState(false);
+  const [loadingPercentage, setLoadingPercentage] = useState(0);
+  const [loadingText, setLoadingText] = useState("Loading");
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState("white");
+  useEffect(() => {
+    const scene = document.querySelector(".scenePage");
+    if (scene) {
+      scene.style.transform = "scale(1.5)";
+    }
+  }, []); // Empty dependency array ensures this runs only once
+  
+
+
+  useEffect(() => {
+    let progress = 0;
+
+    // Keyframes for a smooth 3-second load
+    const keyframes = [
+      { target: 30, duration: 400 },
+      { target: 50, duration: 500 },
+      { target: 65, duration: 400 },
+      { target: 85, duration: 500 },
+      { target: 95, duration: 600 },
+      { target: 100, duration: 600 },
+    ];
+
+    function animateStep(index) {
+      if (index >= keyframes.length) return;
+
+      const { target, duration } = keyframes[index];
+      const startTime = performance.now();
+      const startValue = progress;
+
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const t = Math.min(elapsed / duration, 1);
+        progress = startValue + (target - startValue) * t;
+        setLoadingPercentage(Math.floor(progress));
+
+        if (t < 1) {
+          requestAnimationFrame(step);
+        } else {
+          progress = target;
+          setLoadingPercentage(target);
+          if (target < 100) {
+            setTimeout(() => animateStep(index + 1), 100);
+          }
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    animateStep(0);
+  }, []);
+
+  useEffect(() => {
+    const dots = ["Loading", "Loading.", "Loading..", "Loading..."];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      setLoadingText((prev) => {
+        if (loadingPercentage >= 100) return "Complete"; // Stops when fully loaded
+        return dots[index];
+      });
+      index = (index + 1) % dots.length;
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [loadingPercentage]);
 
   useEffect(() => {
     const targetDate = new Date("January 1, 2030 00:00:00").getTime();
@@ -173,8 +245,25 @@ export default function StoryPage() {
     const interval = setInterval(update, 1000 / 60);
     return () => clearInterval(interval);
   }, []);
+
+
+  useEffect(() => {
+    if (loadingPercentage >= 100) {
+      setTimeout(() => {
+        setIsLoaded(true); // Start fading out loading screen
+        setTimeout(() => setBackgroundColor("black"), 1500); // Change background after fade-out
+      }, 1000); // 2-second delay before starting fade-out
+    }
+  }, [loadingPercentage]);
+  
+  
+  
+  
   return (
-    <div className={styles.StoryPage}>
+    <div
+      className={`${styles.StoryPage} ${isLoaded ? styles.fadeOut : ""}`}
+      style={{ backgroundColor }}
+    >
       <div className={styles.navContainer}>
         <div className={styles.navWrapper}>
           <div className={styles.navBar}>
@@ -220,29 +309,107 @@ export default function StoryPage() {
         </div>
       </div>
       <div ref={contentContainerRef} className={styles.contentContainer}>
-        <div ref={cursorRef} className={styles.customCursor} />
-        <div className={styles.loading}>
-          <div className={styles.loadText}>Loading</div>
-          <div className={styles.percentText}>90%</div>
+        {/* <div ref={cursorRef} className={styles.customCursor} /> */}
+
+        <div className={`${styles.loading} ${isLoaded ? styles.fadeOut : ""}`}>
+          <svg className={styles.progressCircle} viewBox="0 0 100 100">
+            <circle
+              className={styles.circleBackground}
+              cx="50"
+              cy="50"
+              r="45"
+            />
+            <circle
+              className={styles.circleProgress}
+              cx="50"
+              cy="50"
+              r="45"
+              strokeDasharray="282.74"
+              strokeDashoffset={`${
+                282.74 - (loadingPercentage / 100) * 282.74
+              }`}
+            />
+          </svg>
+
+          <div className={styles.loadText}>{loadingText}</div>
+          <div className={styles.percentText}>
+            <svg viewBox="0 0 100 20" className={styles.waveText}>
+              <defs>
+                <linearGradient id="gradient">
+                  <stop stopColor="#0DA388" />
+                </linearGradient>
+                <pattern
+                  id="wave"
+                  x="0"
+                  y="-0.5"
+                  width="100%"
+                  height="100%"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    id="wavePath"
+                    d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z"
+                    mask="url(#mask)"
+                    fill="url(#gradient)"
+                  >
+                    <animateTransform
+                      attributeName="transform"
+                      begin="0s"
+                      dur="1.5s"
+                      type="translate"
+                      from="0,0"
+                      to="40,0"
+                      repeatCount="indefinite"
+                    />
+                  </path>
+                </pattern>
+              </defs>
+              {/* Background Text */}
+              <text
+                textAnchor="middle"
+                x="50"
+                y="15"
+                fontSize="35"
+                fill="white"
+                fillOpacity="0.1"
+              >
+                {loadingPercentage}%
+              </text>
+              {/* Wave Effect Text */}
+              <text
+                textAnchor="middle"
+                x="50"
+                y="15"
+                fontSize="35"
+                fill="url(#wave)"
+                fillOpacity="1"
+              >
+                {loadingPercentage}%
+              </text>
+            </svg>
+          </div>
+       
         </div>
+        <div className={`${styles.scenePage} ${isLoaded ? styles.fadeIn : ""}`}>
+            <Scene />
+          </div>
         <div className={styles.socials}>
-          <ul className={styles.socialIcons}>
+          <ul>
             <li>
               <a href="#">
-                <i className="fab fa-facebook-f icon"></i>
+                <i className={`fab fa-facebook-f ${styles.icon}`}></i>
               </a>
             </li>
             <li>
               <a href="#">
-                <i className="fab fa-twitter icon"></i>
+                <i className={`fab fa-x-twitter ${styles.icon}`}></i>
               </a>
             </li>
             <li>
               <a href="#">
-                <i className="fab fa-linkedin-in icon"></i>
+                <i className={`fab fa-linkedin-in ${styles.icon}`}></i>
               </a>
             </li>
-            
           </ul>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
 
-
 export default function Footer() {
   return (
     <div className={styles.footer}>
@@ -17,9 +16,9 @@ export default function Footer() {
         <div className={styles.contactUs}>
           <h1>CONTACT US</h1>
           <div className={styles.contactForm}>
-            <div className={styles.form } id={styles.contactFormInput}>
+            <div className={styles.form} id={styles.contactFormInput}>
               Name:
-              <input type="email" className={styles.formInput}></input>
+              <input type="text" className={styles.formInput}></input>
             </div>
             <div className={styles.form} id={styles.contactFormInput}>
               Email:
@@ -55,13 +54,36 @@ export default function Footer() {
           Copyright © 2025 Impaction Foundation Inc. All rights reserved.
         </div>
       </div>
-      <div className={styles.mediaIcons}>
-        <img src="/medias/shareicon.png"/>
-        <img src="/medias/facebook.png"/>
-        <img src="/medias/twitter.png"/>
-        <img src="/medias/linkedin.png"/>
-        <img src="/medias/share2.png"/>
-      </div>
+
+      {/* Social Media Icons with Proper CSS Modules */}
+      <ul className={styles.mediaIcons}>
+      <li>
+          <a href="#" className={styles.iconLink}>
+            <i className={`fas fa-link ${styles.icon}`}></i>
+          </a>
+        </li>
+      
+        <li>
+          <a href="#" className={styles.iconLink}>
+            <i className={`fab fa-facebook-f ${styles.icon}`}></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" className={styles.iconLink}>
+            <i className={`fab fa-x-twitter ${styles.icon}`}></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" className={styles.iconLink}>
+            <i className={`fab fa-linkedin-in ${styles.icon}`}></i>
+          </a>
+        </li>
+        <li>
+          <a href="#" className={styles.iconLink}>
+            <i className={`fas fa-share-alt ${styles.icon}`}></i>
+          </a>
+        </li>
+      </ul>
     </div>
   );
 }

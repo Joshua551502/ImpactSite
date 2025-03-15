@@ -1,3 +1,14 @@
+.globeInterfaceContainer {
+  width: 100%;
+  background-color: black;
+  transition: background-color 0.4s ease; /* Smooth transition */
+}
+
+.globeInterfaceContainer:hover {
+  background-color: white;
+}
+
+
 .GlobeInterface {
     border: 0px solid white;
     box-sizing: border-box;
@@ -6,6 +17,9 @@
     background-color: black;
     position:relative;
     overflow: hidden;
+
+    width: calc(100% - 80px); /* Subtract padding from total width */
+    margin: 0 auto;
   }
 
   .GlobeInterface:hover {

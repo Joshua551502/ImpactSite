@@ -4,8 +4,10 @@
     display: flex;
     column-gap: 100px;
     position: relative;
-    max-width: 1440px;
+WIDTH: calc(100% - 240px);
     margin: 0 auto;
+  background-color: white;
+
 }
 
 .footer h1{
@@ -137,27 +139,87 @@
     font-weight: 500;
   }
 
-  .mediaIcons{
-
-    position: absolute;
-    width: 40px;
-    height: 280px;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+  .mediaIcons {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    opacity: 1;
-    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+
   }
-
-
-  .mediaIcons img{
-    opacity: 0.2;
+  
+  .mediaIcons li {
+    list-style: none;
   }
-
-
-  .mediaIcons img:hover{
-    opacity: 0.4;
+  
+  .iconLink {
+    width: 45px; /* Reduced from 60px */
+    height: 45px; /* Reduced from 60px */
+    background-color: #cecece;
+    text-align: center;
+    line-height: 45px; /* Match new height */
+    font-size: 20px; /* Reduced from 30px */
+    margin: 8px 0; /* Slightly reduced spacing */
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #fff; /* Reduced border thickness */
+    z-index: 1;
   }
+  
+  .icon {
+    position: relative;
+    color: #ffffff;
+    transition: .5s;
+    z-index: 3;
+    font-size: 18px; /* Reduced icon size */
+  }
+  
+  .iconLink:hover .icon {
+    color: #fff;
+    transform: rotateY(360deg);
+  }
+  
+  .iconLink:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f00;
+    transition: .5s;
+    z-index: 2;
+  }
+  
+  .iconLink:hover:before {
+    top: 0;
+  }
+  
+  /* Share Icon */
+  .mediaIcons li:nth-child(1) .iconLink:before {
+    background: #0073e6;
+  }
+  
+  /* Facebook */
+  .mediaIcons li:nth-child(2) .iconLink:before {
+    background: #3b5999;
+  }
+  
+  /* Twitter (X) */
+  .mediaIcons li:nth-child(3) .iconLink:before {
+    background: #000000;
+  }
+  
+  /* LinkedIn */
+  .mediaIcons li:nth-child(4) .iconLink:before {
+    background: #0077b5;
+  }
+  
+  /* Another Share */
+  .mediaIcons li:nth-child(5) .iconLink:before {
+    background: #ff6600;
+  }
+  

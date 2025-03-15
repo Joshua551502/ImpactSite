@@ -58,6 +58,9 @@ margin: 0 auto;
     background-size: 30%;
     animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
   }
+  .paragraph {
+    filter: brightness(1.2);
+  }
   
   @keyframes bg-animation {
     0% {
@@ -77,8 +80,17 @@ margin: 0 auto;
   }
   
   @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
-  
+  .earthTextContainer {
+
+    min-width: 100vw;
+    height: 200px;
+    position: relative;
+  }
   .EarthText {
+
+    position: absolute;
+    bottom: 0;
+    right: 600px;
     margin-top: 50px;
     font-size: 96px;
     min-width: 100vw;
@@ -119,4 +131,26 @@ margin: 0 auto;
       background-position: 0% 0;
     }
   }
+
+  .earthTextContainer {
+
+    min-width: 100vw;
+    height: 200px;
+    position: relative;
+
+  }
   
+  .EarthText {
+
+    position: absolute;
+    bottom: 0;
+    left: 0; /* Start at right 0 */
+    margin-top: 50px;
+    font-size: 96px;
+    min-width: max-content;
+    white-space: nowrap;
+    font-family: "Playfair Display", monospace;
+    letter-spacing: 20px;
+    opacity: 80%;
+    transition: right 0.2s linear; /* Smooth animation */
+  }

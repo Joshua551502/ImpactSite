@@ -26,3 +26,23 @@
 
 }
 
+.main {
+    height: 100vh;
+    background-color: white;
+    overflow-x: hidden;
+  }
+  
+  .cursor {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    z-index: 999999;
+    will-change: transform, width, height;
+  }
+  

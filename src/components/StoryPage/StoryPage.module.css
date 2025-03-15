@@ -1,308 +1,365 @@
 .StoryPage{
-height: 1024px;
-border-top: 40px solid #00000090;
-border-left: 40px solid #00000090;
-border-right: 40px solid #00000090;
-position: relative;
-}
-.navContainer{
-
-    width: 100%;
+  height: 1024px;
+  padding: 40px ;
+  position: relative;
+  background-color: white;
+  }
+  .navContainer{
+  
+      width: 100%;
+      position:absolute;
+      height: calc(100% + 40px);
+      top: -40px;
+      left: 0;
+      padding: 39px 39px 0 39px;
+  }
+  
+  .navBar{
+      border-top: 1px solid #000;
+      margin-top: 0px;
+      width: 100%;
+      margin-left: -39px;
+      position: relative;
+  
+  }
+  
+  
+  .countDown{
+  
+      width: 285px;
+      margin: 0 auto;
+  
+      height: 64px;
+      margin-top: 70px;
+  
+  }
+  
+  
+  .daysTill{
+  
+      text-shadow: none;
+      font-family: 'Roboto Mono', monospace;
+      text-align: center;
+      color: #0FBF89;    font-size: 18px;
+  }
+  
+  .numberValues{
+      text-shadow: none;
+      font-family: 'Roboto Mono', monospace;
+      text-align: center;
+      color: #000;
+      font-size: 40px;
+      margin-top: -10px;
+      font-weight: 400;
+  }
+  
+  
+  .navOptionsLeft{
+  
+      position: absolute;
+      width: 373px;
+      top: 0;
+      left: 0;
+      
+      display: flex;
+  }
+  .navOptionsRight{
+  
+      position: absolute;
+      width: 373px;
+      top: 0;
+   
+      right: 80px;
+  
+      display: flex;
+      justify-content: flex-end;
+  }
+  .navOption{
+  
+      height: 19px;
+  
+      padding: 10px 20px;
+  
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+  }
+  .navOption:hover{
+      background-color: #000;
+      color: #fff;
+      
+  }
+  
+  .navItem{
+      font-family: 'Roboto Mono', monospace;
+      text-shadow: none;
+      font-size: 16px;
+      font-weight: 700;
+  }
+  .contentContainer{
+  
+      height: 100%;
+      position: relative;
+      overflow-x: hidden;
+  }
+  .customCursor {
+      position: absolute;
+      width: 30px;
+      height:30px;
+      border: 1px solid black;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 1; /* Lower than the border */
+  
+  }
+  
+    
+    .customCursor::after {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      background-color: black; /* Inner circle */
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  
+    .liquidEffect {
+      width: calc(100% + 81px);
+      position: absolute;
+      left: -41px;
+      bottom: -8px;
+      height: auto; /* Adjusts to content */
+      min-height: 200px; /* Ensures it has some height */
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end; /* Aligns the wave at the bottom */
+      z-index: 99;
+  }
+  
+  .canvas{
+  width: 100%;
+  
+  }
+  
+  
+  .waterText{
+      border-top: 1px solid #fff;
+      position:absolute;
+      width: 110%;
+      bottom: 0;
+      z-index: 3;
+      height: 35px;
+      font-family: 'Roboto Mono', monospace;
+      text-shadow: none;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      z-index: 99;
+  
+  }
+  
+  .textWater{
+      font-family: 'Roboto Mono', monospace;
+      text-shadow: none;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      position:absolute;
+      right: 50%;
+      width: 100%;
+      transform: translateX(50%);
+   
+      text-align: left;
+      text-wrap: none;
+      text-align: center;
+  
+  }
+  
+  .loading{
+      position:absolute;
+      top: 45%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      border: 1px solid #000;
+      width: 400px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+  
+  }
+  
+  .loadText{
+      color: #0DA388;
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+  }
+  
+  .percentText {
+      font-family: "Playfair Display", monospace;
+      font-weight: 500;
+      font-size: 120px;
+      background: linear-gradient( #0DA388, #4289BF); /* Adjust colors */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+  }
+  
+  
+  .socials{
     position:absolute;
-    height: calc(100% + 40px);
-    top: -40px;
-    left: 0;
-    padding: 39px 39px 0 39px;
-}
-
-.navBar{
-    border-top: 1px solid #000;
-    margin-top: 0px;
-    width: 100%;
-    margin-left: -39px;
-    position: relative;
-
-}
-.sunMoonContainer{
-
-    width: 30px;
-    height: 20px;
-    position:absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.sun{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    position:absolute;
-    left: 0;
-    background: linear-gradient(to right, #FFD800, #FD9D24);
-}
-.moon{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    position:absolute;
+    top: 33%;
     right: 0;
-    background: linear-gradient( #FFFFFF, #646464);
-}
-
-.countDown{
-
-    width: 285px;
-    margin: 0 auto;
-
-    height: 64px;
-    margin-top: 17.5px;
-
-}
-
-
-.daysTill{
-
-    text-shadow: none;
-    font-family: 'Roboto Mono', monospace;
-    text-align: center;
-    color: #0FBF89;    font-size: 18px;
-}
-
-.numberValues{
-    text-shadow: none;
-    font-family: 'Roboto Mono', monospace;
-    text-align: center;
-    color: #000;
-    font-size: 40px;
-    margin-top: -10px;
-    font-weight: 400;
-}
-
-
-.navOptionsLeft{
-
-    position: absolute;
-    width: 373px;
-    top: 0;
-    left: 0;
-    
-    display: flex;
-}
-.navOptionsRight{
-
-    position: absolute;
-    width: 373px;
-    top: 0;
- 
-    right: 80px;
-
-    display: flex;
-    justify-content: flex-end;
-}
-.navOption{
-
-    height: 19px;
-
-    padding: 10px 20px;
-
-    position: relative;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.navOption:hover{
-    background-color: #000;
-    color: #fff;
-    
-}
-
-.navItem{
-    font-family: 'Roboto Mono', monospace;
-    text-shadow: none;
-    font-size: 16px;
-    font-weight: 700;
-}
-.contentContainer{
-
-    height: 100%;
-    position: relative;
-    overflow-x: hidden;
-}
-.customCursor {
-    position: absolute;
-    width: 30px;
-    height:30px;
-    border: 1px solid black;
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 1; /* Lower than the border */
-
-}
-
-  
-  .customCursor::after {
-    content: "";
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background-color: black; /* Inner circle */
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
-
-  .liquidEffect {
-    width: calc(100% + 81px);
-    position: absolute;
-    left: -41px;
-    bottom: 0;
-    height: auto; /* Adjusts to content */
-    min-height: 200px; /* Ensures it has some height */
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* Aligns the wave at the bottom */
-}
-
-.canvas{
-width: 100%;
-
-}
-
-
-.waterText{
-    border-top: 1px solid #fff;
-    position:absolute;
-    width: 110%;
-    bottom: 0;
-    z-index: 3;
-    height: 35px;
-    font-family: 'Roboto Mono', monospace;
-    text-shadow: none;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-
-
-}
-
-.textWater{
-    font-family: 'Roboto Mono', monospace;
-    text-shadow: none;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    position:absolute;
-    right: 50%;
-    width: 100%;
-    transform: translateX(50%);
- 
-    text-align: left;
-    text-wrap: none;
-}
-
-.loading{
-    position:absolute;
-    top: 45%;
-    right: 50%;
-    transform: translate(50%, -50%);
-
-}
-
-.loadText{
-    color: #0DA388;
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
-    font-size: 14px;
-    text-align: center;
-}
-
-.percentText {
-    font-family: "Playfair Display", monospace;
-    font-weight: 500;
-    font-size: 120px;
-    background: linear-gradient( #0DA388, #4289BF); /* Adjust colors */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.socialIcons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-position:absolute;
-right: 0;
-top: 45%;
-
-    width: fit-content;
-transform: translateY(-50%);
-  }
-  
-  .socialIcons li {
+  .socials ul li {
     list-style: none;
+    margin-bottom: 20px; 
   }
-  
-  .socialIcons li a {
-    width: 50px;
-    height: 50px;
-    background-color: #c2c2c2;
-    text-align: center;
-    line-height: 60px;
-    font-size: 28px;
-    display: block;
+  .socials ul li a {
+    width: 60px;
+    height: 60px;
+    background-color: #cecece;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px; /* Adjust size if needed */
+    margin: 0 10px;
     border-radius: 50%;
     position: relative;
     overflow: hidden;
     border: 3px solid #fff;
-    transition: 0.5s;
+    z-index: 1;
+  
+  
   }
   
-  .socialIcons li a .icon {
+  .socials ul li a .icon {
     position: relative;
-    color: #262626;
-    transition: 0.5s;
+    color: #ffffff;
+    transition: .5s;
     z-index: 3;
   }
   
-  .socialIcons li a:hover .icon {
+  
+  .socials ul li a:hover .icon {
     color: #fff;
     transform: rotateY(360deg);
   }
   
-  .socialIcons li a:before {
+  .socials ul li a:before {
     content: "";
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     height: 100%;
-    transition: 0.5s;
+    background: #f00;
+    transition: .5s;
     z-index: 2;
   }
   
-  .socialIcons li a:hover:before {
+  .socials ul li a:hover:before {
     top: 0;
   }
   
-  .socialIcons li:nth-child(1) a:before {
+  .socials ul li:nth-child(1) a:before{
     background: #3b5999;
   }
   
-  .socialIcons li:nth-child(2) a:before {
-    background: #55acee;
+  .socials ul li:nth-child(2) a:before{
+    background: #000000;
   }
   
-  .socialIcons li:nth-child(3) a:before {
+  .socials ul li:nth-child(3) a:before {
     background: #0077b5;
   }
   
-  .socialIcons li:nth-child(4) a:before {
+  .socials ul li:nth-child(4) a:before {
     background: #dd4b39;
+  }.socials ul li a {
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Keeps the icon color consistent */
+  }
+  
+  .socials ul li a:visited {
+    color: inherit; /* Prevents color change after clicking */
+  }.percentText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+  }
+  
+  .percentText {
+    font-family: "Playfair Display", monospace;
+    font-weight: 500;
+    font-size: 120px;
+    background: linear-gradient( #0DA388, #4289BF); /* Adjust colors */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .waveText {
+    width: 100%;
+    margin-top: 100px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .progressCircle {
+    position: absolute;
+    width: 110%;  /* Slightly larger than the loading div */
+    height: 110%; /* Adjusts to the new viewBox */
+    transform: rotate(-90deg); /* Ensures progress starts from the top */
+  }
+  
+  .circleBackground {
+    fill: none;
+    stroke: #ffffff; /* Light grey background stroke */
+    stroke-width: 2; /* Slightly thicker for better visibility */
+  }
+  
+  .circleProgress {
+    fill: none;
+    stroke: #0DA388; /* Green progress color */
+    stroke-width: 2; /* Same as background */
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s ease-in-out;
+  }
+  .StoryPage {
+    transition: background-color 1.5s ease-in-out;
+  }
+
+  .scenePage{
+    height: 90%;
+    opacity: 20%;
+  }.loading {
+    transition: opacity 1.5s ease-in-out;
+  }
+  
+
+  
+  .scenePage {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+  
+  .fadeIn {
+    opacity: 1;
   }
   

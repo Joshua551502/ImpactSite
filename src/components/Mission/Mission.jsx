@@ -1,21 +1,24 @@
+"use client"; // Ensure this runs on the client side in Next.js
 import React, { useEffect, useRef } from "react";
 import styles from "./Mission.module.css";
 import linkicon from "../../../public/medias/linkicon.png";
+import { useLayoutEffect } from "react";
 
 const rippleSettings = {
   maxSize: 250,
-  animationSpeed: 2,
-  strokeColor: [102, 255, 102], // Light blue water color
+  animationSpeed: 5,
+  strokeColor: [102, 255, 102], 
 };
 
 const canvasSettings = {
-  blur: 12, // Slight blur to mimic water
-  ratio: 0.5,
+  blur: 20, // Slight blur to mimic water
+  ratio: 0.9,
 };
 
 export default function Mission() {
   const canvasRef = useRef(null);
   const ripples = useRef([]);
+  const earthTextRef = useRef(null); // Reference for EarthText div
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,9 +31,6 @@ export default function Mission() {
       canvas.width = missionSection.offsetWidth * canvasSettings.ratio;
       canvas.height = missionSection.offsetHeight * canvasSettings.ratio;
     };
-    
-    
-    
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
@@ -47,7 +47,7 @@ export default function Mission() {
 
       update() {
         this.radius += rippleSettings.animationSpeed;
-        this.opacity -= 0.02;
+        this.opacity -= 0.04;
       }
 
       draw() {
@@ -73,7 +73,6 @@ export default function Mission() {
 
     missionSection.addEventListener("mousemove", handleMouseMove);
 
-
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -96,34 +95,53 @@ export default function Mission() {
       paragraph.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (earthTextRef.current) {
+        const newRight = `${Math.max(0, 700 - window.scrollY * 0.8)}px`;
+        earthTextRef.current.style.right = newRight;
+
+        console.log(`ScrollY: ${window.scrollY}, Right: ${newRight}`);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
 
   return (
     <div id="missionSection" className={styles.missionContainer}>
-    <div id="missionSection" className={styles.mission}>
-      <canvas ref={canvasRef} className={styles.rippleCanvas}></canvas>
-      <div className={styles.title}>
-        <h1>Mission</h1>
-        <img src="/medias/linkicon.png" alt="icon" />
+      <div id="missionSection" className={styles.mission}>
+        <canvas ref={canvasRef} className={styles.rippleCanvas}></canvas>
+        <div className={styles.title}>
+          <h1>Mission</h1>
+          <img src="/medias/linkicon.png" alt="icon" />
+        </div>
+        <div className={styles.paragraph}>
+          We’re on a mission to help put back what we have broken and support
+          those who believe in the same vision.
+        </div>
+        <div className={styles.subParagraph}>
+          An earth exchange centre for global impact causes and climate credits
+          offsetting through carbon capture. <br />
+          <br />
+          The platform provides the climate ecosystem with enterprise-grade
+          middleware, enabling high-integrity, interoperable, and efficient
+          climate markets. <br />
+          <br />
+          The industry standard for on-chain democratized and decentralized
+          climate data showing the transparent traceability.
+        </div>
+        <div className={styles.earthTextContainer}>
+          <div ref={earthTextRef} className={styles.EarthText}>
+            EARTH EXCHANGE & CLIMATE CREDIT IMPACT
+          </div>
+        </div>
       </div>
-      <div className={styles.paragraph}>
-        We’re on a mission to help put back what we have broken and support
-        those who believe in the same vision.
-      </div>
-      <div className={styles.subParagraph}>
-        An earth exchange centre for global impact causes and climate credits
-        offsetting through carbon capture. <br />
-        <br />
-        The platform provides the climate ecosystem with enterprise-grade
-        middleware, enabling high-integrity, interoperable, and efficient
-        climate markets. <br />
-        <br />
-        The industry standard for on-chain democratized and decentralized
-        climate data showing the transparent traceability.
-      </div>
-      <div className={styles.EarthText}>
-        EARTH EXCHANGE & CLIMATE CREDIT IMPACT
-      </div>
-    </div>
     </div>
   );
 }
