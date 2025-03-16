@@ -53,16 +53,16 @@ export default function Nav() {
         
         <ul className={styles.menu} id={styles.menuLeft}>
   
-          <li className={styles.menuItem} id={styles.mission}>MISSION</li>
-          <li className={styles.menuItem}>INVEST</li>
-          <li className={styles.menuItem}>WEB3</li>
-          <li className={styles.menuItem}>PRIVACY</li>
+          <li className={styles.menuItem} id={styles.mission} role="button">MISSION</li>
+          <li className={styles.menuItem} role="button">INVEST</li>
+          <li className={styles.menuItem} role="button">WEB3</li>
+          <li className={styles.menuItem} role="button">PRIVACY</li>
         </ul>
         <ul className={styles.menu} id={styles.menuRight}>
-          <li className={styles.menuItem}>MERCH</li>
-          <li className={styles.menuItem}>DISCORD</li>
-          <li className={styles.menuItem}>ACCOUNT</li>
-          <li className={styles.menuItem}>LIGHTPAPER</li>
+          <li className={styles.menuItem} role="button">MERCH</li>
+          <li className={styles.menuItem} role="button">DISCORD</li>
+          <li className={styles.menuItem} role="button">ACCOUNT</li>
+          <li className={styles.menuItem} role="button">LIGHTPAPER</li>
         </ul>
       </nav>
       <div className={styles.sidebar} id={styles.leftSideBar}></div>

@@ -42,7 +42,14 @@
     background-color: white;
     mix-blend-mode: difference;
     pointer-events: none;
-    z-index: 999999;
+    z-index: 999999999;
     will-change: transform, width, height;
+    transition: width 0.2s ease-out, height 0.2s ease-out;
+  }
+  
+  
+  .cursorHover {
+    width: 80px;  /* Increased size when close to cursor */
+    height: 80px;
   }
   

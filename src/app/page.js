@@ -21,28 +21,66 @@ export default function Home() {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };
 
+    const handleHover = () => {
+      cursorRef.current?.classList.add(styles.cursorHover);
+    };
+
+    const handleLeave = () => {
+      cursorRef.current?.classList.remove(styles.cursorHover);
+    };
+
     window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
+
+    // Attach event listeners to clickable elements
+    const clickables = document.querySelectorAll("a, button, [role='button']");
+    clickables.forEach((el) => {
+      el.addEventListener("mouseenter", handleHover);
+      el.addEventListener("mouseleave", handleLeave);
+    });
+
+    return () => {
+      window.removeEventListener("mousemove", moveCursor);
+      clickables.forEach((el) => {
+        el.removeEventListener("mouseenter", handleHover);
+        el.removeEventListener("mouseleave", handleLeave);
+      });
+    };
   }, []);
 
   useEffect(() => {
     let animationFrameId;
+  
     const smoothMove = () => {
-      // Smooth movement interpolation
-      smoothCursor.current.x += (cursorPos.x - smoothCursor.current.x) * 0.1;
-      smoothCursor.current.y += (cursorPos.y - smoothCursor.current.y) * 0.1;
-
-      cursorRef.current?.style.setProperty(
-        "transform",
-        `translate3d(${smoothCursor.current.x - 10}px, 
-                      ${smoothCursor.current.y - 10}px, 0)`
-      );
-
+      const cursorElement = cursorRef.current;
+      if (!cursorElement) return;
+  
+      const cursorSize = cursorElement.offsetWidth;
+  
+      // Delay factor: Adjust the 0.05 to control the lag (lower = more delayed)
+      const delayFactor = 0.04; // Small delay makes it trail behind naturally
+      const distanceFactor = 1.3; // Makes it "cut corners" and move efficiently
+  
+      // Calculate difference in position
+      const dx = cursorPos.x - smoothCursor.current.x;
+      const dy = cursorPos.y - smoothCursor.current.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+  
+      // Apply easing effect with a mix of delay and efficiency
+      smoothCursor.current.x += dx * delayFactor * (distance > 50 ? distanceFactor : 1);
+      smoothCursor.current.y += dy * delayFactor * (distance > 50 ? distanceFactor : 1);
+  
+      // Apply transformation with the correct centering
+      cursorElement.style.transform = `translate3d(${smoothCursor.current.x - cursorSize / 2}px, 
+                                                    ${smoothCursor.current.y - cursorSize / 2}px, 0)`;
+  
       animationFrameId = requestAnimationFrame(smoothMove);
     };
+  
     smoothMove();
+  
     return () => cancelAnimationFrame(animationFrameId);
   }, [cursorPos]);
+  
 
   return (
     <>

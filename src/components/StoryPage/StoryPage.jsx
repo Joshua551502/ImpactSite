@@ -2,20 +2,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "./StoryPage.module.css";
+
 const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
+
 export default function StoryPage() {
   const cursorRef = useRef(null);
   const contentContainerRef = useRef(null);
   const canvasRef = useRef(null);
   const [isInside, setIsInside] = useState(false);
   const [daysTill2030, setDaysTill2030] = useState(0);
-  const [countdown, setCountdown] = useState("00.00.00.00");
+  const [countdown, setCountdown] = useState("00.00.00");
   const [isHovered, setIsHovered] = useState(false);
   const [loadingPercentage, setLoadingPercentage] = useState(0);
   const [loadingText, setLoadingText] = useState("Loading");
   const [isLoaded, setIsLoaded] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState("white");
   const [glowing, setGlowing] = useState(false);
+  const [textColor, setTextColor] = useState("black");
+
 
   
   useEffect(() => {
@@ -24,8 +28,6 @@ export default function StoryPage() {
       scene.style.transform = "scale(1.5)";
     }
   }, []); // Empty dependency array ensures this runs only once
-  
-
 
   useEffect(() => {
     let progress = 0;
@@ -248,20 +250,16 @@ export default function StoryPage() {
     const interval = setInterval(update, 1000 / 60);
     return () => clearInterval(interval);
   }, []);
-
-
-useEffect(() => {
-  if (loadingPercentage >= 100) {
-    setTimeout(() => {
-      setGlowing(true); // Start glowing effect
+  useEffect(() => {
+    if (loadingPercentage >= 100) {
       setTimeout(() => {
-        setIsLoaded(true); // Start fading out loading screen
-        setTimeout(() => setBackgroundColor("black"), 1500); // Change background after fade-out
-      }, 1500); // Delay before fade-out
-    }, 1000); // Delay before glow effect starts
-  }
-}, [loadingPercentage]);
+        setIsLoaded(true);
+        setTimeout(() => setBackgroundColor("black"), 1500);
+      }, 1000);
+    }
+  }, [loadingPercentage]);
   
+
   return (
     <div
       className={`${styles.StoryPage} ${isLoaded ? styles.fadeOut : ""}`}
@@ -276,9 +274,17 @@ useEffect(() => {
             </div>
             <div className={styles.countDown}>
               <div className={styles.daysTill}>
+                <br/>
+              </div>
+              <div className={styles.numberValues} style={{ color: textColor }}>
+                {countdown}
+              </div>
+            </div>
+            <div className={styles.countDown2}>
+              <div className={styles.daysTill}>
                 {daysTill2030} DAYS TILL 2030
               </div>
-              <div className={styles.numberValues}>{countdown}</div>
+             
             </div>
           </div>
           <div className={styles.navOptionsLeft}>
@@ -391,11 +397,10 @@ useEffect(() => {
               </text>
             </svg>
           </div>
-       
         </div>
         <div className={`${styles.scenePage} ${isLoaded ? styles.fadeIn : ""}`}>
-            <Scene />
-          </div>
+          <Scene />
+        </div>
         <div className={styles.socials}>
           <ul>
             <li>

@@ -176,4 +176,28 @@ margin: 0 auto;
   .fadeIn {
     opacity: 1;
   }
+  .hidden {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+  
+  .fadeIn {
+    opacity: 1;
+  }
+  .paragraph {
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  }
+  .EarthText {
+    position: absolute;
+    bottom: 0;
+    left: 0; /* Start at 0 */
+    margin-top: 50px;
+    font-size: 96px;
+    min-width: max-content;
+    white-space: nowrap;
+    font-family: "Playfair Display", monospace;
+    letter-spacing: 20px;
+    opacity: 80%;
+    transition: left 0.1s linear; /* Ensures smooth movement */
+  }
   

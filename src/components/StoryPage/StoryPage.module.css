@@ -379,3 +379,44 @@
     100% { box-shadow: 0 0 10px #0DA388; }
   }
   
+  .countDown {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+    padding: 10px 20px;
+    background: transparent;
+    mix-blend-mode: difference; /* Entire countdown blends with background */
+}
+
+
+
+.numberValues {
+  filter: invert(1); /* Automatically inverts color based on background */
+  font-size: 40px;
+  font-weight: 400;
+}
+
+
+
+
+
+  
+  .fadeIn {
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+  }
+  
+  .countDown2 {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+    padding: 10px 20px;
+
+
+}

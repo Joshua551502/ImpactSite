@@ -276,7 +276,7 @@ export default function GlobeInterface() {
                 <span>Accept Basic Cookies</span>
                 <div className={styles.buttons}>
                   <button onClick={closeModal}>YES</button>
-                  <div className={styles.xButton} onClick={closeModal}></div>
+                  <div className={styles.xButton} onClick={closeModal} role="button"></div>
                   <button onClick={closeModal}>NO</button>
                 </div>
               </div>

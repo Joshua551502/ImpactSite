@@ -36,18 +36,18 @@ export default function Footer() {
         <div className={styles.website}>
           <h1>WEBSITE</h1>
           <div className={styles.websiteLabels}>
-            <div className={styles.labelText}>MISSION</div>
-            <div className={styles.labelText}>LITEPAPER</div>
-            <div className={styles.labelText}>DOCUMENTATION</div>
-            <div className={styles.labelText}>INVEST</div>
-            <div className={styles.labelText}>MERCH</div>
-            <div className={styles.labelText}>FUNDAMENTALS</div>
-            <div className={styles.labelText}>WEB3</div>
-            <div className={styles.labelText}>DISCORD</div>
-            <div className={styles.labelText}>ECO-SYSTEM</div>
-            <div className={styles.labelText}>PRIVACY</div>
-            <div className={styles.labelText}>ACCOUNT</div>
-            <div className={styles.labelText}>GUIDELINES</div>
+            <div className={styles.labelText} role="button">MISSION</div>
+            <div className={styles.labelText} role="button">LITEPAPER</div>
+            <div className={styles.labelText} role="button">DOCUMENTATION</div>
+            <div className={styles.labelText} role="button">INVEST</div>
+            <div className={styles.labelText} role="button">MERCH</div>
+            <div className={styles.labelText} role="button">FUNDAMENTALS</div>
+            <div className={styles.labelText} role="button">WEB3</div>
+            <div className={styles.labelText} role="button">DISCORD</div>
+            <div className={styles.labelText} role="button">ECO-SYSTEM</div>
+            <div className={styles.labelText} role="button">PRIVACY</div>
+            <div className={styles.labelText} role="button">ACCOUNT</div>
+            <div className={styles.labelText} role="button">GUIDELINES</div>
           </div>
         </div>
         <div className={styles.copyright}>
@@ -59,7 +59,7 @@ export default function Footer() {
       <ul className={styles.mediaIcons}>
       <li>
           <a href="#" className={styles.iconLink}>
-            <i className={`fas fa-link ${styles.icon}`}></i>
+            <i className={`fas fa-link ${styles.icon}`} ></i>
           </a>
         </li>
       

@@ -93,19 +93,7 @@ export default function Mission() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (earthTextRef.current) {
-        const newRight = `${Math.max(0, 700 - window.scrollY * 0.8)}px`;
-        earthTextRef.current.style.right = newRight;
-      }
-    };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -129,21 +117,61 @@ export default function Mission() {
       }
     };
   }, []);
-
+  useEffect(() => {
+    console.log("Scroll effect initialized!");
+  
+    const mainElement = document.querySelector("main");
+  
+    if (!mainElement) {
+      console.log("Main element NOT FOUND!");
+      return;
+    }
+  
+    const handleScroll = () => {
+      if (!earthTextRef.current) return;
+  
+      const scrollY = mainElement.scrollTop;
+  
+      // Keep moving left as long as the user scrolls (no limit)
+      const moveAmount = -scrollY * 0.45;
+  
+      earthTextRef.current.style.left = `${moveAmount}px`;
+  
+      console.log(`Updated left position: ${moveAmount}px`);
+    };
+  
+    mainElement.addEventListener("scroll", handleScroll, { passive: true });
+  
+    return () => {
+      console.log("Removing scroll event listener from main");
+      mainElement.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
+  
+  
   return (
     <div id="missionSection" className={styles.missionContainer}>
       <div className={styles.mission}>
         <canvas ref={canvasRef} className={styles.rippleCanvas}></canvas>
         <div className={styles.title}>
           <h1>Mission</h1>
-          <img src="/medias/linkicon.png" alt="icon" />
+          <img src="/medias/linkicon.png" alt="icon" role="button"/>
         </div>
         <div ref={paragraphRef} className={`${styles.paragraph} ${styles.hidden}`}>
           We’re on a mission to help put back what we have broken and support
           those who believe in the same vision.
         </div>
         <div className={styles.subParagraph}>
-          An earth exchange centre for global impact causes and climate credits offsetting through carbon capture.
+          An earth exchange centre for global impact causes and climate credits
+          offsetting through carbon capture. <br />
+          <br />
+          The platform provides the climate ecosystem with enterprise-grade
+          middleware, enabling high-integrity, interoperable, and efficient
+          climate markets. <br />
+          <br />
+          The industry standard for on-chain democratized and decentralized
+          climate data showing the transparent traceability.
         </div>
         <div className={styles.earthTextContainer}>
           <div ref={earthTextRef} className={styles.EarthText}>
