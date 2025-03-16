@@ -357,7 +357,7 @@
   }
 
   .scenePage{
-    height: 90%;
+    height: 100%;
 
   }.loading {
     transition: opacity 1.5s ease-in-out;
@@ -419,4 +419,6 @@
     padding: 10px 20px;
 
 
+}  .StoryPage {
+  transition: background-color 1s ease-in-out, opacity 1.5s ease-in-out;
 }

@@ -1,12 +1,15 @@
-"use client"; // Ensure this runs on the client side in Next.js
+"use client";
 import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Mission.module.css";
-import linkicon from "../../../public/medias/linkicon.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const rippleSettings = {
   maxSize: 250,
   animationSpeed: 5,
-  strokeColor: [102, 255, 102], 
+  strokeColor: [102, 255, 102],
 };
 
 const canvasSettings = {
@@ -18,7 +21,7 @@ export default function Mission() {
   const canvasRef = useRef(null);
   const ripples = useRef([]);
   const earthTextRef = useRef(null);
-  const paragraphRef = useRef(null);
+  const paragraphRef = useRef(null); // Reference for .paragraph text
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -93,61 +96,70 @@ export default function Mission() {
     };
   }, []);
 
+  useEffect(() => {
+    const mainElement = document.querySelector("main");
 
+    const handleScroll = () => {
+      if (!earthTextRef.current) return;
+
+      const scrollY = mainElement.scrollTop;
+
+      // Keep moving left as long as the user scrolls (no limit)
+      const moveAmount = -scrollY * 0.45;
+
+      earthTextRef.current.style.left = `${moveAmount}px`;
+
+      console.log(`Updated left position: ${moveAmount}px`);
+    };
+
+    mainElement.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      mainElement.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let scrollingUp = false;
+  
+    // Function to detect scroll direction
+    const handleScroll = () => {
+      scrollingUp = window.scrollY < lastScrollY;
+      lastScrollY = window.scrollY;
+    };
+  
+    // Intersection Observer to check visibility
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          paragraphRef.current.classList.add(styles.fadeIn);
-        } else {
-          paragraphRef.current.classList.remove(styles.fadeIn);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            paragraphRef.current.classList.add(styles.fadeIn);
+            paragraphRef.current.classList.remove(styles.fadeOut);
+          } else if (scrollingUp) {
+            paragraphRef.current.classList.add(styles.fadeOut);
+            paragraphRef.current.classList.remove(styles.fadeIn);
+          }
+        });
       },
-      { threshold: 0.3 }
+      {
+        threshold: 1.0, // Trigger only when fully in view
+      }
     );
-
+  
+    window.addEventListener("scroll", handleScroll);
+  
     if (paragraphRef.current) {
       observer.observe(paragraphRef.current);
     }
-
+  
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       if (paragraphRef.current) {
         observer.unobserve(paragraphRef.current);
       }
     };
   }, []);
-  useEffect(() => {
-    console.log("Scroll effect initialized!");
-  
-    const mainElement = document.querySelector("main");
-  
-    if (!mainElement) {
-      console.log("Main element NOT FOUND!");
-      return;
-    }
-  
-    const handleScroll = () => {
-      if (!earthTextRef.current) return;
-  
-      const scrollY = mainElement.scrollTop;
-  
-      // Keep moving left as long as the user scrolls (no limit)
-      const moveAmount = -scrollY * 0.45;
-  
-      earthTextRef.current.style.left = `${moveAmount}px`;
-  
-      console.log(`Updated left position: ${moveAmount}px`);
-    };
-  
-    mainElement.addEventListener("scroll", handleScroll, { passive: true });
-  
-    return () => {
-      console.log("Removing scroll event listener from main");
-      mainElement.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  
   
   
   return (
@@ -156,9 +168,12 @@ export default function Mission() {
         <canvas ref={canvasRef} className={styles.rippleCanvas}></canvas>
         <div className={styles.title}>
           <h1>Mission</h1>
-          <img src="/medias/linkicon.png" alt="icon" role="button"/>
+          <img src="/medias/linkicon.png" alt="icon" role="button" />
         </div>
-        <div ref={paragraphRef} className={`${styles.paragraph} ${styles.hidden}`}>
+        <div
+          ref={paragraphRef}
+          className={`${styles.paragraph} ${styles.hidden}`}
+        >
           We’re on a mission to help put back what we have broken and support
           those who believe in the same vision.
         </div>

@@ -9,6 +9,7 @@ import GlobeInterface from "@/components/GlobeInterface/GlobeInterface";
 import Footer from "@/components/Footer/Footer";
 import styles from "./page.module.css";
 
+
 const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
 
 export default function Home() {
@@ -49,38 +50,44 @@ export default function Home() {
 
   useEffect(() => {
     let animationFrameId;
-  
+
     const smoothMove = () => {
       const cursorElement = cursorRef.current;
       if (!cursorElement) return;
-  
+
       const cursorSize = cursorElement.offsetWidth;
-  
+
       // Delay factor: Adjust the 0.05 to control the lag (lower = more delayed)
       const delayFactor = 0.04; // Small delay makes it trail behind naturally
       const distanceFactor = 1.3; // Makes it "cut corners" and move efficiently
-  
+
       // Calculate difference in position
       const dx = cursorPos.x - smoothCursor.current.x;
       const dy = cursorPos.y - smoothCursor.current.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-  
+
       // Apply easing effect with a mix of delay and efficiency
-      smoothCursor.current.x += dx * delayFactor * (distance > 50 ? distanceFactor : 1);
-      smoothCursor.current.y += dy * delayFactor * (distance > 50 ? distanceFactor : 1);
-  
+      smoothCursor.current.x +=
+        dx * delayFactor * (distance > 50 ? distanceFactor : 1);
+      smoothCursor.current.y +=
+        dy * delayFactor * (distance > 50 ? distanceFactor : 1);
+
       // Apply transformation with the correct centering
-      cursorElement.style.transform = `translate3d(${smoothCursor.current.x - cursorSize / 2}px, 
-                                                    ${smoothCursor.current.y - cursorSize / 2}px, 0)`;
-  
+      cursorElement.style.transform = `translate3d(${
+        smoothCursor.current.x - cursorSize / 2
+      }px, 
+                                                    ${
+                                                      smoothCursor.current.y -
+                                                      cursorSize / 2
+                                                    }px, 0)`;
+
       animationFrameId = requestAnimationFrame(smoothMove);
     };
-  
+
     smoothMove();
-  
+
     return () => cancelAnimationFrame(animationFrameId);
   }, [cursorPos]);
-  
 
   return (
     <>
@@ -96,6 +103,7 @@ export default function Home() {
         <div className={styles.Mission}>
           <Mission />
         </div>
+
         <GlobeInterface />
         <div className={styles.Footer}>
           <Footer />

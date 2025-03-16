@@ -49,38 +49,7 @@ margin: 0 auto;
     margin: 0;
   }
   
-  .paragraph {
-    font-family: "Playfair Display", monospace;
-    font-size: 90px;
-    padding: 48px 0;
-    font-weight: bold;
-    color: transparent;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-image: url("/medias/grassoverlay1.png");
-    background-size: 30%;
-    animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Standard */
-  }
-  .paragraph {
-    filter: brightness(1.2);
-  }
-  
-  @keyframes bg-animation {
-    0% {
-      background-position: 0% 0%;
-    }
-    50% {
-      background-position: 100% 100%;
-    }
-    100% {
-      background-position: 0% 0%;
-    }
-  }
+
   
   .subParagraph {
     width: 580px;
@@ -184,9 +153,7 @@ margin: 0 auto;
   .fadeIn {
     opacity: 1;
   }
-  .paragraph {
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-  }
+
   .EarthText {
     position: absolute;
     bottom: 0;
@@ -200,4 +167,78 @@ margin: 0 auto;
     opacity: 80%;
     transition: left 0.1s linear; /* Ensures smooth movement */
   }
+
+  .paragraph {
+    font-family: "Playfair Display", monospace;
+    font-size: 90px;
+    padding: 48px 0;
+    font-weight: bold;
+    color:rgb(0, 247, 95);
+    color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-image: url("/medias/grassoverlay1.png");
+    background-size: 30%;
+    animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+  }
+  .paragraph {
+    filter: brightness(1.2);
+  }
   
+  @keyframes bg-animation {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+  .paragraph {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+/* Fades in when fully visible */
+.fadeIn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fades out only when scrolling up */
+.fadeOut {
+    opacity: 0;
+    transform: translateY(50px);
+}
+.paragraph span {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  display: block;
+}
+
+/* Fades in each line sequentially */
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fades out when scrolling up */
+.fadeOut {
+  opacity: 0;
+  transform: translateY(20px);
+}

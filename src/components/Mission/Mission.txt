@@ -1,0 +1,33 @@
+ .paragraph {
+    font-family: "Playfair Display", monospace;
+    font-size: 90px;
+    padding: 48px 0;
+    font-weight: bold;
+    color:rgb(0, 247, 95);
+    color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-image: url("/medias/grassoverlay1.png");
+    background-size: 30%;
+    animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+  }
+  .paragraph {
+    filter: brightness(1.2);
+  }
+  
+  @keyframes bg-animation {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }

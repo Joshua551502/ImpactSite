@@ -60,8 +60,9 @@ WIDTH: calc(100% - 240px);
 
 .formInput{
     border: none;
-
+    border-bottom: 1px solid #c9c9c9;
     margin: 0 5px;
+
 }
 
 .formInput:focus{

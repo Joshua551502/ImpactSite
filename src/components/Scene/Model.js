@@ -49,7 +49,8 @@ export default function Model() {
   
 
   return (
-    <group scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]}>
+    <group scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]}
+    position={[0, 0.35, 0]} >
       <Text
         ref={text}
         font="/fonts/PPNeueMontreal-Bold.otf"

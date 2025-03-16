@@ -250,14 +250,17 @@ export default function StoryPage() {
     const interval = setInterval(update, 1000 / 60);
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => {
-    if (loadingPercentage >= 100) {
-      setTimeout(() => {
-        setIsLoaded(true);
-        setTimeout(() => setBackgroundColor("black"), 1500);
-      }, 1000);
-    }
-  }, [loadingPercentage]);
+  if (loadingPercentage >= 100) {
+    setTimeout(() => {
+      setIsLoaded(true);
+      setBackgroundColor("black");  // Start transition immediately when fade begins
+    }, 1000);
+  }
+}, [loadingPercentage]);
+
+  
   
 
   return (
