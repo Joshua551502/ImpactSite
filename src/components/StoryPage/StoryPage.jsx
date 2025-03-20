@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "./StoryPage.module.css";
 
-const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
+const Scene = dynamic(() => import("../../components/Scene"), { ssr: false });
 
 export default function StoryPage() {
   const cursorRef = useRef(null);
