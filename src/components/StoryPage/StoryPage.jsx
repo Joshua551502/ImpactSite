@@ -3,7 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "./StoryPage.module.css";
 
-const Scene = dynamic(() => import("../../components/Scene"), { ssr: false });
+const Scene = dynamic(() => import("../../components/Scene/Index"), {
+  ssr: false,
+});
 
 export default function StoryPage() {
   const cursorRef = useRef(null);
@@ -338,7 +340,11 @@ export default function StoryPage() {
           </svg>
 
           <div className={styles.loadText}>{loadingText}</div>
-          <svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg" className={styles.percentTextContainer}>
+          <svg
+            viewBox="0 0 100 20"
+            xmlns="http://www.w3.org/2000/svg"
+            className={styles.percentTextContainer}
+          >
             <defs>
               <linearGradient id="textGradient" gradientTransform="rotate(90)">
                 <stop offset="0%" stop-color="#0DA388" />
