@@ -10,7 +10,7 @@ import Footer from "@/components/Footer/Footer";
 import styles from "./page.module.css";
 
 
-const Scene = dynamic(() => import("@/components/Scene"), { ssr: false });
+
 
 export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
