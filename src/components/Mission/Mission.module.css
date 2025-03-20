@@ -83,7 +83,7 @@ margin: 0 auto;
     font-family: "Playfair Display", monospace;
     letter-spacing: 20px;
     opacity: 80%;
-    --duration: 6s;
+    --duration: 20s;
     --offset: 1ch;
     --angle: 295deg;
     --bright-color: hsl(0, 0%, 100%);
@@ -105,15 +105,13 @@ margin: 0 auto;
   
   @keyframes shimmer {
     0% {
-      background-position: 100% 0;
-    }
-    50% {
-      background-position: 100% 0;
+        background-position: 100% 0;
     }
     100% {
-      background-position: 0% 0;
+        background-position: 0% 0;
     }
-  }
+}
+
 
   .earthTextContainer {
 
@@ -171,7 +169,7 @@ margin: 0 auto;
   .paragraph {
     font-family: "Playfair Display", monospace;
     font-size: 90px;
-    padding: 48px 0;
+ 
     font-weight: bold;
     color:rgb(0, 247, 95);
     color: transparent;
@@ -241,4 +239,8 @@ margin: 0 auto;
 .fadeOut {
   opacity: 0;
   transform: translateY(20px);
+}
+
+.paraContainer{
+  padding: 48px 0;
 }

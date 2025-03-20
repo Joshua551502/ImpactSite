@@ -21,7 +21,12 @@ export default function Mission() {
   const canvasRef = useRef(null);
   const ripples = useRef([]);
   const earthTextRef = useRef(null);
-  const paragraphRef = useRef(null); // Reference for .paragraph text
+  const paragraphRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -120,47 +125,86 @@ export default function Mission() {
   }, []);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-    let scrollingUp = false;
-  
-    // Function to detect scroll direction
-    const handleScroll = () => {
-      scrollingUp = window.scrollY < lastScrollY;
-      lastScrollY = window.scrollY;
-    };
-  
-    // Intersection Observer to check visibility
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        entries.forEach((entry, index) => {
           if (entry.isIntersecting) {
-            paragraphRef.current.classList.add(styles.fadeIn);
-            paragraphRef.current.classList.remove(styles.fadeOut);
-          } else if (scrollingUp) {
-            paragraphRef.current.classList.add(styles.fadeOut);
-            paragraphRef.current.classList.remove(styles.fadeIn);
+            gsap.fromTo(
+              entry.target,
+              { opacity: 0, y: 50, clipPath: "inset(0 100% 0 0)" },
+              {
+                opacity: 1,
+                y: 0,
+                clipPath: "inset(0 0% 0 0)",
+                duration: 1,
+                delay: index * 0.3, // Stagger from left to right
+                ease: "power2.out",
+              }
+            );
+            observer.unobserve(entry.target);
           }
         });
       },
-      {
-        threshold: 1.0, // Trigger only when fully in view
-      }
+      { threshold: 0.3 }
     );
-  
-    window.addEventListener("scroll", handleScroll);
-  
-    if (paragraphRef.current) {
-      observer.observe(paragraphRef.current);
-    }
-  
+
+    paragraphRefs.forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (paragraphRef.current) {
-        observer.unobserve(paragraphRef.current);
-      }
+      paragraphRefs.forEach((ref) => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
     };
   }, []);
-  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let delay = 0; // Start the delay at 0 and accumulate
+
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            gsap.fromTo(
+              entry.target,
+              {
+                opacity: 0,
+                y: 50,
+                rotateZ: 8,
+                rotateX: 5,
+                clipPath: "inset(0 100% 0 0)",
+              },
+              {
+                opacity: 1,
+                y: 0,
+                rotateZ: 0,
+                rotateX: 0,
+                clipPath: "inset(0 0% 0 0)",
+                duration: 1,
+                delay: delay, // Apply the accumulated delay
+                ease: "power2.out",
+              }
+            );
+
+            delay += 0.3; // Increase delay for the next paragraph
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    paragraphRefs.forEach((ref) => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => {
+      paragraphRefs.forEach((ref) => {
+        if (ref.current) observer.unobserve(ref.current);
+      });
+    };
+  }, []);
+
   
   return (
     <div id="missionSection" className={styles.missionContainer}>
@@ -170,12 +214,31 @@ export default function Mission() {
           <h1>Mission</h1>
           <img src="/medias/linkicon.png" alt="icon" role="button" />
         </div>
-        <div
-          ref={paragraphRef}
-          className={`${styles.paragraph} ${styles.hidden}`}
-        >
-          We’re on a mission to help put back what we have broken and support
-          those who believe in the same vision.
+        <div className={styles.paraContainer}>
+          <div
+            ref={paragraphRefs[0]}
+            className={`${styles.paragraph} ${styles.hidden}`}
+          >
+            We’re on a mission to help put
+          </div>
+          <div
+            ref={paragraphRefs[1]}
+            className={`${styles.paragraph} ${styles.hidden}`}
+          >
+            back what we have broken and
+          </div>
+          <div
+            ref={paragraphRefs[2]}
+            className={`${styles.paragraph} ${styles.hidden}`}
+          >
+            support those who believe in
+          </div>
+          <div
+            ref={paragraphRefs[3]}
+            className={`${styles.paragraph} ${styles.hidden}`}
+          >
+            the same vision.
+          </div>
         </div>
         <div className={styles.subParagraph}>
           An earth exchange centre for global impact causes and climate credits

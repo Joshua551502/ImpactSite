@@ -208,3 +208,26 @@ position:absolute;
     margin-top: -10px;
     font-weight: 400;
 }
+
+.scrollbarContainer {
+  position: absolute;
+  right: 0;
+
+  top: 40%;
+  width: 1px;
+  height: 150px;
+  background-color: white;
+
+}
+
+.scrollbar {
+  position: absolute;
+  width: 20px;
+  height: 20px; /* Scroll thumb size */
+  background-color: white;
+  border-radius: 50%;
+  transition: top 0.2s ease-in-out; /* Smooth movement */
+  right: 50%;
+  transform: translateX(50%);
+
+}

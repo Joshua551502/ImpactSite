@@ -20,8 +20,6 @@ export default function StoryPage() {
   const [glowing, setGlowing] = useState(false);
   const [textColor, setTextColor] = useState("black");
 
-
-  
   useEffect(() => {
     const scene = document.querySelector(".scenePage");
     if (scene) {
@@ -252,16 +250,13 @@ export default function StoryPage() {
   }, []);
 
   useEffect(() => {
-  if (loadingPercentage >= 100) {
-    setTimeout(() => {
-      setIsLoaded(true);
-      setBackgroundColor("black");  // Start transition immediately when fade begins
-    }, 1000);
-  }
-}, [loadingPercentage]);
-
-  
-  
+    if (loadingPercentage >= 100) {
+      setTimeout(() => {
+        setIsLoaded(true);
+        setBackgroundColor("black"); // Start transition immediately when fade begins
+      }, 1000);
+    }
+  }, [loadingPercentage]);
 
   return (
     <div
@@ -277,7 +272,7 @@ export default function StoryPage() {
             </div>
             <div className={styles.countDown}>
               <div className={styles.daysTill}>
-                <br/>
+                <br />
               </div>
               <div className={styles.numberValues} style={{ color: textColor }}>
                 {countdown}
@@ -287,7 +282,6 @@ export default function StoryPage() {
               <div className={styles.daysTill}>
                 {daysTill2030} DAYS TILL 2030
               </div>
-             
             </div>
           </div>
           <div className={styles.navOptionsLeft}>
@@ -344,62 +338,58 @@ export default function StoryPage() {
           </svg>
 
           <div className={styles.loadText}>{loadingText}</div>
-          <div className={styles.percentText}>
-            <svg viewBox="0 0 100 20" className={styles.waveText}>
-              <defs>
-                <linearGradient id="gradient">
-                  <stop stopColor="#0DA388" />
-                </linearGradient>
-                <pattern
-                  id="wave"
-                  x="0"
-                  y="-0.5"
-                  width="100%"
-                  height="100%"
-                  patternUnits="userSpaceOnUse"
-                >
+          <svg viewBox="0 0 100 20" xmlns="http://www.w3.org/2000/svg" className={styles.percentTextContainer}>
+            <defs>
+              <linearGradient id="textGradient" gradientTransform="rotate(90)">
+                <stop offset="0%" stop-color="#0DA388" />
+                <stop offset="100%" stop-color="#4289BF" />
+              </linearGradient>
+
+              <mask id="waveMask">
+                <rect width="100" height="20" fill="black" />
+                <g>
                   <path
                     id="wavePath"
-                    d="M-40 9 Q-30 7 -20 9 T0 9 T20 9 T40 9 T60 9 T80 9 T100 9 T120 9 V20 H-40z"
-                    mask="url(#mask)"
-                    fill="url(#gradient)"
+                    d="M-40 20 Q-30 18 -20 20 T0 20 T20 20 T40 20 T60 20 T80 20 T100 20 T120 20 V20 H-40z"
+                    fill="white"
                   >
-                    <animateTransform
-                      attributeName="transform"
+                    <animate
+                      attributeName="d"
                       begin="0s"
-                      dur="1.5s"
-                      type="translate"
-                      from="0,0"
-                      to="40,0"
-                      repeatCount="indefinite"
+                      dur="4s"
+                      values="
+           M-40 20 Q-30 18 -20 20 T0 20 T20 20 T40 20 T60 20 T80 20 T100 20 T120 20 V20 H-40z;
+           M-40 15 Q-30 13 -20 15 T0 15 T20 15 T40 15 T60 15 T80 15 T100 15 T120 15 V20 H-40z;
+           M-40 10 Q-30 8 -20 10 T0 10 T20 10 T40 10 T60 10 T80 10 T100 10 T120 10 V20 H-40z;
+           M-40 5 Q-30 4 -20 5 T0 5 T20 5 T40 5 T60 5 T80 5 T100 5 T120 5 V20 H-40z;
+           M-40 0 Q-30 0 -20 0 T0 0 T20 0 T40 0 T60 0 T80 0 T100 0 T120 0 V20 H-40z"
+                      fill="freeze"
                     />
                   </path>
-                </pattern>
-              </defs>
-              {/* Background Text */}
-              <text
-                textAnchor="middle"
-                x="50"
-                y="15"
-                fontSize="35"
-                fill="white"
-                fillOpacity="0.1"
-              >
-                {loadingPercentage}%
-              </text>
-              {/* Wave Effect Text */}
-              <text
-                textAnchor="middle"
-                x="50"
-                y="15"
-                fontSize="35"
-                fill="url(#wave)"
-                fillOpacity="1"
-              >
-                {loadingPercentage}%
-              </text>
-            </svg>
-          </div>
+
+                  <animateTransform
+                    attributeName="transform"
+                    type="translate"
+                    from="0,0"
+                    to="40,0"
+                    dur="1.5s"
+                    repeatCount="indefinite"
+                  />
+                </g>
+              </mask>
+            </defs>
+
+            <text
+              text-anchor="middle"
+              x="50"
+              y="15"
+              font-size="17"
+              fill="url(#textGradient)"
+              mask="url(#waveMask)"
+            >
+              {loadingPercentage}%
+            </text>
+          </svg>
         </div>
         <div className={`${styles.scenePage} ${isLoaded ? styles.fadeIn : ""}`}>
           <Scene />

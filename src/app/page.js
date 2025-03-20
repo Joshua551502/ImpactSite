@@ -16,6 +16,23 @@ export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const smoothCursor = useRef({ x: 0, y: 0 });
   const cursorRef = useRef(null);
+  const [scrollPercent, setScrollPercent] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll <= 0) return;
+  
+      setScrollPercent((scrollY / maxScroll) * 100);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
+  
+
 
   useEffect(() => {
     const moveCursor = (e) => {
@@ -96,7 +113,7 @@ export default function Home() {
         <div ref={cursorRef} className={styles.cursor} />
 
         {/* Navigation */}
-        <Nav />
+        <Nav scrollPercent={scrollPercent}/>
 
         {/* Main Content */}
         <StoryPage />

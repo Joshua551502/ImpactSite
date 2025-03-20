@@ -1,5 +1,5 @@
 .StoryPage{
-  height: 1024px;
+  height: 93vh;
   padding: 40px ;
   position: relative;
   background-color: white;
@@ -220,6 +220,7 @@
       background: linear-gradient( #0DA388, #4289BF); /* Adjust colors */
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+
   }
   
   
@@ -305,7 +306,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100px;
+    height: 200px;
   }
   
   .percentText {
@@ -348,7 +349,7 @@
   .circleProgress {
     fill: none;
     stroke: #0DA388; /* Green progress color */
-    stroke-width: 2; /* Same as background */
+    stroke-width: 0.5; /* Same as background */
     stroke-linecap: round;
     transition: stroke-dashoffset 0.3s ease-in-out;
   }
@@ -389,6 +390,7 @@
     padding: 10px 20px;
     background: transparent;
     mix-blend-mode: difference; /* Entire countdown blends with background */
+    user-select: none;
 }
 
 
@@ -421,4 +423,17 @@
 
 }  .StoryPage {
   transition: background-color 1s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+
+.waveText{
+  border: 1px solid #000;
+  height: 160px;
+}
+
+.percentTextContainer{
+
+  scale: 2;
+  font-family: "Playfair Display", monospace;
+  margin-top: 60px;
 }

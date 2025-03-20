@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { MeshTransmissionMaterial, useGLTF, Text } from "@react-three/drei";
+import { MeshTransmissionMaterial, useGLTF, Text, Line } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
 export default function Model() {
@@ -13,8 +13,9 @@ export default function Model() {
 
   // Convert 300px to world units
   const pixelToWorldRatio = viewport.width / size.width;
-  const desiredWorldSize = 190 * pixelToWorldRatio; // Keeps sphere ~300px
-  const textSize = 100 * pixelToWorldRatio; // Make text larger (~50px equivalent)
+  const desiredWorldSize = 200 * pixelToWorldRatio; // Keeps sphere ~300px
+  const textSize = 140 * pixelToWorldRatio; // Make text larger (~50px equivalent)
+  const bgSize = 300 * pixelToWorldRatio; // Circle size (~300px)
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -30,31 +31,46 @@ export default function Model() {
   useFrame(({ clock }) => {
     if (sphere.current) {
       const time = clock.getElapsedTime(); // Get the elapsed time for smooth animation
-  
+
       // Automatic slow rotation
       sphere.current.rotation.y = time * 0.6; // Adjust speed as needed
       sphere.current.rotation.x = time * 0.05;
-  
+
       // Apply parallax effect on top of the automatic rotation
       sphere.current.rotation.y += parallax.x * 0.3; // Adjust sensitivity
       sphere.current.rotation.x += parallax.y * 0.3;
     }
-  
+
     if (text.current) {
-      // Apply parallax effect ONLY to text position
+      // Apply parallax effect ONLY to text position (circle remains fixed)
       text.current.position.x = parallax.x * 0.3;
       text.current.position.y = parallax.y * 0.3;
     }
   });
-  
+
+  // Generate circular points for the border (static)
+  const circlePoints = [];
+  const segments = 64;
+  for (let i = 0; i <= segments; i++) {
+    const angle = (i / segments) * Math.PI * 2;
+    circlePoints.push([Math.cos(angle) * (bgSize *0.67), Math.sin(angle) * (bgSize *0.67), 0]);
+  }
 
   return (
-    <group scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]}
-    position={[0, 0.35, 0]} >
+    <group scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]} position={[0, 0.35, 0]}>
+      {/* Circular Border (STATIC - never moves) */}
+      <Line
+        points={circlePoints}
+        color="#0DA388"
+        lineWidth={3} // Controls border thickness
+        position={[0, 0.1, -1.1]} // Always centered, never moves
+      />
+
+      {/* Text (MOVES with parallax) */}
       <Text
         ref={text}
         font="/fonts/PPNeueMontreal-Bold.otf"
-        position={[0, 0.0, -1]}
+        position={[3, 1.0, -1]}
         fontSize={textSize}
         color="white"
         anchorX="center"
@@ -62,16 +78,19 @@ export default function Model() {
       >
         IMPACTION
       </Text>
-      <mesh ref={sphere} geometry={nodes.Icosphere?.geometry}>
-        <MeshTransmissionMaterial
-          thickness={0.85}
-          roughness={0.2}
-          transmission={1}
-          ior={0.9}
-          chromaticAberration={0.25}
-          backside={true}
-        />
-      </mesh>
+
+      {/* Sphere */}
+      <mesh ref={sphere} geometry={nodes.Icosphere?.geometry} position={[0, -0.0, 0]}>
+  <MeshTransmissionMaterial
+    thickness={0.85}
+    roughness={0.2}
+    transmission={1}
+    ior={0.9}
+    chromaticAberration={0.25}
+    backside={true}
+  />
+</mesh>
+
     </group>
   );
 }
