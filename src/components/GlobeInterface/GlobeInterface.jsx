@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./GlobeInterface.module.css";
+import CardList from "../CardList/CardList";
+import Monitor from "../Monitor/Monitor";
 
 export default function GlobeInterface() {
   const [daysTill2030, setDaysTill2030] = useState(0);
   const [countdown, setCountdown] = useState("00.00.00.00");
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isMonitorOpen, setIsMonitorOpen] = useState(false);
+  const [isMonitorPanelOpen, setIsMonitorPanelOpen] = useState(false);
+
+  const toggleMonitorPanel = () => {
+    setIsMonitorPanelOpen((prev) => !prev);
+  };
 
   const toggleMonitor = () => {
     setIsMonitorOpen((prev) => !prev);
@@ -98,21 +105,31 @@ export default function GlobeInterface() {
             <div className={styles.featuredCause}>Featured Cause Campaigns</div>
 
             <div className={styles.causeCampaigns}>
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" id={styles.specialCard} />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
-              <img src="/medias/placeholder-card.png" />
+              <CardList />
             </div>
           </div>
         </div>
+
+        <div className={styles.bottomNav}>
+          <button className={styles.navButton} onClick={toggleMonitorPanel}>
+            <img src="/medias/globe-interface/button.svg" alt="Monitor" />
+            <div className={styles.buttonText} id={styles.buttonTextBottom}>
+              MONITOR
+            </div>
+          </button>
+        </div>
+
+        {/* NEW Monitor Sliding Panel */}
+        <div
+          className={`${styles.monitorSlidePanel} ${
+            isMonitorPanelOpen ? styles.open : ""
+          }`}
+        >
+          <div className={styles.monitorContentContainer}>
+            <Monitor/>
+          </div>
+        </div>
+
         <div className={styles.mapContainer}>
           <iframe
             width="104%"
@@ -267,8 +284,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image1.png"/>
-                  
+                  <img src="/medias/globe-interface/image1.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>16 t</div>
@@ -277,8 +293,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image2.png"/>
-                  
+                  <img src="/medias/globe-interface/image2.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>14 t</div>
@@ -287,8 +302,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image3.png"/>
-                  
+                  <img src="/medias/globe-interface/image3.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>14 t</div>
@@ -297,8 +311,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image4.png"/>
-                  
+                  <img src="/medias/globe-interface/image4.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>11 t</div>
@@ -307,13 +320,12 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image5.png"/>
-                  
+                  <img src="/medias/globe-interface/image5.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>10 t</div>
             </div>
-            
+
             <div className={styles.viewAll}>View All 47</div>
           </div>
           {isModalOpen && (
