@@ -1,0 +1,44 @@
+.textSlideWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 40vh;
+  }
+  
+  .wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .wrapContainer {
+    max-width: 950px;
+    text-align: center;
+  }
+  
+  .working {
+    margin-top: 40px;
+  }
+  
+  .line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  
+  .wordWrapper {
+    position: relative;
+    margin: 0 4px;
+  }
+  
+  .wordWrapper span {
+    display: inline-block;
+    opacity: 0;
+    color: #0fd10f;
+    font-size: 36px;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+  }
+  

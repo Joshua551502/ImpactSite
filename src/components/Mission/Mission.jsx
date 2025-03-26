@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./Mission.module.css";
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -212,7 +213,7 @@ export default function Mission() {
         <canvas ref={canvasRef} className={styles.rippleCanvas}></canvas>
         <div className={styles.title}>
           <h1>Mission</h1>
-          <img src="/medias/linkicon.png" alt="icon" role="button" />
+          <Image src="/medias/linkicon.png" alt="icon" role="button" />
         </div>
         <div className={styles.paraContainer}>
           <div

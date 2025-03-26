@@ -425,9 +425,9 @@ export default function StoryPage() {
       </div>
       <div className={styles.waterText}>
         <div className={styles.textWater}>
-          "We have a choice: We can enhance life and come to know the universe
-          that made us, or we can squander our 15 billion-year heritage in
-          meaningless self-destruction." - Carl Sagan
+          &quot;We have a choice: We can enhance life and come to know the
+          universe that made us, or we can squander our 15 billion-year heritage
+          in meaningless self-destruction.&quot; - Carl Sagan
         </div>
       </div>
     </div>

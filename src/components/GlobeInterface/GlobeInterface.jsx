@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./GlobeInterface.module.css";
 import CardList from "../CardList/CardList";
 import Monitor from "../Monitor/Monitor";
+import Image from 'next/image';
 
 export default function GlobeInterface() {
   const [daysTill2030, setDaysTill2030] = useState(0);
@@ -61,19 +62,19 @@ export default function GlobeInterface() {
       <div className={styles.GlobeInterface}>
         <div className={styles.topNav}>
           <button className={styles.navButton} onClick={toggleMonitor}>
-            <img src="/medias/globe-interface/button.svg" alt="Monitor" />
+            <Image src="/medias/globe-interface/button.svg" alt="Monitor" />
             <div className={styles.buttonText}>MARKET</div>
           </button>
         </div>
         <div className={styles.rightNav}>
           <button className={styles.navButton}>
-            <img src="/medias/globe-interface/button.svg" alt="Info" />
+            <Image src="/medias/globe-interface/button.svg" alt="Info" />
             <div className={styles.buttonText}>INFO</div>
           </button>
         </div>
         <div className={styles.bottomNav}>
           <button className={styles.navButton}>
-            <img src="/medias/globe-interface/button.svg" alt="Market" />
+            <Image src="/medias/globe-interface/button.svg" alt="Market" />
             <div className={styles.buttonText} id={styles.buttonTextBottom}>
               MONITOR
             </div>
@@ -81,7 +82,7 @@ export default function GlobeInterface() {
         </div>
         <div className={styles.leftNav}>
           <button className={styles.navButton}>
-            <img src="/medias/globe-interface/button.svg" alt="Trading" />
+            <Image src="/medias/globe-interface/button.svg" alt="Trading" />
             <div className={styles.buttonText}>TRADING</div>
           </button>
         </div>
@@ -112,7 +113,7 @@ export default function GlobeInterface() {
 
         <div className={styles.bottomNav}>
           <button className={styles.navButton} onClick={toggleMonitorPanel}>
-            <img src="/medias/globe-interface/button.svg" alt="Monitor" />
+            <Image src="/medias/globe-interface/button.svg" alt="Monitor" />
             <div className={styles.buttonText} id={styles.buttonTextBottom}>
               MONITOR
             </div>
@@ -284,7 +285,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image1.png" />
+                  <Image src="/medias/globe-interface/image1.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>16 t</div>
@@ -293,7 +294,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image2.png" />
+                  <Image src="/medias/globe-interface/image2.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>14 t</div>
@@ -302,7 +303,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image3.png" />
+                  <Image src="/medias/globe-interface/image3.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>14 t</div>
@@ -311,7 +312,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image4.png" />
+                  <Image src="/medias/globe-interface/image4.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>11 t</div>
@@ -320,7 +321,7 @@ export default function GlobeInterface() {
               <div clasName={styles.date}>3/1/2025</div>
               <div clasName={styles.listIcon}>
                 <div className={styles.iconShape}>
-                  <img src="/medias/globe-interface/image5.png" />
+                  <Image src="/medias/globe-interface/image5.png" />
                 </div>
               </div>
               <div clasName={styles.amountT}>10 t</div>
@@ -352,26 +353,26 @@ export default function GlobeInterface() {
             </div>
           )}
           <div className={styles.card}>
-            <img
+            <Image
               src="/medias/carousel-card/common.svg"
               className={styles.border}
-            ></img>
+            ></Image>
             <div className={styles.content}>
-              <img
+              <Image
                 src="/medias/carousel-card/first-image.png"
                 className={styles.cardImage}
               />
               <div className={styles.rarity}>UNCOMMON</div>
               <div className={styles.values}>
-                <img
+                <Image
                   src="/medias/carousel-card/carousel-card-sdgs/13.png"
                   className={styles.unsdg}
                 />
-                <img
+                <Image
                   src="/medias/carousel-card/carousel-card-sdgs/14.png"
                   className={styles.unsdg}
                 />
-                <img
+                <Image
                   src="/medias/carousel-card/qrcode.png"
                   className={styles.qrcode}
                 />
@@ -390,7 +391,7 @@ export default function GlobeInterface() {
                 <div className={styles.cardH5}>$0 raised of $1,500</div>
               </div>
               <div className={styles.profilePicture}>
-                <img src="/medias/carousel-card/profilePicture.png" alt="" />
+                <Image src="/medias/carousel-card/profilePicture.png" alt="" />
               </div>
             </div>
           </div>

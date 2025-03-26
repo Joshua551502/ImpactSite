@@ -8,7 +8,11 @@ import Mission from "@/components/Mission/Mission";
 import GlobeInterface from "@/components/GlobeInterface/GlobeInterface";
 import Footer from "@/components/Footer/Footer";
 import styles from "./page.module.css";
+import TextSlide from "@/components/TextSlide/TextSlide";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 
 
 
@@ -106,6 +110,7 @@ export default function Home() {
     return () => cancelAnimationFrame(animationFrameId);
   }, [cursorPos]);
 
+  
   return (
     <>
       <main className={styles.main}>
@@ -120,6 +125,7 @@ export default function Home() {
         <div className={styles.Mission}>
           <Mission />
         </div>
+
 
         <GlobeInterface />
         <div className={styles.Footer}>
