@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import styles from "./Monitor.module.css";
-import Image from 'next/image'
+
 
 export default function Monitor() {
   const chartRef = useRef(null);
@@ -158,7 +158,7 @@ export default function Monitor() {
             <div className={styles.carbonTitle}>Digital carbon pricing</div>
             <div className={styles.logoTitle}>
               <div className={styles.imageIcon}>
-                <Image src="/medias/carbon.png" />
+                <img src="/medias/carbon.png" />
               </div>
               <div className={styles.title}>Base Carbon Tonne (BCT)</div>
             </div>
@@ -172,7 +172,7 @@ export default function Monitor() {
             <div className={styles.logoTitle}>
               <div className={styles.imageIcon}>
                 {" "}
-                <Image src="/medias/carbon.png" />
+                <img src="/medias/carbon.png" />
               </div>
               <div className={styles.title}>Base Carbon Tonne (BCT)</div>
             </div>
@@ -193,7 +193,7 @@ export default function Monitor() {
               </div>
               <div className={styles.logoTitle}>
                 <div className={styles.imageIcon}>
-                  <Image src="/medias/nature.png" />
+                  <img src="/medias/nature.png" />
                 </div>
                 <div className={styles.title}>Nature Carbon Tonne (NCT)</div>
               </div>
@@ -215,7 +215,7 @@ export default function Monitor() {
               </div>
               <div className={styles.logoTitle}>
                 <div className={styles.imageIcon}>
-                  <Image src="/medias/moss.png" />
+                  <img src="/medias/moss.png" />
                 </div>
                 <div className={styles.title}>Moss Carbon Credit (MC02)</div>
               </div>

@@ -34,14 +34,14 @@ export default function CardList() {
         >
           {/* Front Side */}
           <div className={styles.front}>
-            <Image
+            <img
               src="/medias/carousel-card/common.svg"
               className={styles.border}
               alt="Border"
             />
             <div className={styles.frontCard}>
               <div className={styles.image}>
-                <Image
+                <img
                   src="/medias/carousel-card/first-image.png"
                   className={styles.cardImage}
                   alt="Card"
@@ -61,24 +61,24 @@ export default function CardList() {
                 <div className={styles.cardH5}>$0 raised of $1,500</div>
               </div>
               <div className={styles.profilePicture}>
-                <Image
+                <img
                   src="/medias/carousel-card/profilePicture.png"
                   alt="Profile"
                 />
               </div>
               <div className={styles.rarity}>UNCOMMON</div>
               <div className={styles.values}>
-                <Image
+                <img
                   src="/medias/carousel-card/carousel-card-sdgs/13.png"
                   className={styles.unsdg}
                   alt="SDG 13"
                 />
-                <Image
+                <img
                   src="/medias/carousel-card/carousel-card-sdgs/14.png"
                   className={styles.unsdg}
                   alt="SDG 14"
                 />
-                <Image
+                <img
                   src="/medias/carousel-card/qrcode.png"
                   className={styles.qrcode}
                   alt="QR Code"
@@ -89,24 +89,24 @@ export default function CardList() {
 
           {/* Back Side */}
           <div className={styles.back}>
-            <Image
+            <img
               src="/medias/carousel-card/common.svg"
               className={styles.border}
               alt="Border"
             />
             <div className={styles.rarity}>UNCOMMON</div>
             <div className={styles.values}>
-              <Image
+              <img
                 src="/medias/carousel-card/carousel-card-sdgs/13.png"
                 className={styles.unsdg}
                 alt="SDG 13"
               />
-              <Image
+              <img
                 src="/medias/carousel-card/carousel-card-sdgs/14.png"
                 className={styles.unsdg}
                 alt="SDG 14"
               />
-              <Image
+              <img
                 src="/medias/carousel-card/qrcode.png"
                 className={styles.qrcode}
                 alt="QR Code"

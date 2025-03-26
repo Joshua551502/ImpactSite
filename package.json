@@ -2,11 +2,14 @@
   "name": "3d-glass-effect",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Joshua551502.github.io/ImpactSite",
+
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -24,6 +27,7 @@
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.0.4",
+    "gh-pages": "^6.3.0"
   }
 }
