@@ -11,6 +11,7 @@ import styles from "./page.module.css";
 import TextSlide from "@/components/TextSlide/TextSlide";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import OkayModal from "@/components/OkayModal/OkayModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +22,11 @@ export default function Home() {
   const smoothCursor = useRef({ x: 0, y: 0 });
   const cursorRef = useRef(null);
   const [scrollPercent, setScrollPercent] = useState(0);
+  const [showModal, setShowModal] = useState(true);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,6 +127,8 @@ export default function Home() {
         <Nav scrollPercent={scrollPercent}/>
 
         {/* Main Content */}
+
+        {showModal && <OkayModal onClose={handleCloseModal} />}
         <StoryPage />
         <div className={styles.Mission}>
           <Mission />

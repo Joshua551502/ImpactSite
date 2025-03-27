@@ -19,6 +19,7 @@ const canvasSettings = {
 
 export default function Mission() {
   const canvasRef = useRef(null);
+  const containerRef = useRef(null);
   const ripples = useRef([]);
   const earthTextRef = useRef(null);
   const paragraphRefs = [
@@ -125,87 +126,38 @@ export default function Mission() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            gsap.fromTo(
-              entry.target,
-              { opacity: 0, y: 50, clipPath: "inset(0 100% 0 0)" },
-              {
-                opacity: 1,
-                y: 0,
-                clipPath: "inset(0 0% 0 0)",
-                duration: 1,
-                delay: index * 0.3, // Stagger from left to right
-                ease: "power2.out",
-              }
-            );
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
+    const spans = containerRef.current.querySelectorAll("span");
 
-    paragraphRefs.forEach((ref) => {
-      if (ref.current) observer.observe(ref.current);
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh(); // important
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 60%",
+            end: "top 20%",
+            scrub: 0.3,
+           
+            scroller: document.querySelector("main"), // 👈 Add this line!
+          },
+        })
+        .to(spans, {
+          opacity: 1,
+          y: 0,
+          stagger: 0.1,
+          ease: "none",
+        });
     });
 
-    return () => {
-      paragraphRefs.forEach((ref) => {
-        if (ref.current) observer.unobserve(ref.current);
-      });
-    };
+    return () => ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   }, []);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let delay = 0; // Start the delay at 0 and accumulate
 
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            gsap.fromTo(
-              entry.target,
-              {
-                opacity: 0,
-                y: 50,
-                rotateZ: 8,
-                rotateX: 5,
-                clipPath: "inset(0 100% 0 0)",
-              },
-              {
-                opacity: 1,
-                y: 0,
-                rotateZ: 0,
-                rotateX: 0,
-                clipPath: "inset(0 0% 0 0)",
-                duration: 1,
-                delay: delay, // Apply the accumulated delay
-                ease: "power2.out",
-              }
-            );
-
-            delay += 0.3; // Increase delay for the next paragraph
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.3 }
+  const words =
+    "We’re on a mission to help put back what we have broken and support those who believe in the same vision.".split(
+      " "
     );
 
-    paragraphRefs.forEach((ref) => {
-      if (ref.current) observer.observe(ref.current);
-    });
-
-    return () => {
-      paragraphRefs.forEach((ref) => {
-        if (ref.current) observer.unobserve(ref.current);
-      });
-    };
-  }, []);
-
-  
   return (
     <div id="missionSection" className={styles.missionContainer}>
       <div className={styles.mission}>
@@ -214,32 +166,41 @@ export default function Mission() {
           <h1>Mission</h1>
           <img src="/medias/linkicon.png" alt="icon" role="button" />
         </div>
-        <div className={styles.paraContainer}>
+        <div
+          style={{
+            backgroundColor: "black",
+            color: "white",
+
+       
+            fontFamily: "'Playfair Display', serif",
+          }}
+        >
           <div
-            ref={paragraphRefs[0]}
-            className={`${styles.paragraph} ${styles.hidden}`}
+            id={styles.missionText}
+            ref={containerRef}
+            style={{
+           
+              fontWeight: "bold",
+              lineHeight: "1.5",
+            }}
           >
-            We’re on a mission to help put
-          </div>
-          <div
-            ref={paragraphRefs[1]}
-            className={`${styles.paragraph} ${styles.hidden}`}
-          >
-            back what we have broken and
-          </div>
-          <div
-            ref={paragraphRefs[2]}
-            className={`${styles.paragraph} ${styles.hidden}`}
-          >
-            support those who believe in
-          </div>
-          <div
-            ref={paragraphRefs[3]}
-            className={`${styles.paragraph} ${styles.hidden}`}
-          >
-            the same vision.
+            {words.map((word, i) => (
+              <span
+                key={i}
+                style={{
+                  opacity: 0,
+                  transform: "translateY(20px)",
+                  display: "inline-block",
+                  marginRight: "15px",
+                  transition: "opacity 0.3s ease, transform 0.3s ease",
+                }}
+              >
+                {word}
+              </span>
+            ))}
           </div>
         </div>
+
         <div className={styles.subParagraph}>
           An earth exchange centre for global impact causes and climate credits
           offsetting through carbon capture. <br />

@@ -1,0 +1,56 @@
+.okayModal{
+    position: fixed; 
+    width: 740px;
+    height: 60px;
+    background-color: black;
+    top: 80%;
+    right: 50%;
+    z-index: 999999999999999999999999999999999999999999999999999;
+    transform: translate(50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: opacity 0.3s ease;
+}
+
+.textContainer{
+font-size: 14px;
+    display: flex;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+    color: white;
+}
+
+.button{
+    margin-left: 16px;
+    cursor: pointer;
+    padding: 10px;
+    border: 1.5px solid white;
+    user-select: none;
+}
+
+.text span{
+    text-decoration: underline;
+}.fadeIn {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .fadeOut {
+    opacity: 0;
+    pointer-events: none;
+  }@keyframes popIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  

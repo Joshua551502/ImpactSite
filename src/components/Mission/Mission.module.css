@@ -135,23 +135,7 @@ margin: 0 auto;
     opacity: 80%;
     transition: right 0.2s linear; /* Smooth animation */
   }
-  .hidden {
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-  }
-  
-  .fadeIn {
-    opacity: 1;
-  }
-  .hidden {
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-  }
-  
-  .fadeIn {
-    opacity: 1;
-  }
-
+ 
   .EarthText {
     position: absolute;
     bottom: 0;
@@ -200,47 +184,41 @@ margin: 0 auto;
     }
   }
 
-  .hidden {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease-out, transform 1s ease-out;
-  }
-  .paragraph {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-}
+
 
 /* Fades in when fully visible */
-.fadeIn {
-    opacity: 1;
-    transform: translateY(0);
+
+
+
+
+
+
+
+.marker {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 50px;
+  background-color: transparent; /* Optional: use red for debugging */
+  z-index: 1000;
+  pointer-events: none;
 }
 
-/* Fades out only when scrolling up */
-.fadeOut {
-    opacity: 0;
-    transform: translateY(50px);
-}
-.paragraph span {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
-  display: block;
-}
 
-/* Fades in each line sequentially */
-.fadeIn {
-  opacity: 1;
-  transform: translateY(0);
-}
+#missionText{
 
-/* Fades out when scrolling up */
-.fadeOut {
-  opacity: 0;
-  transform: translateY(20px);
+  font-size: 90px;
+  background-image: url("/medias/grassoverlay1.png");
+  padding: 64px 0 56px;
+  -webkit-background-clip: text;
+  animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
 }
-
-.paraContainer{
-  padding: 48px 0;
+#missionText span {
+  background-image: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
 }
