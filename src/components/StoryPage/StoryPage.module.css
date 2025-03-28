@@ -41,6 +41,7 @@
       font-family: 'Roboto Mono', monospace;
       text-align: center;
       color: #0FBF89;    font-size: 18px;
+      user-select: none;
   }
   
   .numberValues{

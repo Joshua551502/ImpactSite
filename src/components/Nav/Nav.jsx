@@ -2,7 +2,10 @@ import React from "react";
 import styles from "./Nav.module.css";
 
 export default function Nav({ scrollPercent }) {
-  const scrollbarPosition = `calc(50% + ${scrollPercent * 0.5}%)`; 
+  const maxScrollbarTrackHeight = 150 - 20; // container height - thumb height
+  const scrollbarPosition = `${
+    (scrollPercent / 100) * maxScrollbarTrackHeight
+  }px`;
 
   return (
     <>
@@ -36,13 +39,11 @@ export default function Nav({ scrollPercent }) {
           </li>
         </ul>
       </nav>
-     <div className={styles.sidebar} id={styles.leftSideBar}>
+      <div className={styles.sidebar} id={styles.leftSideBar}>
         <div className={styles.scrollbarContainer}>
-          <div
-            className={styles.scrollbar}
-            style={{ top: scrollbarPosition }}
-          />
+        
         </div>
+       
       </div>
 
       <div className={styles.sidebar} id={styles.rightSideBar}></div>

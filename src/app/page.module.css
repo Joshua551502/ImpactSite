@@ -53,3 +53,35 @@
     height: 80px;
   }
 
+
+  
+  .scrollbar {
+    position: fixed;
+    top: 50%;
+    left: 39px;
+    transform: translate(-50%, 2800%);
+    width: 20px;
+    height: 20px;
+    z-index: 999999999;
+    background-color: white;
+    mix-blend-mode: difference;
+    border-radius: 50%;
+  }
+  
+  .scrollBarLine{
+    background-color: white;
+    width: 1px;
+    position: absolute;
+    height: 140px;
+    z-index: 999999999;
+    top: 49.6%;
+    left: 39px;
+    transform: translateY(-50%);
+    mix-blend-mode: difference;
+  }.main {
+    height: 100vh;
+    background-color: white;
+    overflow-y: auto; /* ✅ changed from hidden to auto */
+    overflow-x: hidden;
+  }
+  

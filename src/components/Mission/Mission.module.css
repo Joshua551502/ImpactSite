@@ -216,6 +216,7 @@ margin: 0 auto;
   -webkit-text-fill-color: transparent;
   animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
   padding: 64px 0 56px;
+  user-select: none;
 }
 
 #missionText span {

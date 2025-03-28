@@ -15,14 +15,19 @@ import OkayModal from "@/components/OkayModal/OkayModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-
 export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const smoothCursor = useRef({ x: 0, y: 0 });
   const cursorRef = useRef(null);
   const [scrollPercent, setScrollPercent] = useState(0);
   const [showModal, setShowModal] = useState(true);
+  const mainRef = useRef(null);
+  const maxScrollbarTrackHeight = 150 - 20; // container height - thumb height
+  const scrollbarRef = useRef(null); // ✅ separate from cursorRef
+
+  const scrollbarPosition = `${
+    (scrollPercent / 100) * maxScrollbarTrackHeight
+  }px`;
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -31,18 +36,16 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
       if (maxScroll <= 0) return;
-  
+
       setScrollPercent((scrollY / maxScroll) * 100);
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
-  
-
 
   useEffect(() => {
     const moveCursor = (e) => {
@@ -116,30 +119,105 @@ export default function Home() {
     return () => cancelAnimationFrame(animationFrameId);
   }, [cursorPos]);
 
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main) return;
+
+    const handleScroll = () => {
+      const scrollY = main.scrollTop;
+      const maxScroll = main.scrollHeight - main.clientHeight;
+      if (maxScroll <= 0) return;
+
+      setScrollPercent((scrollY / maxScroll) * 100);
+    };
+
+    main.addEventListener("scroll", handleScroll);
+    return () => main.removeEventListener("scroll", handleScroll);
+  }, []);
+  useEffect(() => {
+    const scrollbar = scrollbarRef.current;
+    const main = mainRef.current;
+    if (!scrollbar || !main) return;
   
+    let isDragging = false;
+    let startY = 0;
+    let startScroll = 0;
+  
+    const handleMouseDown = (e) => {
+      const rect = scrollbar.getBoundingClientRect();
+      if (
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom
+      ) {
+        isDragging = true;
+        startY = e.clientY;
+        startScroll = main.scrollTop;
+        e.preventDefault(); // Prevent text selection
+      }
+    };
+  
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+  
+      const deltaY = e.clientY - startY;
+      const maxScroll = main.scrollHeight - main.clientHeight;
+      const scrollAmount = (deltaY / maxScrollbarTrackHeight) * maxScroll;
+  
+      main.scrollTop = startScroll + scrollAmount;
+    };
+  
+    const handleMouseUp = () => {
+      isDragging = false;
+    };
+  
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+  
+    return () => {
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+  
+
   return (
     <>
-      <main className={styles.main}>
-        {/* Custom Cursor */}
-        <div ref={cursorRef} className={styles.cursor} />
+      <div className={styles.blendWrapper}>
+        <main className={styles.main} ref={mainRef}>
+          {/* Custom Cursor */}
+          <div ref={cursorRef} className={styles.cursor} />
 
-        {/* Navigation */}
-        <Nav scrollPercent={scrollPercent}/>
+          <div
+            ref={scrollbarRef}
+            className={styles.scrollbar}
+            style={{ top: scrollbarPosition }}
+          />
 
-        {/* Main Content */}
+          <div className={styles.scrollBarLine} />
 
-        {showModal && <OkayModal onClose={handleCloseModal} />}
-        <StoryPage />
-        <div className={styles.Mission}>
-          <Mission />
-        </div>
+          {/* Navigation */}
+          <Nav scrollPercent={scrollPercent} />
 
+          {/* Main Content */}
 
-        <GlobeInterface />
-        <div className={styles.Footer}>
-          <Footer />
-        </div>
-      </main>
+          {showModal && <OkayModal onClose={handleCloseModal} />}
+          <StoryPage />
+          <div className={styles.Mission}>
+            <Mission />
+          </div>
+
+          <GlobeInterface />
+          <div className={styles.Footer}>
+            <Footer />
+          </div>
+
+        
+        </main>
+      </div>
     </>
   );
 }
