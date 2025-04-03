@@ -56,32 +56,47 @@
 
   
   .scrollbar {
-    position: fixed;
-    top: 50%;
-    left: 39px;
-    transform: translate(-50%, 2800%);
+
     width: 20px;
     height: 20px;
-    z-index: 999999999;
+    border-radius: 50%;
     background-color: white;
     mix-blend-mode: difference;
-    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999999;
+  
+    /* New absolute left position to center the 20px circle over the 1px line at 39px */
+    left: 39px; /* matches the line's left */
+    margin-left: -10px; /* half of 20px width to center on the 1px line */
+    position: absolute;
+    transform: translateY(-370%);
   }
   
-  .scrollBarLine{
-    background-color: white;
-    width: 1px;
+  
+  .scrollBarLine {
     position: absolute;
-    height: 140px;
-    z-index: 999999999;
-    top: 49.6%;
+    top: 50%;
     left: 39px;
-    transform: translateY(-50%);
+    width: 1px;
+    height: 140px;
+    background-color: white;
     mix-blend-mode: difference;
-  }.main {
+    transform: translateY(-50%);
+    z-index: 999999999;
+  }
+  
+  
+  .main {
     height: 100vh;
     background-color: white;
     overflow-y: auto; /* ✅ changed from hidden to auto */
     overflow-x: hidden;
   }
   
+  .scrollEffect{
+    border: 1px solid #fff;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 50%;
+  }

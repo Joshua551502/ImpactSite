@@ -1,0 +1,108 @@
+.intro {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    background-color: black;
+    overflow: hidden;
+  }
+  
+.skyMountain {
+  width: 2600px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 52%;
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+  
+  .backdrop {
+    width: 100%;
+    transition: transform 0.3s ease;
+    position: relative;
+    left: -2.5%; /* center it since it’s wider now */
+    bottom: 200px;
+    overflow-y: hidden;
+    transition: transform 0.5s ease;
+  }
+  
+  .iceburg {
+    width: 2500px;
+    height: 950px;
+
+    position: absolute;
+    bottom: 0px;
+
+    z-index: 1;
+
+
+    transition: transform 0.5s ease;
+
+  }
+  
+  
+  .impactionCircle {
+    width: 380px;
+    height: 380px;
+    position: absolute;
+    top: 200px;
+    right: 50%;
+    transform: translateX(50%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    box-shadow:
+      0 0 25px 15px rgba(255, 255, 255, 0.2),
+      0 0 55px 25px rgba(255, 204, 102, 0.3),
+      0 0 75px 35px rgba(255, 102, 102, 0.15);
+
+    z-index: 1;
+    transition: transform 0.5s ease;
+  }
+  
+  .ImpactionText {
+    color: white;
+    font-size: 100px;
+    font-family: "Playfair Display", monospace;
+    letter-spacing: 20px;
+    text-align: center;
+    user-select: none;
+    width: fit-content;
+    margin-left: 40px;
+  }
+  .canvasOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* In front of .ImpactionText */
+    pointer-events: none;
+  }
+  .ImpactionText {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-size: 100px;
+    font-family: "Playfair Display", monospace;
+    letter-spacing: 20px;
+    text-align: center;
+    user-select: none;
+    width: fit-content;
+    margin-left: 40px;
+  }
+  .canvasOverlay {
+    opacity: 0.95; /* or try 0.85 */
+  }
+  
+  .ImpactionFrontCircle{
+
+    z-index: 99;
+    width: 1200px;
+    height: 500px;
+    position:absolute;
+    top: -30px;
+  }

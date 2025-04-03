@@ -12,6 +12,8 @@ import TextSlide from "@/components/TextSlide/TextSlide";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import OkayModal from "@/components/OkayModal/OkayModal";
+import Intro from "@/components/Intro/Intro";
+import Invest from "@/components/Invest/Invest";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,20 +34,6 @@ export default function Home() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const maxScroll =
-        document.documentElement.scrollHeight - window.innerHeight;
-      if (maxScroll <= 0) return;
-
-      setScrollPercent((scrollY / maxScroll) * 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const moveCursor = (e) => {
@@ -138,11 +126,11 @@ export default function Home() {
     const scrollbar = scrollbarRef.current;
     const main = mainRef.current;
     if (!scrollbar || !main) return;
-  
+
     let isDragging = false;
     let startY = 0;
     let startScroll = 0;
-  
+
     const handleMouseDown = (e) => {
       const rect = scrollbar.getBoundingClientRect();
       if (
@@ -157,32 +145,31 @@ export default function Home() {
         e.preventDefault(); // Prevent text selection
       }
     };
-  
+
     const handleMouseMove = (e) => {
       if (!isDragging) return;
-  
+
       const deltaY = e.clientY - startY;
       const maxScroll = main.scrollHeight - main.clientHeight;
       const scrollAmount = (deltaY / maxScrollbarTrackHeight) * maxScroll;
-  
+
       main.scrollTop = startScroll + scrollAmount;
     };
-  
+
     const handleMouseUp = () => {
       isDragging = false;
     };
-  
+
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
-  
+
     return () => {
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
   }, []);
-  
 
   return (
     <>
@@ -190,15 +177,18 @@ export default function Home() {
         <main className={styles.main} ref={mainRef}>
           {/* Custom Cursor */}
           <div ref={cursorRef} className={styles.cursor} />
+          <div className={styles.scrollEffect}>
+            <div
+              ref={scrollbarRef}
+              className={styles.scrollbar}
+              style={{
+                top: scrollbarPosition,
+             
+              }}
+            />
 
-          <div
-            ref={scrollbarRef}
-            className={styles.scrollbar}
-            style={{ top: scrollbarPosition }}
-          />
-
-          <div className={styles.scrollBarLine} />
-
+            <div className={styles.scrollBarLine} />
+          </div>
           {/* Navigation */}
           <Nav scrollPercent={scrollPercent} />
 
@@ -211,11 +201,11 @@ export default function Home() {
           </div>
 
           <GlobeInterface />
+
+          <Invest />
           <div className={styles.Footer}>
             <Footer />
           </div>
-
-        
         </main>
       </div>
     </>

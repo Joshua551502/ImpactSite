@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import styles from "./StoryPage.module.css";
+import Intro from "../Intro/Intro";
 
 const Scene = dynamic(() => import("../../components/Scene/Index"), {
   ssr: false,
@@ -18,7 +19,7 @@ export default function StoryPage() {
   const [loadingPercentage, setLoadingPercentage] = useState(0);
   const [loadingText, setLoadingText] = useState("Loading");
   const [isLoaded, setIsLoaded] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState("white");
+  const [backgroundColor, setBackgroundColor] = useState("black");
   const [glowing, setGlowing] = useState(false);
   const [textColor, setTextColor] = useState("black");
 
@@ -201,10 +202,11 @@ export default function StoryPage() {
       ctx.moveTo(0, canvas.height);
 
       let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, "#666666");
-      gradient.addColorStop(1, "#000000");
+      gradient.addColorStop(0, "rgba(102, 102, 102, 0.1)"); // #666666 with 50% opacity
+      gradient.addColorStop(1, "rgba(0, 0, 0, 0.9)"); // #000000 with 50% opacity
 
       ctx.fillStyle = gradient;
+
       ctx.lineTo(vertexes[0].x, vertexes[0].y);
 
       for (let i = 1; i < vertexes.length - 1; i++) {
@@ -398,7 +400,7 @@ export default function StoryPage() {
           </svg>
         </div>
         <div className={`${styles.scenePage} ${isLoaded ? styles.fadeIn : ""}`}>
-          <Scene />
+          <Intro />
         </div>
         <div className={styles.socials}>
           <ul>

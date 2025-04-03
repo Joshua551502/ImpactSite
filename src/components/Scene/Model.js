@@ -1,5 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import { MeshTransmissionMaterial, useGLTF, Text, Line } from "@react-three/drei";
+import {
+  MeshTransmissionMaterial,
+  useGLTF,
+  Text,
+  Line,
+} from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
 export default function Model() {
@@ -13,9 +18,11 @@ export default function Model() {
 
   // Convert 300px to world units
   const pixelToWorldRatio = viewport.width / size.width;
-  const desiredWorldSize = 200 * pixelToWorldRatio; // Keeps sphere ~300px
-  const textSize = 140 * pixelToWorldRatio; // Make text larger (~50px equivalent)
+  const desiredWorldSize = 170 * pixelToWorldRatio; // Keeps sphere ~300px
+  const textSize = 60 * pixelToWorldRatio; // Make text larger (~50px equivalent)
   const bgSize = 300 * pixelToWorldRatio; // Circle size (~300px)
+  const letterSpacing = 15 * pixelToWorldRatio;
+
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -53,44 +60,55 @@ export default function Model() {
   const segments = 64;
   for (let i = 0; i <= segments; i++) {
     const angle = (i / segments) * Math.PI * 2;
-    circlePoints.push([Math.cos(angle) * (bgSize *0.67), Math.sin(angle) * (bgSize *0.67), 0]);
+    circlePoints.push([
+      Math.cos(angle) * (bgSize * 0.67),
+      Math.sin(angle) * (bgSize * 0.67),
+      0,
+    ]);
   }
 
   return (
-    <group scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]} position={[0, 0.35, 0]}>
+    <group
+      scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]}
+      position={[0, 0.35, 0]}
+    >
       {/* Circular Border (STATIC - never moves) */}
-      <Line
+      {/* <Line
         points={circlePoints}
         color="#0DA388"
         lineWidth={3} // Controls border thickness
         position={[0, 0.1, -1.1]} // Always centered, never moves
-      />
+      /> */}
 
       {/* Text (MOVES with parallax) */}
       <Text
         ref={text}
-        font="/fonts/PPNeueMontreal-Bold.otf"
+        font="/fonts/PlayfairDisplay-VariableFont_wght.ttf" // ✅ correct path
         position={[3, 1.0, -1]}
-        fontSize={textSize}
+        fontSize={textSize} // ≈ 100px equivalent
         color="white"
         anchorX="center"
         anchorY="middle"
+        letterSpacing={letterSpacing} // see below
       >
         IMPACTION
       </Text>
 
       {/* Sphere */}
-      <mesh ref={sphere} geometry={nodes.Icosphere?.geometry} position={[0, -0.0, 0]}>
-  <MeshTransmissionMaterial
-    thickness={0.85}
-    roughness={0.2}
-    transmission={1}
-    ior={0.9}
-    chromaticAberration={0.25}
-    backside={true}
-  />
-</mesh>
-
+      <mesh
+        ref={sphere}
+        geometry={nodes.Icosphere?.geometry}
+        position={[0, -0.0, 0]}
+      >
+        <MeshTransmissionMaterial
+          thickness={0.85}
+          roughness={0.2}
+          transmission={1}
+          ior={0.9}
+          chromaticAberration={0.25}
+          backside={true}
+        />
+      </mesh>
     </group>
   );
 }
