@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://Joshua551502.github.io/ImpactSite",
-
   "scripts": {
     "dev": "next dev",
-"build": "next build",
-
-
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "gh-pages -d out"
@@ -22,9 +19,9 @@
     "gsap": "^3.12.7",
     "leva": "^0.9.35",
     "lil-gui": "^0.20.0",
-    "next": "^14.2.24",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "^14.2.26",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sass": "^1.85.1"
   },
   "devDependencies": {

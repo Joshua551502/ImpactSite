@@ -208,7 +208,9 @@ margin: 0 auto;
 
 #missionText {
   font-size: 90px;
-  background-image: url("/medias/grassoverlay1.png");
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)),
+    url("/medias/grassoverlay1.png");
   background-size: 30%;
   background-clip: text;
   -webkit-background-clip: text;

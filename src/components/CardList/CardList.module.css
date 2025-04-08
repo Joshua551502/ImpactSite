@@ -19,11 +19,7 @@
     height: 402.01px;
 
     border-radius: 20px;
-    background: linear-gradient(200deg, #66666680, #000000);
-    border-left: 2px solid #6D6D6D;
-    border-top: 1.5px solid #6D6D6D;
-    border-right: 0.5px solid #6D6D6D;
-    border-bottom: 0.5px solid #6D6D6D;
+   
     position: relative;
     cursor: pointer;
     transition: transform 1s ease-in-out;
@@ -393,8 +389,7 @@
     width: 250px;
     height: 402px;
     border-radius: 20px;
-    background: linear-gradient(200deg, #66666680, #000000);
-    border: 2px solid #6d6d6d;
+
     cursor: pointer;
     transition: transform 1s ease-in-out;
     transform-style: preserve-3d;
@@ -438,3 +433,114 @@
   .greyedOut {
     filter:  brightness(0.5);
   }
+  .page {
+    perspective: 1000px; /* Needed for 3D flip */
+  }
+  
+  .cardInner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    background: linear-gradient(200deg, #66666680, #000000);
+    border-left: 2px solid #6D6D6D;
+    border-top: 1.5px solid #6D6D6D;
+    border-right: 0.5px solid #6D6D6D;
+    border-bottom: 0.5px solid #6D6D6D;
+    border-radius: 20px;
+  }
+  
+  .page:hover .cardInner {
+    transform: rotateY(180deg);
+  }
+  
+  .front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+  }
+  @keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
+  
+  @property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+  }
+  
+  /* Glowing border effect */
+  .cardInner {
+    --rotate: 132deg;
+    background: linear-gradient(200deg, #66666680, #000000);
+    border-left: 2px solid #6D6D6D;
+    border-top: 1.5px solid #6D6D6D;
+    border-right: 0.5px solid #6D6D6D;
+    border-bottom: 0.5px solid #6D6D6D;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    z-index: 1;
+  }
+  
+  .cardInner::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -3px;
+    left: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+    border-radius: 22px;
+    background-image: linear-gradient(
+      var(--rotate),
+      #5ddcff,
+      #3c67e3 43%,
+      #4e00c2
+    );
+    animation: spin 2.5s linear infinite;
+  }
+  
+  .cardInner::after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    transform: scale(0.8);
+    filter: blur(40px);
+    border-radius: 22px;
+    background-image: linear-gradient(
+      var(--rotate),
+      #5ddcff,
+      #3c67e3 43%,
+      #4e00c2
+    );
+    opacity: 0.7;
+    animation: spin 2.5s linear infinite;
+  }
+  
+.front, .back{
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(200deg, #2c2c2c, #000000);
+  border-radius: 20px;
+}

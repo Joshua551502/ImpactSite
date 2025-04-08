@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./GlobeInterface.module.css";
 import CardList from "../CardList/CardList";
 import Monitor from "../Monitor/Monitor";
-
+import Card from "../Card/Card";
 
 export default function GlobeInterface() {
   const [daysTill2030, setDaysTill2030] = useState(0);
@@ -353,48 +353,8 @@ export default function GlobeInterface() {
             </div>
           )}
           <div className={styles.card}>
-            <img
-              src="/medias/carousel-card/common.svg"
-              className={styles.border}
-            ></img>
-            <div className={styles.content}>
-              <img
-                src="/medias/carousel-card/first-image.png"
-                className={styles.cardImage}
-              />
-              <div className={styles.rarity}>UNCOMMON</div>
-              <div className={styles.values}>
-                <img
-                  src="/medias/carousel-card/carousel-card-sdgs/13.png"
-                  className={styles.unsdg}
-                />
-                <img
-                  src="/medias/carousel-card/carousel-card-sdgs/14.png"
-                  className={styles.unsdg}
-                />
-                <img
-                  src="/medias/carousel-card/qrcode.png"
-                  className={styles.qrcode}
-                />
-              </div>
-              <div className={styles.cardContext}>
-                <div className={styles.cardH1}>2 Months Left • 0% Funded</div>
-                <div className={styles.cardH2}>
-                  Indigenous Friends Association
-                </div>
-                <div className={styles.cardH3}>
-                  Bridge the digital divide for Indigenous communities. Join us
-                  in a meaningful investment with our IndigiTECH ...
-                </div>
-                <div className={styles.cardH4}>Toronto,CA</div>
-                <div className={styles.gradientBar}></div>
-                <div className={styles.cardH5}>$0 raised of $1,500</div>
-              </div>
-              <div className={styles.profilePicture}>
-                <img src="/medias/carousel-card/profilePicture.png" alt="" />
-              </div>
-            </div>
-          </div>
+  <Card />
+</div>
         </div>
       </div>
     </div>

@@ -665,11 +665,11 @@ width: 100%;
     right: 60px;
     bottom: 20px;
     border-radius: 20px;
-    background: linear-gradient(200deg, #66666680, #000000);
+    /* background: linear-gradient(200deg, #66666680, #000000);
     border-left: 2px solid #6D6D6D;
     border-top: 1.5px solid #6D6D6D;
     border-right: 0.5px solid #6D6D6D;
-    border-bottom: 0.5px solid #6D6D6D;
+    border-bottom: 0.5px solid #6D6D6D; */
 }
 
 .border{

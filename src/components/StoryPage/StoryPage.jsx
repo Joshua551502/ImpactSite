@@ -8,7 +8,8 @@ const Scene = dynamic(() => import("../../components/Scene/Index"), {
   ssr: false,
 });
 
-export default function StoryPage() {
+export default function StoryPage({ scrollY }) {
+
   const cursorRef = useRef(null);
   const contentContainerRef = useRef(null);
   const canvasRef = useRef(null);
@@ -400,7 +401,8 @@ export default function StoryPage() {
           </svg>
         </div>
         <div className={`${styles.scenePage} ${isLoaded ? styles.fadeIn : ""}`}>
-          <Intro />
+        <Intro scrollY={scrollY} />
+
         </div>
         <div className={styles.socials}>
           <ul>

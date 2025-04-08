@@ -26,6 +26,23 @@ export default function Home() {
   const mainRef = useRef(null);
   const maxScrollbarTrackHeight = 150 - 20; // container height - thumb height
   const scrollbarRef = useRef(null); // ✅ separate from cursorRef
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main) return;
+
+    const handleScroll = () => {
+      const scrollTop = main.scrollTop;
+      const maxScroll = main.scrollHeight - main.clientHeight;
+
+      setScrollY(scrollTop);
+      setScrollPercent((scrollTop / maxScroll) * 100);
+    };
+
+    main.addEventListener("scroll", handleScroll);
+    return () => main.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollbarPosition = `${
     (scrollPercent / 100) * maxScrollbarTrackHeight
@@ -34,7 +51,6 @@ export default function Home() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
   useEffect(() => {
     const moveCursor = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
@@ -48,9 +64,10 @@ export default function Home() {
       cursorRef.current?.classList.remove(styles.cursorHover);
     };
 
-    window.addEventListener("mousemove", moveCursor);
+    // ✅ Use 'pointermove' on document instead of 'mousemove' on window
+    document.addEventListener("pointermove", moveCursor);
 
-    // Attach event listeners to clickable elements
+    // Attach hover events to clickables
     const clickables = document.querySelectorAll("a, button, [role='button']");
     clickables.forEach((el) => {
       el.addEventListener("mouseenter", handleHover);
@@ -58,7 +75,7 @@ export default function Home() {
     });
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
+      document.removeEventListener("pointermove", moveCursor);
       clickables.forEach((el) => {
         el.removeEventListener("mouseenter", handleHover);
         el.removeEventListener("mouseleave", handleLeave);
@@ -183,7 +200,6 @@ export default function Home() {
               className={styles.scrollbar}
               style={{
                 top: scrollbarPosition,
-             
               }}
             />
 
@@ -195,7 +211,8 @@ export default function Home() {
           {/* Main Content */}
 
           {showModal && <OkayModal onClose={handleCloseModal} />}
-          <StoryPage />
+          <StoryPage scrollY={scrollY} />
+
           <div className={styles.Mission}>
             <Mission />
           </div>

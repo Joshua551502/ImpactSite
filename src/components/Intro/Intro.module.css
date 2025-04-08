@@ -53,15 +53,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 0.95) 60%,
+      rgba(255, 136, 0, 0.3) 75%,
+      rgba(255, 204, 0, 0.15) 90%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
     box-shadow:
-      0 0 25px 15px rgba(255, 255, 255, 0.2),
-      0 0 55px 25px rgba(255, 204, 102, 0.3),
-      0 0 75px 35px rgba(255, 102, 102, 0.15);
-
+      0 0 35px 10px rgba(255, 200, 80, 0.35),
+      0 0 100px 60px rgba(255, 130, 0, 0.2),
+      0 0 200px 80px rgba(255, 100, 0, 0.1);
     z-index: 1;
     transition: transform 0.5s ease;
+    filter: drop-shadow(0 0 25px rgba(255, 180, 80, 0.4));
   }
+  
   
   .ImpactionText {
     color: white;
@@ -106,3 +114,33 @@
     position:absolute;
     top: -30px;
   }
+
+  .eclipseRays {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at center,
+      transparent 20%,
+      rgba(255, 204, 102, 0.1) 40%,
+      rgba(255, 140, 60, 0.05) 60%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(circle at center, white, transparent);
+    opacity: 0.6;
+    animation: pulseRays 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  @keyframes pulseRays {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.75;
+    }
+  }
+  

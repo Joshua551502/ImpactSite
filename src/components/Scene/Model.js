@@ -7,22 +7,52 @@ import {
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
-export default function Model() {
-  const { nodes } = useGLTF("/medias/sphere1.glb");
+export default function Model({ scrollY }) {
+  const { nodes } = useGLTF("/medias/sphere3.glb");
   const { viewport, size, mouse } = useThree();
   const sphere = useRef(null);
   const text = useRef(null);
+  const lettersRef = useRef([]);
+  const spacing = 1;
+  const textGroup = useRef();
+
+  const TEXT = "IMPACTION";
+  const speedMap = [0.15, 0.25, 0.3, 0.4, 0.5, 0.6, 0.3, 0.2, 0.1]; // y1–y6 style
+
+  const LETTERS = [
+    { char: "I", offsetX: 0.2, speed: 1 },
+    { char: "M", offsetX: -2.9, speed: 0.8 },
+    { char: "P", offsetX: 0.2, speed: 1.5},
+    { char: "A", offsetX: -1.5, speed: 0.6 },
+    { char: "C", offsetX: 0.2, speed: 1.5 },
+    { char: "T", offsetX: 0.2, speed: 0.6 },
+    { char: "I", offsetX: 0.2, speed: 1.5 },
+    { char: "O", offsetX: 1.6, speed: 1 },
+    { char: "N", offsetX: 2.3, speed: 0.5 },
+  ];
+  
+
+  useFrame(() => {
+    lettersRef.current.forEach((ref, i) => {
+      if (ref) {
+        const { speed } = LETTERS[i];
+        const baseY = 0; // anchor point
+        const scrollFactor = scrollY * speed * 0.0015; // positive moves text up
+        const targetY = baseY + scrollFactor;
+        ref.position.y += (targetY - ref.position.y) * 0.1; // smooth interpolation
+      }
+    });
+  });
 
   // State for parallax effect
   const [parallax, setParallax] = useState({ x: 0, y: 0 });
 
   // Convert 300px to world units
   const pixelToWorldRatio = viewport.width / size.width;
-  const desiredWorldSize = 170 * pixelToWorldRatio; // Keeps sphere ~300px
+  const desiredWorldSize = 165 * pixelToWorldRatio; // Keeps sphere ~300px
   const textSize = 60 * pixelToWorldRatio; // Make text larger (~50px equivalent)
   const bgSize = 300 * pixelToWorldRatio; // Circle size (~300px)
   const letterSpacing = 15 * pixelToWorldRatio;
-
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -55,6 +85,23 @@ export default function Model() {
     }
   });
 
+  useFrame(({ clock }) => {
+    if (sphere.current) {
+      const time = clock.getElapsedTime();
+  
+      sphere.current.rotation.y = time * 0.6;
+      sphere.current.rotation.x = time * 0.05;
+  
+      sphere.current.rotation.y += parallax.x * 0.3;
+      sphere.current.rotation.x += parallax.y * 0.3;
+    }
+  
+    if (textGroup.current) {
+      textGroup.current.position.x = parallax.x * 0.3;
+      textGroup.current.position.y = parallax.y * 0.3;
+    }
+  });
+
   // Generate circular points for the border (static)
   const circlePoints = [];
   const segments = 64;
@@ -81,18 +128,38 @@ export default function Model() {
       /> */}
 
       {/* Text (MOVES with parallax) */}
-      <Text
-        ref={text}
-        font="/fonts/PlayfairDisplay-VariableFont_wght.ttf" // ✅ correct path
-        position={[3, 1.0, -1]}
-        fontSize={textSize} // ≈ 100px equivalent
-        color="white"
-        anchorX="center"
-        anchorY="middle"
-        letterSpacing={letterSpacing} // see below
-      >
-        IMPACTION
-      </Text>
+      <group ref={textGroup} position={[0, 0.2, 0]}>
+      {TEXT.split("").map((char, i) => {
+  let offset = (i - (TEXT.length - 1) / 2) * textSize * spacing;
+
+  // Individual visual tweaks
+  if (char === "I") offset += textSize * 0.05;
+  if (char === "M") offset -= textSize * 0;
+  if (char === "P") offset -= textSize * -0.1;
+  if (char === "A") offset += textSize * 0;
+  if (char === "T") offset -= textSize * -0.1;
+  if (char === "I" && i === 6) offset += textSize * -0.1; // Second "I"
+  if (char === "O") offset -= textSize * 0.15;
+  if (char === "N") offset -= textSize * 0.15;
+
+  return (
+    <Text
+      key={i}
+      ref={(el) => (lettersRef.current[i] = el)}
+      font="/fonts/PlayfairDisplay-VariableFont_wght.ttf"
+      fontSize={textSize}
+      position={[offset, 0, -1]}
+      color="white"
+      anchorX="center"
+      anchorY="middle"
+    >
+      {char}
+    </Text>
+  );
+})}
+
+
+      </group>
 
       {/* Sphere */}
       <mesh
@@ -104,8 +171,8 @@ export default function Model() {
           thickness={0.85}
           roughness={0.2}
           transmission={1}
-          ior={0.9}
-          chromaticAberration={0.25}
+          ior={0.95}
+          chromaticAberration={0.2}
           backside={true}
         />
       </mesh>
