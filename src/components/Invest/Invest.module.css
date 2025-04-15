@@ -1,109 +1,37 @@
-.invest{
-    background-color: black;
-    height: 1024px;
-    color: white;
-    padding: 0 80px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 40px;
-    font-weight: 300;
-    letter-spacing: 4px;
+.fancy {
+  background: black;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
 
-.options{
-    display: flex;
-    flex-direction: column;
-    row-gap: 70px;
-    padding-top: 20px;
-
-    margin: 0 auto;
-}
-
-.option{
-    border-bottom: 1px solid #fff;
-    display: flex;
-   justify-content: space-between;
-   align-items: center;
-   padding-bottom: 10px;
-}
-
-.arrow{
-
-    width: 40px;
-    height: 40px;
-}
-
-.arrow img{
-    width: 100%;
-    height: 100%;
-}.optionContainer {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .dropdownContent {
-    padding: 20px 10px 10px 10px;
-    font-size: 18px;
-    color: #ccc;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-5px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .arrowOpen img {
-    transform: rotate(134deg);
-    transition: transform 0.3s ease;
-    user-select: none;
-    cursor: pointer;
-  }
-  
-  .arrow img {
-    transition: transform 0.3s ease;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    pointer-events: none;
-  }
-  
-  .option {
-    cursor: pointer;
-  }
-  
-  .impactText{
-    display: flex;
-    font-family: "Playfair Display", monospace;
-    justify-content: space-between;
-    
-
-  }
-
-  .blockChainText{
-    font-size: 64px;
-    color: #3D3D3D;
-    width: 150%;
-    max-width: 900px;
-  }
-
-  .safetypara{
-    width: 100%;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 20px;
-    max-width: 400px;
-  }
-#safetyText{
-    padding: 80px 30px 40px 80px ;
+.container {
+  display: flex;
+  flex-direction: column; /* ⬅️ Change to vertical layout */
+  height: 300vh; /* 3 panels stacked vertically */
+  width: 100%;
 
 }
-  .gradientText{
-    background: linear-gradient( #0DA388, #4289BF); /* Your gradient */
-  -webkit-background-clip: text; /* Clip the background to the text */
-  -webkit-text-fill-color: transparent; /* Make the text fill transparent */
-  }
+
+.panel {
+  flex: 0 0 100vh; /* Each one takes up a full viewport height */
+  font-size: 5vw;
+  color: white;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-family: "Roboto Mono", monospace;
+}
+
+/* Optional panel-specific styles */
+.web3 {
+  background: #0d0d0d;
+}
+
+.invest {
+  background: #1a1a1a;
+}
+
+.safety {
+  background: #2a2a2a;
+}

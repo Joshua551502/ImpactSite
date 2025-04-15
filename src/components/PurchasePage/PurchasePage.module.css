@@ -1,0 +1,418 @@
+.purchasePage{
+    background-color: #1F1F1F;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    overflow-y: scroll;
+    padding-bottom: 100px
+    
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #ffffff60;
+    justify-content: space-between;
+
+}
+
+.titleText{
+    color: white;
+    font-size: 40px;
+    font-family: 'Roboto Mono', monospace;
+    padding-bottom: 10px;
+}
+
+
+.uprightArrow{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+.uprightArrow img{
+    width: 40px;
+    height: 40px; 
+}
+
+
+.content {
+    width: 99%;
+
+    display: grid;
+    grid-template-columns: auto 1.5fr auto auto;
+    column-gap: 60px;
+    align-items: start;
+  }
+  
+
+.cardInfo{
+
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    row-gap: 70px;
+}
+.mapSection{
+    background-image: linear-gradient(45deg, #000000, #666666);
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    border-top: 1px solid #6D6D6D;
+    border-left: 3px solid #6D6D6D;
+    border-right: 0.5px solid #6D6D6D;
+    border-bottom: 0.5px solid #6D6D6D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map{
+
+    width: 80%;
+    height: 85%;
+    border-radius: 10px;
+    
+}
+
+.map img{
+    width: 100%;
+    height: 100%;
+}
+
+.stats{
+
+    height: 100%;
+    margin-top: 10px;
+}
+
+
+.qrcode{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+}
+.qrcodeImg img{
+    width: 100%;
+
+}
+
+
+.dropdownTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+}
+
+.dropdownText{
+    color: white;
+    font-size: 16px;
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 1.5px;
+}
+
+.dropdownButton{
+    color: white;
+    font-size: 24px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.logo{
+    width: 80px;
+    height: 80px;
+  
+}
+
+.logo img{
+    width: 100%;
+    height: 100%;
+   
+}
+
+.qrcodeImg{
+    width: 80px;
+    height: 80px;
+
+}
+
+.payment{
+    margin-top: 20px;
+    position: relative;
+}
+.screen{
+    border: 1px solid #6D6D6D;
+    width: 280px;
+    height: 460px;
+    padding: 20px;
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+}
+
+.LeftRightValue{
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.greyText{
+    color: #6D6D6D;
+}
+
+.greyLine{
+    border: 1px solid #3D3D3D;
+    margin: 15px -10px;
+}
+
+.screenButtons{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-left: -10px;
+}
+
+.greentext{
+    color: #0FBF89;
+}
+
+.greenButton{
+
+    height: 36px;
+    width: 103%;
+    border-radius: 30px;
+    position: relative;
+    background-image: linear-gradient( #0FBF89, #1F4059);
+    cursor: pointer;
+}
+
+.LeftRightButton{
+    display :flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+}
+
+.rightButtonText{
+    font-weight: 400;
+}
+
+.smallStyle{
+    font-size: 10px;
+}
+
+.backgroundButton{
+    position: absolute;
+    background-color: #1F1F1F;
+    width: 99%;
+    height: 91%;
+    border-radius: 30px;
+    top: 48%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+.contrib{
+
+    width: 100%;
+    height: fit-content;
+
+    left: 40px;
+    bottom: 20px;
+}
+.contribText{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+  }
+  
+  .iconShape{
+  
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  }
+  
+  .iconShape img{
+    height: 100%;
+  }
+  
+  .viewAll{
+   
+    color: #00A1FF;
+  text-decoration: underline;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 11px;
+   cursor: pointer;
+   width: 100%;
+   text-align: right;
+   margin-top: 10px;
+  }
+  .listItem{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(61, 61, 61, 0.65);
+    letter-spacing: 2px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    align-items: center;
+  }
+  
+  .infoTab{
+    margin: 43px 0 32px; 
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    color: white;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .infoItem{
+    display: flex;
+    align-items: center;
+  }
+
+  .infoBox{
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #000000;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    border: 1px solid #3D3D3D;
+    margin-right: 10px;
+  }
+
+  .dropdownContent{
+    color: white;
+    padding: 0;
+    padding-top: 20px;
+  }
+
+  .dropTitle{
+    align-items: start;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .dropDownText{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+
+  .loveText{
+    font-weight: 300;
+  }
+
+  .description{
+    color: #6D6D6D;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    line-height: 1.5;
+  }
+
+  .tags{
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+
+  .gradientLine{
+    height: 5px;
+    width: 100%;
+    border-radius: 20px;
+    background-image: linear-gradient(45deg,#DD1C27, #F48030,#FDD75A);
+    margin: 4px 0;
+  }
+
+  .gradientTitle{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.3px;
+    color: #6D6D6D;
+  }
+
+  .gradientfunds{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
+
+  .unsdg{
+    display: flex;
+    column-gap: 20px;
+  }
+
+  .unsdgImage{
+    width: 48px;
+    height: 48px;
+  }
+
+  .unsdgImage img{
+    width: 48px;
+    height: 48px;
+  }
+
+  .unsdgText{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .unsdgTextTop{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+  .unsdgTextBottom{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: #6D6D6D;
+    margin-top: 8px;
+  }
+
+  .unsdgContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  #specialBottom{
+    margin-top: 0;
+  }
+
+  #specialUNSDG{
+    align-items: center;
+  }
+
+  .specialContainer{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .organizationText{
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+  }

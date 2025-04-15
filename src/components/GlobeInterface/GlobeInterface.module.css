@@ -887,3 +887,27 @@ font-size: 11px;
 .bottomNav {
   z-index: 52;
 }
+
+
+.purchaseSlidePanel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%; /* Adjust height as needed */
+  background-color: #1F1F1F;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 100;
+
+}
+
+.purchaseSlidePanel.open {
+  transform: translateY(0%);
+}
+
+.purchasePanelContent {
+  padding: 2rem;
+
+  height: 100%;
+}

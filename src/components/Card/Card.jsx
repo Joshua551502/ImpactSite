@@ -2,9 +2,9 @@
 import React from "react";
 import styles from "../CardList/CardList.module.css";
 
-export default function Card({ index = 0 }) {
+export default function Card({ index = 0, onClick = () => {} }) {
   return (
-    <div className={styles.page}>
+    <div className={styles.page} onClick={onClick} style={{ cursor: "pointer" }}>
       <div className={styles.cardInner}>
         {/* Front Side */}
         <div className={styles.front}>

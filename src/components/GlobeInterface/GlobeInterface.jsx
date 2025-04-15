@@ -3,6 +3,7 @@ import styles from "./GlobeInterface.module.css";
 import CardList from "../CardList/CardList";
 import Monitor from "../Monitor/Monitor";
 import Card from "../Card/Card";
+import PurchasePage from "../PurchasePage/PurchasePage";
 
 export default function GlobeInterface() {
   const [daysTill2030, setDaysTill2030] = useState(0);
@@ -10,6 +11,8 @@ export default function GlobeInterface() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isMonitorOpen, setIsMonitorOpen] = useState(false);
   const [isMonitorPanelOpen, setIsMonitorPanelOpen] = useState(false);
+  const [isPurchasePanelOpen, setIsPurchasePanelOpen] = useState(false);
+
 
   const toggleMonitorPanel = () => {
     setIsMonitorPanelOpen((prev) => !prev);
@@ -86,6 +89,18 @@ export default function GlobeInterface() {
             <div className={styles.buttonText}>TRADING</div>
           </button>
         </div>
+
+        <div
+          className={`${styles.purchaseSlidePanel} ${
+            isPurchasePanelOpen ? styles.open : ""
+          }`}
+        >
+          <div className={styles.purchasePanelContent}>
+          <PurchasePage onClose={() => setIsPurchasePanelOpen(false)} />
+
+          </div>
+        </div>
+
         <div
           className={`${styles.monitorPanel} ${
             isMonitorOpen ? styles.open : ""
@@ -106,7 +121,8 @@ export default function GlobeInterface() {
             <div className={styles.featuredCause}>Featured Cause Campaigns</div>
 
             <div className={styles.causeCampaigns}>
-              <CardList />
+            <CardList onCardClick={() => setIsPurchasePanelOpen(true)} />
+
             </div>
           </div>
         </div>
@@ -127,7 +143,7 @@ export default function GlobeInterface() {
           }`}
         >
           <div className={styles.monitorContentContainer}>
-            <Monitor/>
+            <Monitor />
           </div>
         </div>
 
@@ -353,8 +369,8 @@ export default function GlobeInterface() {
             </div>
           )}
           <div className={styles.card}>
-  <Card />
-</div>
+            <Card />
+          </div>
         </div>
       </div>
     </div>

@@ -27,6 +27,7 @@ export default function Home() {
   const maxScrollbarTrackHeight = 150 - 20; // container height - thumb height
   const scrollbarRef = useRef(null); // ✅ separate from cursorRef
   const [scrollY, setScrollY] = useState(0);
+  const isPinned = useRef(false);
 
   useEffect(() => {
     const main = mainRef.current;
@@ -149,22 +150,14 @@ export default function Home() {
     let startScroll = 0;
 
     const handleMouseDown = (e) => {
-      const rect = scrollbar.getBoundingClientRect();
-      if (
-        e.clientX >= rect.left &&
-        e.clientX <= rect.right &&
-        e.clientY >= rect.top &&
-        e.clientY <= rect.bottom
-      ) {
-        isDragging = true;
-        startY = e.clientY;
-        startScroll = main.scrollTop;
-        e.preventDefault(); // Prevent text selection
-      }
+      isDragging = true;
+      startY = e.clientY;
+      startScroll = main.scrollTop;
+      e.preventDefault();
     };
 
     const handleMouseMove = (e) => {
-      if (!isDragging) return;
+      if (!isDragging || isPinned.current) return; // ⛔️ Prevent scroll override during pin
 
       const deltaY = e.clientY - startY;
       const maxScroll = main.scrollHeight - main.clientHeight;
@@ -177,21 +170,60 @@ export default function Home() {
       isDragging = false;
     };
 
-    window.addEventListener("mousedown", handleMouseDown);
+    scrollbar.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      window.removeEventListener("mousedown", handleMouseDown);
+      scrollbar.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  useEffect(() => {
+    const main = mainRef.current;
+    if (!main) return;
+
+    const investSection = main.querySelector('[data-section="invest"]');
+    const container = investSection?.querySelector("[data-container]");
+    const panels = container?.querySelectorAll("[data-panel]");
+    if (!investSection || !container || !panels.length) return;
+
+    const scrollLength = container.scrollHeight - investSection.clientHeight;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: investSection,
+        pin: true,
+        scrub: 1,
+        start: "top top",
+        end: `+=${scrollLength}`,
+        scroller: main,
+        pinType: "fixed",
+        invalidateOnRefresh: true,
+        onEnter: () => (isPinned.current = true),
+        onLeave: () => (isPinned.current = false),
+        onEnterBack: () => (isPinned.current = true),
+        onLeaveBack: () => (isPinned.current = false),
+      },
+    });
+
+    tl.to(container, {
+      y: -scrollLength,
+      ease: "none",
+    });
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
     };
   }, []);
 
   return (
     <>
       <div className={styles.blendWrapper}>
-        <main className={styles.main} ref={mainRef}>
+        <main className={styles.main} ref={mainRef} data-scroll-container>
           {/* Custom Cursor */}
           <div ref={cursorRef} className={styles.cursor} />
           <div className={styles.scrollEffect}>
@@ -218,8 +250,8 @@ export default function Home() {
           </div>
 
           <GlobeInterface />
-
           <Invest />
+
           <div className={styles.Footer}>
             <Footer />
           </div>
