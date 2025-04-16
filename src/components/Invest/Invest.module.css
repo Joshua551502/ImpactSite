@@ -1,37 +1,175 @@
-.fancy {
-  background: black;
-  height: 100vh;
-  overflow: hidden;
+.wrapper {
   position: relative;
+  height: 100vh;
 }
 
-.container {
+.red,
+.yellow,
+.green {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  padding: 40px 80px;
+  font-size: 3rem;
+  font-weight: bold;
   display: flex;
-  flex-direction: column; /* ⬅️ Change to vertical layout */
-  height: 300vh; /* 3 panels stacked vertically */
+  justify-content: flex-start;
+  align-items: flex-start;
+  will-change: transform;
+  font-family: 'Roboto Mono', monospace;
+ 
+}
+
+.red {
+  background-color: #000000;
+  color: white;
+  z-index: 1;
+}
+
+.yellow {
+  background-color: #000;
+  color: black;
+  z-index: 2;
+}
+
+.green {
+  background-color: #000;
+  color: white;
+  z-index: 3;
+}
+
+.item{
+
+  width: 100%;
+}
+
+.topItem{
+  height: fit-content;
+  font-size: 40px;
+  font-weight: 100;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topItem img{
+  height: 40px;
+}
+
+.contentText {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* BigText gets 2x space of SmallText */
+  gap: 20px;
+  align-items: top;
+  margin-top: 38px;
+}
+
+.leftToRight {
+  direction: ltr;
+}
+
+.rightToLeft {
+  direction: rtl;
+}
+
+.bigText,
+.smallText {
+  height: fit-content;
+
+
+}
+
+.bigText{
+  font-size: 64px;
+  font-family: "Playfair Display", monospace;
+  font-weight: 200;
+  color: #3D3D3D;
+}
+
+.smallText{
+  font-size: 20px;
+  font-weight: 200;
+  color: white;
+}
+
+.gradientContainer {
+  display: contents; /* makes it act like it’s not even there */
+  white-space: normal;
+}
+
+
+.topGradient {
+  position: relative;
+  background: linear-gradient(to bottom, #0DA388, #4289BF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Needed to make the background position shared */
+  background-size: 100% 200%; /* Make it tall enough to span both spans */
+  background-repeat: no-repeat;
+}
+
+/* First span gets top half of gradient */
+.topGradient:first-of-type {
+  background-position: top;
+}
+
+/* Second span gets bottom half */
+.topGradient:last-of-type {
+  background-position: bottom;
+}
+
+.contentImage{
+  height: 600px;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.contentImage img{
   width: 100%;
 
+  height: fit-content;
 }
 
-.panel {
-  flex: 0 0 100vh; /* Each one takes up a full viewport height */
-  font-size: 5vw;
-  color: white;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  font-family: "Roboto Mono", monospace;
+.contentText.reverse {
+  grid-template-columns: 1fr 2fr; /* smallText on left, bigText on right */
 }
 
-/* Optional panel-specific styles */
-.web3 {
-  background: #0d0d0d;
+.contentText.reverse .smallText {
+  order: 1;
 }
 
-.invest {
-  background: #1a1a1a;
+.contentText.reverse .bigText {
+  order: 2;
 }
 
-.safety {
-  background: #2a2a2a;
+#img1{
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 50px;
+
+}
+#img2{
+  margin-top: 50px;
+}
+
+#img3{
+  margin-top: -50px;
+
+}
+
+.red,
+.yellow,
+.green {
+  transform: translateY(0);
+  will-change: transform;
 }

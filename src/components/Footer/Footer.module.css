@@ -1,12 +1,33 @@
+.footerContainer{
+  border: 1px solid #ff1100;
+  width: 100%;
+  height: fit-content;
+  background-color: black;
+  z-index: 4;
+}
+
 .footer{
     height: 480px;
-    padding: 91px 52px 30px 70px;
+    
     display: flex;
     column-gap: 100px;
     position: relative;
-WIDTH: calc(100% - 240px);
-    margin: 0 auto;
+WIDTH: 100%;
+  
   background-color: white;
+
+
+}
+
+.innerFooter{
+  height: 480px;
+  padding: 91px 52px 30px 70px;
+  display: flex;
+  column-gap: 100px;
+  position: relative;
+WIDTH: calc(100% - 240px);
+  margin: 0 auto;
+background-color: white;
 
 }
 

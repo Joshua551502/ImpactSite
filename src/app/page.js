@@ -150,14 +150,22 @@ export default function Home() {
     let startScroll = 0;
 
     const handleMouseDown = (e) => {
-      isDragging = true;
-      startY = e.clientY;
-      startScroll = main.scrollTop;
-      e.preventDefault();
+      const rect = scrollbar.getBoundingClientRect();
+      if (
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom
+      ) {
+        isDragging = true;
+        startY = e.clientY;
+        startScroll = main.scrollTop;
+        e.preventDefault(); // Prevent text selection
+      }
     };
 
     const handleMouseMove = (e) => {
-      if (!isDragging || isPinned.current) return; // ⛔️ Prevent scroll override during pin
+      if (!isDragging) return;
 
       const deltaY = e.clientY - startY;
       const maxScroll = main.scrollHeight - main.clientHeight;
@@ -170,55 +178,18 @@ export default function Home() {
       isDragging = false;
     };
 
-    scrollbar.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      scrollbar.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
   }, []);
 
-  useEffect(() => {
-    const main = mainRef.current;
-    if (!main) return;
 
-    const investSection = main.querySelector('[data-section="invest"]');
-    const container = investSection?.querySelector("[data-container]");
-    const panels = container?.querySelectorAll("[data-panel]");
-    if (!investSection || !container || !panels.length) return;
-
-    const scrollLength = container.scrollHeight - investSection.clientHeight;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: investSection,
-        pin: true,
-        scrub: 1,
-        start: "top top",
-        end: `+=${scrollLength}`,
-        scroller: main,
-        pinType: "fixed",
-        invalidateOnRefresh: true,
-        onEnter: () => (isPinned.current = true),
-        onLeave: () => (isPinned.current = false),
-        onEnterBack: () => (isPinned.current = true),
-        onLeaveBack: () => (isPinned.current = false),
-      },
-    });
-
-    tl.to(container, {
-      y: -scrollLength,
-      ease: "none",
-    });
-
-    return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
-    };
-  }, []);
 
   return (
     <>
