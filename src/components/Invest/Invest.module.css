@@ -1,6 +1,8 @@
 .wrapper {
   position: relative;
   height: 100vh;
+  max-height: 2000px; overflow: hidden;
+  pointer-events: none;
 }
 
 .red,
@@ -167,9 +169,3 @@
 
 }
 
-.red,
-.yellow,
-.green {
-  transform: translateY(0);
-  will-change: transform;
-}

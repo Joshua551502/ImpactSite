@@ -15,6 +15,8 @@ import OkayModal from "@/components/OkayModal/OkayModal";
 import Intro from "@/components/Intro/Intro";
 import Invest from "@/components/Invest/Invest";
 
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
@@ -189,7 +191,44 @@ export default function Home() {
     };
   }, []);
 
-
+  useEffect(() => {
+    const scroller = mainRef.current;
+    if (!scroller) return;
+  
+    ScrollTrigger.scrollerProxy(scroller, {
+      scrollTop(value) {
+        if (arguments.length) {
+          scroller.scrollTop = value;
+        }
+        return scroller.scrollTop;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+      // Optional if you want horizontal scroll too
+      // scrollLeft(value) {
+      //   if (arguments.length) {
+      //     scroller.scrollLeft = value;
+      //   }
+      //   return scroller.scrollLeft;
+      // },
+    });
+  
+    ScrollTrigger.defaults({ scroller }); // Set it as default for all triggers
+  
+    // Refresh ScrollTrigger once layout is ready
+    ScrollTrigger.refresh();
+  
+    return () => {
+      ScrollTrigger.scrollerProxy(scroller, null); // clean up
+    };
+  }, []);
+  
 
   return (
     <>

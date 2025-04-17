@@ -28,6 +28,7 @@ const Invest = () => {
       pin: true,
       scrub: true,
       scroller,
+      pinType: "fixed",
     });
 
     // Slide yellow up to 40px below red
