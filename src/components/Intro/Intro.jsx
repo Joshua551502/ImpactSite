@@ -100,12 +100,12 @@ export default function Intro({ scrollY = 0 }) {
       </div>
       <div className={styles.skyMountain}>
         <img
-          src="medias/intro-images/backdrop.png"
+          src="medias/intro-images/backdrop.jpg"
           className={styles.backdrop}
         />
         <div className={styles.iceburg} ref={icebergRef}>
           <img
-            src="medias/intro-images/iceburg.png"
+            src="medias/intro-images/iceberg.png"
             className={styles.iceburg}
           />
         </div>

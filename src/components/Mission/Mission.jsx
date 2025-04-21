@@ -70,23 +70,8 @@ export default function Mission() {
 
   return (
     <div id="missionSection" className={styles.missionContainer}>
-       {/* <div style={{ position: "absolute", inset: 0, zIndex: 2 }}>
-          <FluidSimulation
-            config={{
-              textureDownsample: 0.5,
-              densityDissipation: 0.94,
-              velocityDissipation: 0.98,
-              pressureDissipation: 0.8,
-              pressureIterations: 25,
-              curl: 30,
-              splatRadius: 0.0075,
-            }}
-            color={[
-              [0.2, 1.0, 0.4], // green
-              [0.8, 0.2, 1.0], // purple
-            ]}
-          />
-        </div> */}
+     
+         
       <div className={styles.mission}>
      
 
