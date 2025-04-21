@@ -229,3 +229,7 @@ margin: 0 auto;
   color: transparent;
   animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
 }
+.mission {
+  position: relative;
+  z-index: 1;
+}
