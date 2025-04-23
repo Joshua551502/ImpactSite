@@ -14,8 +14,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import OkayModal from "@/components/OkayModal/OkayModal";
 import Intro from "@/components/Intro/Intro";
 import Invest from "@/components/Invest/Invest";
-
-
+import Calculator from "@/components/Calculator/Calculator";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -194,7 +193,7 @@ export default function Home() {
   useEffect(() => {
     const scroller = mainRef.current;
     if (!scroller) return;
-  
+
     ScrollTrigger.scrollerProxy(scroller, {
       scrollTop(value) {
         if (arguments.length) {
@@ -218,17 +217,16 @@ export default function Home() {
       //   return scroller.scrollLeft;
       // },
     });
-  
+
     ScrollTrigger.defaults({ scroller }); // Set it as default for all triggers
-  
+
     // Refresh ScrollTrigger once layout is ready
     ScrollTrigger.refresh();
-  
+
     return () => {
       ScrollTrigger.scrollerProxy(scroller, null); // clean up
     };
   }, []);
-  
 
   return (
     <>
@@ -261,7 +259,7 @@ export default function Home() {
 
           <GlobeInterface />
           <Invest />
-
+          <Calculator />
           <div className={styles.Footer}>
             <Footer />
           </div>

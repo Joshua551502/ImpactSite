@@ -235,9 +235,9 @@
     margin-bottom: 20px; 
   }
   .socials ul li a {
-    width: 60px;
-    height: 60px;
-    background-color: #cecece;
+    width: 50px;
+    height: 50px;
+    background-color: #00000050;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -246,7 +246,7 @@
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    border: 3px solid #fff;
+    border: 2px solid #ffffff50;
     z-index: 1;
   
   
@@ -254,7 +254,7 @@
   
   .socials ul li a .icon {
     position: relative;
-    color: #ffffff;
+    color: #ffffff50;
     transition: .5s;
     z-index: 3;
   }
@@ -393,6 +393,7 @@
     background: transparent;
     mix-blend-mode: difference; /* Entire countdown blends with background */
     user-select: none;
+
 }
 
 
@@ -438,4 +439,34 @@
   scale: 2;
   font-family: "Playfair Display", monospace;
   margin-top: 60px;
+}
+
+.sunMoonContainer{
+
+  position:absolute;
+  top: -20px;
+  right: 50%;
+  width: 34px;
+  height: 20px;
+  transform: translateX(50%);
+
+}
+
+.sun{
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-image: linear-gradient(100deg, #FFD800, #FD9D24);
+}
+
+.moon{
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position:absolute;
+  top: 0;
+  right: 0;
+  background-image: linear-gradient(#FFFFFF, #646464);
 }

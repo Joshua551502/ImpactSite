@@ -27,6 +27,14 @@ body{
     font-weight: 400 900; /* Variable range */
     font-style: italic;
 }
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('/public/fonts/RobotoSlab-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 700; /* Variable range */
+    font-style: normal;
+}
+
 /* Hide scrollbar but allow scrolling */
 ::-webkit-scrollbar {
     display: none;

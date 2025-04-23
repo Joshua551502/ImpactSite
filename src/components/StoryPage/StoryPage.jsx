@@ -271,11 +271,12 @@ export default function StoryPage({ scrollY }) {
       <div className={styles.navContainer}>
         <div className={styles.navWrapper}>
           <div className={styles.navBar}>
+            
+            <div className={styles.countDown}>
             <div className={styles.sunMoonContainer}>
               <div className={styles.sun}></div>
               <div className={styles.moon}></div>
             </div>
-            <div className={styles.countDown}>
               <div className={styles.daysTill}>
                 <br />
               </div>
