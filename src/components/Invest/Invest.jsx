@@ -24,20 +24,27 @@ const Invest = () => {
     ScrollTrigger.create({
       trigger: wrapper,
       start: "top top",
-      end: () => `+=${window.innerHeight * 3}`, // enough scroll room
+      end: () => `+=${window.innerHeight * 3}`,
       pin: true,
       scrub: true,
       scroller,
       pinType: "fixed",
+      anticipatePin: 1, // <-- makes it react earlier to avoid the jump
+      onUpdate: (self) => {
+        // Forces update on wheel tick "snap-back"
+        gsap.set(wrapper, { force3D: true });
+      },
     });
+    
 
     // Slide yellow up to 40px below red
     gsap.fromTo(
       yellow,
-      { y: window.innerHeight }, // off screen
+      { y: window.innerHeight },
       {
-        y: 100 + 40, // 40px below red's bottom (assuming red text starts ~100px down)
+        y: 100 + 40,
         ease: "none",
+        force3D: true,
         scrollTrigger: {
           trigger: wrapper,
           start: "top top",
@@ -47,25 +54,42 @@ const Invest = () => {
         },
       }
     );
-
-    // Slide green up to 40px below yellow
+    
     gsap.fromTo(
       green,
       { y: window.innerHeight * 2 },
       {
-        y: 100 + 90 * 2, // stacks 40px below yellow
+        y: 100 + 90 * 2,
         ease: "none",
+        force3D: true,
         scrollTrigger: {
           trigger: wrapper,
-          start: () => `top top`,
+          start: "top top",
           end: () => `+=${window.innerHeight * 2}`,
           scrub: true,
           scroller,
         },
       }
     );
+    
   }, []);
-
+  useEffect(() => {
+    let ticking = false;
+  
+    const handleWheel = (e) => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          ScrollTrigger.refresh(); // Refresh to re-sync positions
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+  
+    window.addEventListener("wheel", handleWheel);
+    return () => window.removeEventListener("wheel", handleWheel);
+  }, []);
+  
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
       <section ref={redRef} className={styles.red}>
