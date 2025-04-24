@@ -155,7 +155,7 @@ margin: 0 auto;
   .paragraph {
     font-family: "Playfair Display", monospace;
     font-size: 90px;
- 
+
     font-weight: bold;
     color:rgb(0, 247, 95);
     color: transparent;
@@ -221,6 +221,9 @@ margin: 0 auto;
   animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
   padding: 64px 0 56px;
   user-select: none;
+  border: 1px solid #fff;
+  background-color: transparent;
+  border: none; /* optional: removes outline */
 }
 
 #missionText span {
