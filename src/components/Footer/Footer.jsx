@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
 
         {/* Social Media Icons with Proper CSS Modules */}
-        <ul className={styles.mediaIcons}>
+        {/* <ul className={styles.mediaIcons}>
           <li>
             <a href="#" className={styles.iconLink}>
               <i className={`fas fa-link ${styles.icon}`}></i>
@@ -108,7 +108,7 @@ export default function Footer() {
               <i className={`fas fa-share-alt ${styles.icon}`}></i>
             </a>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

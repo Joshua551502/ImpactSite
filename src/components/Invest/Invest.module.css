@@ -3,6 +3,8 @@
   height: 100vh;
   max-height: 2000px; overflow: hidden;
   pointer-events: none;
+  background-color: #000;
+  margin: 0 auto;
 }
 
 .red,
@@ -10,8 +12,8 @@
 .green {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%); /* This centers it horizontally */
   height: 100vh;
   padding: 40px 80px;
   font-size: 3rem;
@@ -21,8 +23,10 @@
   align-items: flex-start;
   will-change: transform;
   font-family: 'Roboto Mono', monospace;
- 
+  max-width: 1440px;
+  width: 100%; /* Required so translateX can properly center */
 }
+
 
 .red {
   background-color: #000000;

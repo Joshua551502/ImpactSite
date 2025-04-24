@@ -7,6 +7,7 @@
     color: #fff;
     padding: 10px 70px;
     overflow: hidden;
+    
 }
 
 .calculator {
@@ -48,7 +49,7 @@ margin: 0 auto;
     padding: 0;
     margin: 0;
     font-weight: 300;
-
+    font-weight: 100;
   }
   .calculate{
     max-width: 303px;

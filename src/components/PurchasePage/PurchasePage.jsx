@@ -6,7 +6,14 @@ import { X } from "lucide-react"; // Optional: use an icon if you're using lucid
 import Card from "../Card/Card";
 
 export default function PurchasePage({ onClose }) {
-  const [openDropdowns, setOpenDropdowns] = useState({});
+  const [openDropdowns, setOpenDropdowns] = useState({
+    location: true,
+    sdg: true,
+    impact: true,
+    org: true,
+    address: true,
+  });
+  
 
   const toggleDropdown = (key) => {
     setOpenDropdowns((prev) => ({
