@@ -25,6 +25,7 @@
   font-family: 'Roboto Mono', monospace;
   max-width: 1440px;
   width: 100%; /* Required so translateX can properly center */
+
 }
 
 
@@ -32,6 +33,7 @@
   background-color: #000000;
   color: white;
   z-index: 1;
+   
 }
 
 .yellow {
@@ -47,11 +49,13 @@
 }
 
 .item{
-
+  padding-left: 80px;
+  padding-right: 80px;
   width: 100%;
 }
 
 .topItem{
+
   height: fit-content;
   font-size: 40px;
   font-weight: 100;
@@ -61,7 +65,7 @@
   border-bottom: 1px solid #ffffff;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; 
 }
 
 .topItem img{

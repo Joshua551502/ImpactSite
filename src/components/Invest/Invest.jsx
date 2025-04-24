@@ -95,7 +95,7 @@ const Invest = () => {
               </div>
             </div>
             <div className={styles.contentImage} id={styles.img1}>
-              <img src="/medias/invest/web3.png" />
+              <img src="/medias/Invest/web3.png" />
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ const Invest = () => {
               </div>
             </div>
             <div className={styles.contentImage} id={styles.img2}>
-              <img src="/medias/invest/invest.png" />
+              <img src="/medias/Invest/invest.png" />
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ const Invest = () => {
               </div>
             </div>
             <div className={styles.contentImage} id={styles.img3}>
-              <img src="/medias/invest/privacy.png" />
+              <img src="/medias/Invest/privacy.png" />
             </div>
           </div>
         </div>
