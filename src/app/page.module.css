@@ -103,3 +103,10 @@
     top: 50%;
   }
 
+
+
+  @media only screen and (max-width: 800px) {
+      .scrollEffect{
+        display: none;
+      }
+  }
