@@ -30,7 +30,7 @@ export default function PurchasePage({ onClose }) {
         </div>
         <div className={styles.uprightArrow} onClick={onClose}>
           {" "}
-          <img src="/medias/linkicon.png" alt="icon" role="button" />
+         x
         </div>
       </div>
       <div className={styles.content}>

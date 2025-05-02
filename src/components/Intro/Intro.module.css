@@ -30,15 +30,15 @@
   .iceburg {
     width: 2500px;
     height: 950px;
-
-    position: absolute;
-    bottom: 0px;
-
+    
+    position: fixed; /* ✅ pin it to the viewport */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-100%);
+    
     z-index: 1;
-
-
     transition: transform 0.5s ease;
-
+    pointer-events: none;
   }
   
   
@@ -46,9 +46,10 @@
     width: 380px;
     height: 380px;
     position: absolute;
-    top: 200px;
+    top: 220px;
     right: 50%;
     transform: translateX(50%);
+    
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -68,9 +69,9 @@
     z-index: 1;
     transition: transform 0.5s ease;
     filter: drop-shadow(0 0 25px rgba(255, 180, 80, 0.4));
+    
   }
-  
-  
+
   .ImpactionText {
     color: white;
     font-size: 100px;
@@ -113,6 +114,7 @@
     height: 500px;
     position:absolute;
     top: -30px;
+
   }
 
   .eclipseRays {
@@ -143,4 +145,52 @@
       opacity: 0.75;
     }
   }
-  
+  @media only screen and (max-width: 1200px) {
+    .impactionCircle {
+      width: 285px;
+      height: 285px;
+    }
+
+    .ImpactionFrontCircle{
+
+      top: -78px;
+    }
+    .iceburg {
+      width: 1300px;
+      height:450px;
+      
+    }
+
+  }
+
+  @media only screen and (max-width: 600px) {
+    .impactionCircle {
+      width: 225px;
+      height: 225px;
+    }
+    .ImpactionFrontCircle{
+
+      top: -110px;
+    }
+  }
+
+
+  @media only screen and (max-width: 400px) {
+    .impactionCircle {
+      width: 170px;
+      height: 170px;
+    }
+    .ImpactionFrontCircle{
+
+      top: -140px;
+    }
+  }
+  @media only screen and (max-height: 1000px) {
+    .iceburg {
+      width: 1300px;
+      height:450px;
+      
+    }
+
+
+  }

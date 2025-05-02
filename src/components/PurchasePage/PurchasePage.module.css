@@ -1,13 +1,13 @@
 .purchasePage{
     background-color: #1F1F1F;
-    width: 100%;
-    height: 100%;
+    width: 97%;
+    height: 95%;
     display: flex;
     flex-direction: column;
     row-gap: 30px;
     overflow-y: scroll;
-    padding-bottom: 100px
-    
+  padding-bottom: 100px;
+  padding: 2rem;
 }
 
 .title{
@@ -28,9 +28,14 @@
 
 
 .uprightArrow{
-    width: 40px;
-    height: 40px;
+
     cursor: pointer;
+    font-size: 40px;
+    color: rgb(138, 138, 138);   font-family: 'Roboto Mono', monospace;
+}
+
+.uprightArrow:hover {
+  color: rgb(211, 211, 211);
 }
 .uprightArrow img{
     width: 40px;
@@ -415,4 +420,40 @@
   .organizationText{
     font-family: 'Roboto Mono', monospace;
     font-size: 10px;
+  }
+
+
+
+  @media only screen and (max-width:   1160px) {
+    .content{
+
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+.titleText{
+  font-size: 20px;
+}
+
+.uprightArrow{
+  padding-right: 30px;
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+.purchasePage{
+
+  width: 92vw;
+  height: 95%;
+
+}
+
+.stats{
+
+  height: 100%;
+  margin-top: 10px;
+  width: 96%;
+
+}
   }

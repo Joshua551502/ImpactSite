@@ -35,7 +35,6 @@ const Invest = () => {
         gsap.set(wrapper, { force3D: true });
       },
     });
-    
 
     // Slide yellow up to 40px below red
     gsap.fromTo(
@@ -54,7 +53,7 @@ const Invest = () => {
         },
       }
     );
-    
+
     gsap.fromTo(
       green,
       { y: window.innerHeight * 2 },
@@ -71,11 +70,10 @@ const Invest = () => {
         },
       }
     );
-    
   }, []);
   useEffect(() => {
     let ticking = false;
-  
+
     const handleWheel = (e) => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -85,14 +83,15 @@ const Invest = () => {
         ticking = true;
       }
     };
-  
+
     window.addEventListener("wheel", handleWheel);
     return () => window.removeEventListener("wheel", handleWheel);
   }, []);
-  
+  const investScrollTrigger = useRef(null);
+
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
-      <section ref={redRef} className={styles.red}>
+      <section id="web3Section" ref={redRef} className={styles.red}>
         <div className={styles.item}>
           <div className={styles.topItem}>
             <div className={styles.topText}>WEB3</div>
@@ -124,7 +123,7 @@ const Invest = () => {
           </div>
         </div>
       </section>
-      <section ref={yellowRef} className={styles.yellow}>
+      <section id="investSection" ref={yellowRef} className={styles.yellow}>
         {" "}
         <div className={styles.item}>
           <div className={styles.topItem}>
@@ -159,7 +158,7 @@ const Invest = () => {
           </div>
         </div>
       </section>
-      <section ref={greenRef} className={styles.green}>
+      <section id="privacySection" ref={greenRef} className={styles.green}>
         {" "}
         <div className={styles.item}>
           <div className={styles.topItem}>

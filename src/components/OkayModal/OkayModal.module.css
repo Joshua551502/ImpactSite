@@ -1,7 +1,7 @@
 .okayModal{
     position: fixed; 
     width: 740px;
-    height: 60px;
+
     background-color: black;
     top: 80%;
     right: 50%;
@@ -12,6 +12,8 @@
     align-items: center;
     user-select: none;
     transition: opacity 0.3s ease;
+    max-width: 90%;
+    padding: 10px 10px;
 }
 
 .textContainer{
@@ -22,6 +24,7 @@ font-size: 14px;
     align-items: center;
     font-family: 'Roboto Mono', monospace;
     color: white;
+    max-width: 100%;
 }
 
 .button{

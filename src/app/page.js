@@ -253,7 +253,7 @@ export default function Home() {
           {showModal && <OkayModal onClose={handleCloseModal} />}
           <StoryPage scrollY={scrollY} />
 
-          <div className={styles.Mission}>
+          <div id="missionSection" className={styles.Mission}>
             <Mission />
           </div>
 

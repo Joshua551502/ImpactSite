@@ -13,7 +13,6 @@ export default function GlobeInterface() {
   const [isMonitorPanelOpen, setIsMonitorPanelOpen] = useState(false);
   const [isPurchasePanelOpen, setIsPurchasePanelOpen] = useState(false);
 
-
   const toggleMonitorPanel = () => {
     setIsMonitorPanelOpen((prev) => !prev);
   };
@@ -96,8 +95,7 @@ export default function GlobeInterface() {
           }`}
         >
           <div className={styles.purchasePanelContent}>
-          <PurchasePage onClose={() => setIsPurchasePanelOpen(false)} />
-
+            <PurchasePage onClose={() => setIsPurchasePanelOpen(false)} />
           </div>
         </div>
 
@@ -107,7 +105,18 @@ export default function GlobeInterface() {
           }`}
         >
           <div className={styles.monitorContent}>
-            <div className={styles.missionTitle}>MISSION MARKET</div>
+            <div className={styles.missionTitle}>
+              {" "}
+              <div className={styles.missionTitleText}>MISSION MARKET</div>
+              <div
+                className={styles.missionTitleExit}
+                onClick={() => setIsMonitorOpen(false)}
+                role="button"
+                tabIndex={0}
+              >
+                x
+              </div>
+            </div>
             <div className={styles.missionLine}></div>
             <div className={styles.missionFilters}>
               <button>Clear</button>
@@ -121,8 +130,7 @@ export default function GlobeInterface() {
             <div className={styles.featuredCause}>Featured Cause Campaigns</div>
 
             <div className={styles.causeCampaigns}>
-            <CardList onCardClick={() => setIsPurchasePanelOpen(true)} />
-
+              <CardList onCardClick={() => setIsPurchasePanelOpen(true)} />
             </div>
           </div>
         </div>
@@ -143,7 +151,7 @@ export default function GlobeInterface() {
           }`}
         >
           <div className={styles.monitorContentContainer}>
-            <Monitor />
+            <Monitor onClose={() => setIsMonitorPanelOpen(false)} />
           </div>
         </div>
 
@@ -369,7 +377,7 @@ export default function GlobeInterface() {
             </div>
           )}
           <div className={styles.card}>
-            <Card />
+            <Card onClick={() => setIsPurchasePanelOpen(true)} />
           </div>
         </div>
       </div>

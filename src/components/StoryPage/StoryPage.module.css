@@ -5,7 +5,7 @@
   background-color: rgb(0, 0, 0);
   }
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1000px) {
     .StoryPage{
         padding: 0;
     }
@@ -41,14 +41,19 @@
   }
   
   
-  .daysTill{
-  
-      text-shadow: none;
-      font-family: 'Roboto Mono', monospace;
-      text-align: center;
-      color: #0FBF89;    font-size: 18px;
-      user-select: none;
-  }
+  .daysTill {
+    text-shadow: none;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    color: #0FBF89;
+    user-select: none;
+    width: 100%;
+
+    white-space: nowrap; /* ⬅️ THIS keeps it on one line */
+    overflow: hidden;    /* ⬅️ OPTIONAL: hides overflow if too long */
+    text-overflow: ellipsis; /* ⬅️ OPTIONAL: adds ... if it overflows */
+}
+
   
   .numberValues{
       text-shadow: none;
@@ -211,6 +216,8 @@
       border-radius: 50%;
   
   }
+
+
   
   .loadText{
       color: #0DA388;
@@ -372,7 +379,22 @@
     transition: opacity 1.5s ease-in-out;
   }
   
-
+  .loading {
+    position: absolute;
+    top: 200px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 380px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #000;
+    transition: opacity 1.5s ease-in-out;
+  }
+  
   
   .scenePage {
     opacity: 0;
@@ -475,4 +497,55 @@
   top: 0;
   right: 0;
   background-image: linear-gradient(#FFFFFF, #646464);
+}.textScroller {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  border-top: 1px solid #fff;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.scrollingText {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  animation: scrollLoop 30s linear infinite;
+}
+.canvasFade {
+  transition: opacity 0.4s ease;
+  opacity: 1;
+}
+
+.canvasFade.hidden {
+  opacity: 0;
+}
+
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.orbitDot {
+  color: white; /* Bright teal color to match your site's theme */
+  font-size: 20px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+@media only screen and (max-width: 1000px) {
+  .loading{
+    
+    width: 290px;
+    height: 290px;
+    top: 220px;
+  }
 }

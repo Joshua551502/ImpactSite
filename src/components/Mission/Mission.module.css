@@ -59,11 +59,15 @@ margin: 0 auto;
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Standard */
+    position:absolute;
+    right: 0;
+
+
   }
   
   @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
   .earthTextContainer {
-
+    margin-top: 130px;
     min-width: 100vw;
     height: 200px;
     position: relative;
@@ -219,11 +223,11 @@ margin: 0 auto;
   color: transparent;
   -webkit-text-fill-color: transparent;
   animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
-  padding: 64px 0 56px;
+  padding: 64px 0 20px;
   user-select: none;
-  border: 1px solid #fff;
   background-color: transparent;
-  border: none; /* optional: removes outline */
+ 
+  position: relative;
 }
 
 #missionText span {
@@ -240,13 +244,13 @@ margin: 0 auto;
 }
 
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
 
   .missionContainer{
     padding: 10px 16px;
   }
   #missionText {
-    font-size: 40px;
+    font-size: 60px;
   }
 
   .subParagraph{

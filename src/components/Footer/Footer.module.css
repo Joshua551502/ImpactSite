@@ -149,6 +149,7 @@ background-color: white;
     DISPLAY: GRID;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 20px;
+    column-gap: 10px;
     font-weight: 500;
     cursor: pointer;
   }
@@ -243,5 +244,67 @@ background-color: white;
   /* Another Share */
   .mediaIcons li:nth-child(5) .iconLink:before {
     background: #ff6600;
+  }
+  @media (max-width: 768px) {
+    .footer {
+      flex-direction: column;
+      height: auto;
+      padding: 0 16px;
+   
+    }
+  
+    .innerFooter {
+      flex-direction: column;
+      row-gap: 40px;
+      padding: 60px 16px 30px 0px;
+      width: 80%;
+    }
+  
+    .signContact,
+    .contactUs,
+    .contactForm,
+    .webCopy,
+    .website {
+      width: 100%;
+    }
+  
+    #contactFormInput {
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+  
+    .websiteLabels {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 16px;
+
+    }
+
+    .webCopy{
+      padding-bottom: 40px;
+      width: 100%;
+    }
+  
+    .copyright {
+      position: static;
+      text-align: left;
+      margin-top: 30px;
+    }
+    .website{
+      padding-left: 0;
+  }
+  
+    .mediaIcons {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+    }
+  
+    .iconLink {
+      margin: 0;
+    }
   }
   

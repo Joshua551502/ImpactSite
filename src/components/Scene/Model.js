@@ -3,56 +3,52 @@ import {
   MeshTransmissionMaterial,
   useGLTF,
   Text,
-  Line,
 } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 
 export default function Model({ scrollY }) {
   const { nodes } = useGLTF("/medias/sphere3.glb");
-  const { viewport, size, mouse } = useThree();
+  const { viewport, size } = useThree();
   const sphere = useRef(null);
-  const text = useRef(null);
+  const textGroup = useRef(null);
   const lettersRef = useRef([]);
-  const spacing = 1;
-  const textGroup = useRef();
 
   const TEXT = "IMPACTION";
-  const speedMap = [0.15, 0.25, 0.3, 0.4, 0.5, 0.6, 0.3, 0.2, 0.1]; // y1–y6 style
+  const spacing = 1;
 
-  const LETTERS = [
-    { char: "I", offsetX: 0.2, speed: 1 },
-    { char: "M", offsetX: -2.9, speed: 0.8 },
-    { char: "P", offsetX: 0.2, speed: 1.5},
-    { char: "A", offsetX: -1.5, speed: 0.6 },
-    { char: "C", offsetX: 0.2, speed: 1.5 },
-    { char: "T", offsetX: 0.2, speed: 0.6 },
-    { char: "I", offsetX: 0.2, speed: 1.5 },
-    { char: "O", offsetX: 1.6, speed: 1 },
-    { char: "N", offsetX: 2.3, speed: 0.5 },
-  ];
+  // RESPONSIVE VALUES
+  const [scaleFactor, setScaleFactor] = useState(1); // default 100%
+
+  useEffect(() => {
+    function updateScale() {
+      const width = window.innerWidth;
+      if (width <= 400) {
+        setScaleFactor(0.55); // very small screen (e.g. portrait mobile)
+      }
+       else if (width <= 600) {
+        setScaleFactor(0.65); // very small screen (e.g. portrait mobile)
+      } else if (width <= 900) {
+        setScaleFactor(0.8); // small tablet or large mobile
+      } else if (width <= 1200) {
+        setScaleFactor(0.8); // small desktop or tablet
+      } else {
+        setScaleFactor(1); // full size for larger screens
+      }
+    }
+  
+    updateScale(); // initial check
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
   
 
-  useFrame(() => {
-    lettersRef.current.forEach((ref, i) => {
-      if (ref) {
-        const { speed } = LETTERS[i];
-        const baseY = 0; // anchor point
-        const scrollFactor = scrollY * speed * 0.0015; // positive moves text up
-        const targetY = baseY + scrollFactor;
-        ref.position.y += (targetY - ref.position.y) * 0.1; // smooth interpolation
-      }
-    });
-  });
-
-  // State for parallax effect
-  const [parallax, setParallax] = useState({ x: 0, y: 0 });
-
-  // Convert 300px to world units
   const pixelToWorldRatio = viewport.width / size.width;
-  const desiredWorldSize = 165 * pixelToWorldRatio; // Keeps sphere ~300px
-  const textSize = 60 * pixelToWorldRatio; // Make text larger (~50px equivalent)
-  const bgSize = 300 * pixelToWorldRatio; // Circle size (~300px)
-  const letterSpacing = 15 * pixelToWorldRatio;
+
+  const desiredWorldSize = 165 * pixelToWorldRatio * scaleFactor;
+  const textSize = 60 * pixelToWorldRatio * scaleFactor;
+
+  // Parallax State
+  const [parallax, setParallax] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (event) => {
@@ -60,105 +56,70 @@ export default function Model({ scrollY }) {
       const y = -(event.clientY / window.innerHeight) * 2 + 1;
       setParallax({ x, y });
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  useFrame(({ clock }) => {
-    if (sphere.current) {
-      const time = clock.getElapsedTime(); // Get the elapsed time for smooth animation
-
-      // Automatic slow rotation
-      sphere.current.rotation.y = time * 0.6; // Adjust speed as needed
-      sphere.current.rotation.x = time * 0.05;
-
-      // Apply parallax effect on top of the automatic rotation
-      sphere.current.rotation.y += parallax.x * 0.3; // Adjust sensitivity
-      sphere.current.rotation.x += parallax.y * 0.3;
-    }
-
-    if (text.current) {
-      // Apply parallax effect ONLY to text position (circle remains fixed)
-      text.current.position.x = parallax.x * 0.3;
-      text.current.position.y = parallax.y * 0.3;
-    }
+  // Animate text scrolling
+  useFrame(() => {
+    lettersRef.current.forEach((ref, i) => {
+      if (ref) {
+        const speed = 0.0015;
+        const baseY = 0;
+        const scrollFactor = scrollY * speed;
+        const targetY = baseY + scrollFactor;
+        ref.position.y += (targetY - ref.position.y) * 0.1;
+      }
+    });
   });
 
+  // Animate sphere rotation + parallax
   useFrame(({ clock }) => {
+    const time = clock.getElapsedTime();
+
     if (sphere.current) {
-      const time = clock.getElapsedTime();
-  
-      sphere.current.rotation.y = time * 0.6;
-      sphere.current.rotation.x = time * 0.05;
-  
-      sphere.current.rotation.y += parallax.x * 0.3;
-      sphere.current.rotation.x += parallax.y * 0.3;
+      sphere.current.rotation.y = time * 0.6 + parallax.x * 0.3;
+      sphere.current.rotation.x = time * 0.05 + parallax.y * 0.3;
     }
-  
     if (textGroup.current) {
       textGroup.current.position.x = parallax.x * 0.3;
       textGroup.current.position.y = parallax.y * 0.3;
     }
   });
 
-  // Generate circular points for the border (static)
-  const circlePoints = [];
-  const segments = 64;
-  for (let i = 0; i <= segments; i++) {
-    const angle = (i / segments) * Math.PI * 2;
-    circlePoints.push([
-      Math.cos(angle) * (bgSize * 0.67),
-      Math.sin(angle) * (bgSize * 0.67),
-      0,
-    ]);
-  }
-
   return (
     <group
       scale={[desiredWorldSize, desiredWorldSize, desiredWorldSize]}
       position={[0, 0.35, 0]}
     >
-      {/* Circular Border (STATIC - never moves) */}
-      {/* <Line
-        points={circlePoints}
-        color="#0DA388"
-        lineWidth={3} // Controls border thickness
-        position={[0, 0.1, -1.1]} // Always centered, never moves
-      /> */}
-
-      {/* Text (MOVES with parallax) */}
+      {/* Text */}
       <group ref={textGroup} position={[0, 0.2, 0]}>
-      {TEXT.split("").map((char, i) => {
-  let offset = (i - (TEXT.length - 1) / 2) * textSize * spacing;
+        {TEXT.split("").map((char, i) => {
+          let offset = (i - (TEXT.length - 1) / 2) * textSize * spacing;
 
-  // Individual visual tweaks
-  if (char === "I") offset += textSize * 0.05;
-  if (char === "M") offset -= textSize * 0;
-  if (char === "P") offset -= textSize * -0.1;
-  if (char === "A") offset += textSize * 0;
-  if (char === "T") offset -= textSize * -0.1;
-  if (char === "I" && i === 6) offset += textSize * -0.1; // Second "I"
-  if (char === "O") offset -= textSize * 0.15;
-  if (char === "N") offset -= textSize * 0.15;
+          // Manual tweaking for better centering
+          if (char === "I") offset += textSize * 0.05;
+          if (char === "P") offset -= textSize * -0.1;
+          if (char === "T") offset -= textSize * -0.1;
+          if (char === "I" && i === 6) offset += textSize * -0.1;
+          if (char === "O") offset -= textSize * 0.15;
+          if (char === "N") offset -= textSize * 0.15;
 
-  return (
-    <Text
-      key={i}
-      ref={(el) => (lettersRef.current[i] = el)}
-      font="/fonts/PlayfairDisplay-VariableFont_wght.ttf"
-      fontSize={textSize}
-      position={[offset, 0, -1]}
-      color="white"
-      anchorX="center"
-      anchorY="middle"
-    >
-      {char}
-    </Text>
-  );
-})}
-
-
+          return (
+            <Text
+              key={i}
+              ref={(el) => (lettersRef.current[i] = el)}
+              font="/fonts/PlayfairDisplay-VariableFont_wght.ttf"
+              fontSize={textSize}
+              position={[offset, 0, -1]}
+              color="white"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {char}
+            </Text>
+          );
+        })}
       </group>
 
       {/* Sphere */}

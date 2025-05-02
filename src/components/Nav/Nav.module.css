@@ -317,8 +317,18 @@ position:absolute;
   border-radius: 2px;
 }
 
+#comingSoon{
+  opacity: 0.5;
+}
+
+#comingSoon:hover{
+  opacity: 0.5; 
+  background-color: transparent !important;
+ 
+}
+
 /* RESPONSIVE BEHAVIOR */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
   .menu {
     display: none;
   }

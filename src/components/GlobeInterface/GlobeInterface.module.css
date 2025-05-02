@@ -21,7 +21,7 @@
     position:relative;
     overflow: hidden;
 
-    width: calc(100% - 80px); /* Subtract padding from total width */
+    width: calc(100% - 82px); /* Subtract padding from total width */
     margin: 0 auto;
   }
 
@@ -138,13 +138,36 @@ text-shadow: none;
     background: linear-gradient(to bottom, #0DA388, #4289BF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  
+
     text-align: center;
     font-size: 40px;
     font-family: 'Times New Roman', Times, serif;
     letter-spacing: 2px;
     margin-bottom: 2px;
     margin-bottom: 5px;
+    position:relative;
+  }
+
+  .missionTitleExit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: rgb(138, 138, 138);
+    font-size: 30px;
+    padding: 8px;
+    cursor: pointer;
+    z-index: 1;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    font-family: 'Roboto Mono';
+    transition: background 0.2s;
+ 
+    height: 100%;
+  }
+  
+
+  .missionTitleExit:hover {
+    color: rgb(211, 211, 211);
   }
   
   .missionLine{
@@ -898,8 +921,8 @@ font-size: 11px;
   bottom: 0;
   width: 100%;
   height: 100%; /* Adjust height as needed */
-  background-color: #1F1F1F;
-  transform: translateY(100%);
+  background-color: none;
+  transform: translateY(120%);
   transition: transform 0.3s ease;
   z-index: 100;
 
@@ -910,7 +933,52 @@ font-size: 11px;
 }
 
 .purchasePanelContent {
-  padding: 2rem;
+
 
   height: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .GlobeInterface {
+
+
+    width: calc(100%); /* Subtract padding from total width */
+
+  }
+
+  .creditsIssued{
+
+    transform: scale(0.5);
+    left: -70px;
+    top: -40px;
+  }
+
+  .globaltemp{
+
+    height: fit-content;
+    transform: scale(0.7);
+    right: -10px;
+    top: -30px;
+  }
+
+  .contrib{
+    transform: scale(0.5);
+    left: -50px;
+    bottom: -50px;
+  }
+
+ .card{
+
+  border-radius: none;
+  top: 30%;
+  right: 50%;
+
+z-index: 0;
+  transform: translateX(50%);
+ }
+
+ .warningModal{
+
+  z-index: 10;
+ }
 }

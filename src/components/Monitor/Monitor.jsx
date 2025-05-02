@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import styles from "./Monitor.module.css";
 
-
-export default function Monitor() {
+export default function Monitor({ onClose }) {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
 
@@ -152,6 +151,10 @@ export default function Monitor() {
 
   return (
     <div className={styles.monitor}>
+      <div className={styles.closeButton} onClick={onClose}>
+        ×
+      </div>
+
       <div className={styles.monitorTop}>
         <div className={styles.monitorPricing}>
           <div className={styles.carbonPrice}>
