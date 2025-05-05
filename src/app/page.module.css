@@ -109,4 +109,8 @@
       .scrollEffect{
         display: none;
       }
+
+      .cursor {
+        display: none;
+      }
   }
