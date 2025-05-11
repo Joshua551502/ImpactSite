@@ -15,6 +15,9 @@ import OkayModal from "@/components/OkayModal/OkayModal";
 import Intro from "@/components/Intro/Intro";
 import Invest from "@/components/Invest/Invest";
 import Calculator from "@/components/Calculator/Calculator";
+import CandyCrushEmbed from "@/components/CandyCrushEmbed/CandyCrushEmbed";
+import PacmanEmbed from "@/components/PacmanEmbed/PacmanEmbed";
+import GamePage from "@/components/GamePage/GamePage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -256,7 +259,9 @@ export default function Home() {
           <div id="missionSection" className={styles.Mission}>
             <Mission />
           </div>
-
+          {/* <GamePage/>
+          <PacmanEmbed/>
+                <CandyCrushEmbed/> */}
           <GlobeInterface />
           <Invest />
           <Calculator />

@@ -22,6 +22,11 @@ export default function Model({ scrollY }) {
   useEffect(() => {
     function updateScale() {
       const width = window.innerWidth;
+      const height = window.innerHeight;
+      // if (height <= 1200) {
+      //   setScaleFactor(0.75); // very small screen (e.g. portrait mobile)
+      // }
+      // else 
       if (width <= 400) {
         setScaleFactor(0.55); // very small screen (e.g. portrait mobile)
       }
@@ -33,7 +38,7 @@ export default function Model({ scrollY }) {
         setScaleFactor(0.8); // small desktop or tablet
       } else {
         setScaleFactor(1); // full size for larger screens
-      }
+      } 
     }
   
     updateScale(); // initial check

@@ -1,0 +1,150 @@
+.gamePage {
+    width: 100%;
+    background-color: rgb(48, 48, 48);
+    padding: 40px 0;
+  }
+  
+  .mobileGrid {
+    display: flex;
+    justify-content: center;
+    column-gap: 300px;
+  }
+  
+  .mobileGame {
+    width: 428px;
+    height: 760px;
+    position: relative;
+
+    overflow: hidden;
+  }
+  
+  .mobileBackground,
+  .screenArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  
+  .mobileBackground {
+    z-index: 0;
+    height: 100%;
+  }
+  
+  .screenArea {
+    top: 0;
+    height: 100%;
+    z-index: 1;
+  
+    pointer-events: none;
+  }
+  
+  .contentWrapper {
+    color: white;
+    font-size: 24px;
+  }
+  
+  .gameTitle{
+    margin: 32px 0;
+    text-align: center;
+    font-size: 38px;
+    font-family: 'Roboto Mono';
+  }
+
+  .statusGrid{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .progressBar{
+    width: 196px;
+    height: 6.5px;
+    background-color: #212529;
+    border-radius: 20px;
+  }
+
+  .progress{
+    width: 50%;
+    height: 100%;
+    background-image: linear-gradient(to right, #DD1C27, #F48030, #FDD75A );
+    border-radius: 20px;
+  }
+
+  .level, .score{
+    text-align: center;
+  }
+
+  .levelLabel{
+    font-family: 'Roboto Mono';
+    color: #6D6D6D;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .levelNumber{
+    font-family: 'Roboto Mono';
+    color: #FFFFFF;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .gameInterface{
+    margin-top: 15px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .menuButtons{
+
+    width: fit-content;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .menuButtons img{
+    width: 102px;
+  }
+
+  .climateSection{
+    display: flex;
+    padding: 0 15px;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: center;
+  }
+
+  .climateText{
+    font-family: 'Roboto Mono';
+    color: #6D6D6D;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .climateValue{
+    margin-top: 8px;
+    font-family: 'Roboto Mono';
+    color: #fff;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+.goldText{
+    color: #FFC300;
+}
+.goldTextTwo{
+    color: #FCC30B;
+}
+
+.gameImage{
+    height: 130%;
+    opacity: 20%;
+}

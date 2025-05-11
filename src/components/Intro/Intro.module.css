@@ -210,10 +210,23 @@
     }
     .iceburg {
       width: 1600px;
-      height:650px;
+      height:600px;
       
     }
 
 
   }
   
+
+  /* @media only screen and  (max-height: 1200px) {
+    .impactionCircle{
+      top: 160px;
+    }
+    .impactionCircle {
+      width: 260px;
+      height: 260px;
+    }    .ImpactionFrontCircle{
+
+      top: -90px;
+    }
+  } */

@@ -52,18 +52,16 @@ margin: 0 auto;
   }
   
 
-  
   .subParagraph {
-    width: 580px;
-    font-family: "Roboto Mono", monospace; -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Standard */
-    position:absolute;
-    right: 0;
-
-
+    width: 50vw; /* right half of the viewport */
+    font-family: "Roboto Mono", monospace;
+    user-select: none;
+    text-align: left;
+    margin-left: auto; /* pushes it to the right */
+    padding-top: 40px; /* optional spacing from the text above */
+    max-width: 700px;
   }
+  
   
   @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap");
   .earthTextContainer {
@@ -264,5 +262,8 @@ margin: 0 auto;
   }
 .EarthText{
   font-size: 40px;
+}
+.earthTextContainer {
+  margin-top: 0px;
 }
 }
