@@ -102,7 +102,7 @@ img {
 	position: absolute;
 	top: -500px;
 	left: calc(50% - 160px);
-	background-color: white;
+	background-color: red;
 	width: 320px;
 	height: 500px;
 }
@@ -118,4 +118,7 @@ img {
 	left: 25px;
 	background-color: #ff4d4d;
 	opacity: 0.85;
-}
+}* {
+	background-color: transparent !important;
+  }
+  

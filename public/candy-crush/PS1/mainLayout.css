@@ -94,3 +94,8 @@ body {
 #arrowContainer {
 	margin: 10px auto;
 }
+
+html, body, .container, .row {
+	background-color: transparent !important;
+  }
+  

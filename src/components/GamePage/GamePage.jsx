@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./GamePage.module.css";
 import MobileDisplay from "../MobileDisplay/MobileDisplay";
+import CandyCrushEmbed from "../CandyCrushEmbed/CandyCrushEmbed";
+import PacmanEmbed from "../PacmanEmbed/PacmanEmbed";
 
 export default function GamePage() {
   return (
@@ -27,8 +29,16 @@ export default function GamePage() {
                 </div>
               </div>
               <div className={styles.gameInterface}>
-                <img src="/medias/game-page/game-background.png" className={styles.gameImage}/>
+                <img
+                  src="/medias/game-page/game-background.png"
+                  className={styles.gameImage}
+                />
+                <div className={styles.gameFront} id={styles.invert}>
+                  {" "}
+                  <CandyCrushEmbed />
+                </div>
               </div>
+
               <div className={styles.climateSection}>
                 <div className={styles.climateCoins}>
                   <div className={styles.climateText}>
@@ -44,7 +54,7 @@ export default function GamePage() {
           </div>
         </div>
 
-        <div className={styles.mobileGame}>
+        {/* <div className={styles.mobileGame}>
           <div className={styles.mobileBackground}>
             <MobileDisplay />
           </div>
@@ -67,7 +77,13 @@ export default function GamePage() {
                   <div className={styles.levelNumber}>00001</div>
                 </div>
               </div>
-              <div className={styles.gameInterface}></div>
+              <div className={styles.gameInterface}>
+                {" "}
+                <div className={styles.gameFront}>
+                  {" "}
+                    <PacmanEmbed/>
+                </div>
+              </div>
               <div className={styles.climateSection}>
                 <div className={styles.climateCoins}>
                   <div className={styles.climateText}>COINS</div>
@@ -79,7 +95,7 @@ export default function GamePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

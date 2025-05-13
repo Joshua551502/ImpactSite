@@ -1,0 +1,272 @@
+.WheelPage2 {
+    border: 1px solid #000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensures the card is properly centered vertically */
+
+    box-sizing: border-box;
+}
+
+.cardContainer {
+    border: 1px solid #ff1100; /* Debugging border, can be removed later */
+    display: inline-flex; /* Dynamically wraps children */
+    justify-content: center; /* Centers the children */
+    align-items: center; /* Centers the children vertically */
+    position: relative; /* Keeps children properly positioned */
+
+    background-color: white; /* Optional: to make the container visible */
+    border-radius: 10px; /* Matches the card's border-radius */
+}
+
+.mobileWheel {
+    width: 100%;
+    width: 428px; /* Limits the width to the card's dimensions */
+    height: 700px;
+    max-height: 1000px; /* Adds a reasonable limit for height */
+    margin: 0 auto;
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+/* :root {
+    --clr-1: #000;
+    --clr-3: #0FBF89;
+    --clr-4: #4289BF;
+    --clr-5: #1F4059;
+} */
+
+.card {
+    width: 428px;
+    height: 760px;
+    background: var(--clr-1);
+    border-radius: 10px;
+    position: relative;
+    margin: 0 auto;
+
+}
+
+.card::before,
+.card::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    z-index: -1;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        var(--clr-3),
+        var(--clr-4),
+        var(--clr-5),
+        var(--clr-4),
+        var(--clr-3)
+    );
+    border-radius: inherit;
+    animation: rotation 20s linear infinite;
+}
+
+.card::after {
+    filter: blur(0.5rem);
+}
+
+@keyframes rotation {
+    0% {
+        --gradient-angle: 0deg;
+    }
+    100% {
+        --gradient-angle: 360deg;
+    }
+}
+
+
+
+.WheelPage2 {
+    border: 1px solid #000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensures the card is properly centered vertically */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+
+.wheelContainer{
+
+    width: 100%;
+    height: fit-content;
+
+
+}
+
+.wheelBackground{
+    height: 760px;
+    width: 428px;
+    background-color: #000;
+    margin: 0 auto;
+    overflow-x: hidden;
+    position: relative;
+    
+}
+
+.wheelBorder {
+
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #0FBF89 0%, #4289BF 64%, #1F4059 100%);
+    -webkit-mask: border-box;
+    mask-composite: exclude;
+    filter: blur(0.25rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.frontContent {
+    background-color: #000;
+    width: 97%;
+    height: 98%;
+    margin: auto; /* This is not necessary for centering */
+    filter: blur(0rem);
+    position: relative;
+}
+
+
+.shape{
+    position: absolute;
+    width: 136.36px;
+    height: 432.79px;
+    background-color: #00FFC280;
+    border-radius: 50%;
+    top: -270px;
+    left: -90px;
+    rotate:calc(-48deg);
+    filter: blur(5rem);
+    z-index: 2;
+}
+.shape2{
+    position: absolute;
+    width: 136.36px;
+    height: 432.79px;
+    background-color: #ffffff80;
+    border-radius: 50%;
+    top: -380px;
+    left: 0px;
+    rotate:calc(-48deg);
+    filter: blur(5rem);
+    z-index: 2;
+}
+
+.wheelContent {
+    position: absolute; /* To place it directly in front of the background */
+    top: 0; /* Aligns it to the top of the wheelBackground */
+    left: 0; /* Aligns it to the left of the wheelBackground */
+    width: 428px; /* Matches the width of wheelBackground */
+    height: 760px; /* Matches the height of wheelBackground */
+    overflow-x: hidden;
+    z-index: 1; /* Ensures it is in front of wheelBackground */
+
+    background: transparent; /* Optional: Ensures it doesn't cover content */
+
+    color: #fff;
+    text-shadow: none;
+
+}
+
+.wheelHeading{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 38px;
+}
+
+.spinWheel{
+    width: 400px;
+    height: 400px;
+
+    margin: 0 auto;
+    position: relative;
+}
+
+.wheelSubheading{
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 24px;
+    max-width: 231px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.buttonSelect{
+    border: none;
+    margin-top: 20px;
+    display: flex;
+    justify-self: center;
+    background-image: linear-gradient(#0a805c, #1F4059);
+    padding: 20px 50px ;
+    border-radius: 80px;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: none;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 550;
+}
+
+.buttonSelect:hover{
+    background-image: linear-gradient(#0a805c, #1F4059);
+}
+
+.spinWheel {
+    width: 400px; /* Set fixed width */
+    height: 400px; /* Set fixed height */
+    margin: 0 auto; /* Center horizontally */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Combine scale and rotate */
+    transform: scale(0.95) /*rotate(133deg)*/;
+    transform-origin: center;
+
+  }
+  
+  .unglobalCompact {
+    position: absolute; /* Ensures it's positioned relative to the nearest relative parent */
+    z-index: 10; /* Ensure it's higher than other elements */
+    top: 50%; /* Center vertically within the spinWheel */
+    left:50%; /* Center horizontally within the spinWheel */
+    transform: translate(-50%, -50%); /* Center the element */
+    width: 270px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+
+  }
+
+  .wheel{
+    transform:  rotate(133deg);
+    color: #313131;
+  }
+  
+
+  .wheelItem{
+
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 20;
+  }

@@ -18,6 +18,7 @@ import Calculator from "@/components/Calculator/Calculator";
 import CandyCrushEmbed from "@/components/CandyCrushEmbed/CandyCrushEmbed";
 import PacmanEmbed from "@/components/PacmanEmbed/PacmanEmbed";
 import GamePage from "@/components/GamePage/GamePage";
+import GamePageNavigator from "@/components/GamePageNavigator/GamePageNavigator";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -259,9 +260,8 @@ export default function Home() {
           <div id="missionSection" className={styles.Mission}>
             <Mission />
           </div>
-          {/* <GamePage/>
-          <PacmanEmbed/>
-                <CandyCrushEmbed/> */}
+          {/* <GamePageNavigator/> */}
+
           <GlobeInterface />
           <Invest />
           <Calculator />

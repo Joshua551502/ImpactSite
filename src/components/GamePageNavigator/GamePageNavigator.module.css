@@ -1,0 +1,134 @@
+/* GamePageNavigator.module.css */
+
+.navigatorWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(48, 48, 48);
+    padding: 40px 0;
+  }
+  
+  .pageContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .mobileGame {
+    width: 428px;
+    height: 760px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .buttonNav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 160px;
+  }
+  
+  .buttonNav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .buttonNav button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  
+  .buttonNav img {
+    height: 40px;
+  }
+  .buttonNav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100px;
+  }
+  
+  .buttonNav button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .buttonNav button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .mobileOverlay {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    color: white;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .mobileClubTitle {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .mobileClubText {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .gridMenu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+  }
+  
+  .menuItem {
+    border: 1px solid #0FBF8940;
+    border-radius: 20px;
+    padding: 20px 20px 30px;
+    text-align: center;
+    color: #00ffcc;
+    font-family: 'Roboto Mono';
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s, transform 0.3s;
+    font-weight: 400;
+  }
+
+  .mobileClubTitle{
+    font-family: 'Roboto Mono';
+    font-weight: 400;
+    font-size: 38px;
+    margin-bottom: 38px;
+  }
+  .menuItem span{
+    font-family: 'Roboto Mono', monospace;
+  }
+  
+  .menuItem:hover {
+    background-color: rgba(0, 255, 204, 0.1);
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+  
+  .emoji {
+    font-size: 24px;
+  }
+  
+  .disabled {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+  
