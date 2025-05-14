@@ -41,7 +41,7 @@ import fifteen from "@/assets/images/sdg-results/15.png";
 import sixteen from "@/assets/images/sdg-results/16.png";
 import seventeen from "@/assets/images/sdg-results/17.png";
 
-export default function WheelPage2() {
+export default function WheelPage2({ nextPage }) {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
   const [selectedOption, setSelectedOption] = useState("");
@@ -307,12 +307,19 @@ export default function WheelPage2() {
             </div>
             {selectedOption && (
               <div className={styles.selectedOption}>
-                <h2>{selectedOption}</h2>
+                {/* <h2>{selectedOption}</h2> */}
               </div>
             )}
-            <button onClick={handleSpinClick} className={styles.buttonSelect}>
-              CLICK TO SELECT
-            </button>
+            {!selectedOption ? (
+              <button onClick={handleSpinClick} className={styles.buttonSelect}>
+                CLICK TO SELECT
+              </button>
+            ) : (
+              <button onClick={nextPage} className={styles.buttonSelect}>
+                NEXT
+              </button>
+            )}
+
             {showConfetti && (
               <Confetti colors={["#0FBF89", "#4289BF", "#1F4059"]} />
             )}

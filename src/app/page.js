@@ -260,7 +260,6 @@ export default function Home() {
           <div id="missionSection" className={styles.Mission}>
             <Mission />
           </div>
-          {/* <GamePageNavigator/> */}
 
           <GlobeInterface />
           <Invest />

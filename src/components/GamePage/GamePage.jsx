@@ -4,8 +4,8 @@ import MobileDisplay from "../MobileDisplay/MobileDisplay";
 import CandyCrushEmbed from "../CandyCrushEmbed/CandyCrushEmbed";
 import PacmanEmbed from "../PacmanEmbed/PacmanEmbed";
 
-export default function GamePage() {
-  return (
+export default function GamePage({ nextPage }) {
+   return (
     <div className={styles.gamePage}>
       <div className={styles.mobileGrid}>
         <div className={styles.mobileGame}>
@@ -46,6 +46,15 @@ export default function GamePage() {
                   </div>
                   <div className={styles.climateValue}>25,000</div>
                 </div>
+                <div className={styles.climateButton}>
+                  <button
+                    className={styles.buttonSelect}
+                    onClick={() => nextPage?.()}
+                  >
+                    Next
+                  </button>
+                </div>
+
                 <div className={styles.menuButtons}>
                   <img src="/medias/game-page/buttons.png"></img>
                 </div>

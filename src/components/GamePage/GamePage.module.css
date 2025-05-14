@@ -164,3 +164,23 @@
 #invert{
     filter: invert(1);
 }
+
+.buttonSelect {
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(#0a805c, #1F4059);
+  padding: 20px 50px;
+  border-radius: 80px;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: none;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 550;
+}
+
+.buttonSelect:hover {
+  background-image: linear-gradient(#0a805c, #1F4059);
+}

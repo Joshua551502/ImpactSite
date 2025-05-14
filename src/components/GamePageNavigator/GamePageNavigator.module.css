@@ -7,6 +7,7 @@
     justify-content: center;
     background-color: rgb(48, 48, 48);
     padding: 40px 0;
+    height: 100%;
   }
   
   .pageContainer {
@@ -71,7 +72,7 @@
     color: white;
     text-align: center;
     z-index: 2;
-    pointer-events: none;
+ 
   }
   
   .mobileClubTitle {
@@ -128,7 +129,139 @@
   }
   
   .disabled {
-    opacity: 0.2;
+    opacity: 0.3;
     pointer-events: none;
+  }
+  
+
+  .climateSavings{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+  }
+
+  .climateSavings {
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .savingsTitle {
+    color: #0FBF89;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+    margin-top: -20px;
+    font-size: 36px;
+    font-weight: 200;
+  }
+  
+  .circleContainer {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin-bottom: 30px;
+  }
+  
+  .progressCircle {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  
+  .circleBg {
+    fill: none;
+    stroke: #1a1a1a;
+    stroke-width: 2.5;
+  }
+  
+  .circleProgress {
+    fill: none;
+    stroke: url(#gradient);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+  
+  .percentText {
+    fill: white;
+    font-size: 8px;
+    dominant-baseline: middle;
+    font-family: "Playfair Display", monospace;
+
+  }
+  
+  .footprintNote {
+    position: absolute;
+    width: 100%;
+    bottom: 30px;
+    left: 0;
+    color: #0FBF89;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+
+  }
+  
+  .description {
+    margin-top: 20px;
+    font-size: 20px;
+    color: white;
+    line-height: 1.6;
+  }
+  
+  .updateButton {
+    border: none;
+    margin-top: 20px;
+    display: flex;
+    justify-self: center;
+    background-image: linear-gradient(#0a805c, #1F4059);
+    padding: 20px 50px ;
+    border-radius: 80px;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: none;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 550;
+  }
+  
+  .updateButton:hover {
+    background-image: linear-gradient(#0a805c, #1F4059);
+  }
+  .progressCircle {
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+  }
+  
+  .circleBg {
+    fill: none;
+    stroke: #1a1a1a;
+    stroke-width: 0.5;
+  }
+  
+  .circleProgress {
+    fill: none;
+    stroke: url(#gradient);
+    stroke-width: 0.5;
+    stroke-linecap: round;
+    stroke-dasharray: 75 100;  /* 75% filled */
+    stroke-dashoffset: 0;
+    transition: stroke-dasharray 1s ease-out;
+  }
+  
+  .percentText {
+    fill: white;
+    font-size: 8px;
+    dominant-baseline: middle;
   }
   

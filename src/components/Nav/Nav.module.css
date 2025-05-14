@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: calc(100% - 80px); /* 40px on each side */
+    width: calc(100%); /* 40px on each side */
     height: 40px;
     background: rgba(92, 92, 92, 0.4); /* Translucent dark grey */
     /* backdrop-filter: blur(5px); */

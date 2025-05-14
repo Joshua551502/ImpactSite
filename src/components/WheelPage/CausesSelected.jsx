@@ -14,7 +14,7 @@ import common from "@/assets/images/carousel-card/common.svg";
 import auora from "@/assets/images/carousel-card/auora.svg";
 import auorabg from "@/assets/images/carousel-card/aurora-bg.png";
 import profilePicture from "@/assets/images/carousel-card/profilePicture.png";
-export default function CauseSelected() {
+export default function CauseSelected({ nextPage }) {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const causes = [
@@ -142,8 +142,18 @@ export default function CauseSelected() {
                         {cause.rarity === "SPECIAL" ? "SPECIAL" : "UNCOMMON"}
                       </div>
                       <div className={styles.boxes}>
-                        <img src={"/medias/carousel-card/carousel-card-sdgs/13.png"} alt="SDG 13" />
-                        <img src={"/medias/carousel-card/carousel-card-sdgs/14.png"} alt="SDG 14" />
+                        <img
+                          src={
+                            "/medias/carousel-card/carousel-card-sdgs/13.png"
+                          }
+                          alt="SDG 13"
+                        />
+                        <img
+                          src={
+                            "/medias/carousel-card/carousel-card-sdgs/14.png"
+                          }
+                          alt="SDG 14"
+                        />
                         <img
                           src={"/medias/carousel-card/qrcode.png"}
                           alt="QR Code"
@@ -152,11 +162,18 @@ export default function CauseSelected() {
                       </div>
                     </div>
                     <div className={styles.profilePicture}>
-                      <img src={"/medias/carousel-card/profilePicture.png"} className={styles.profile} />
+                      <img
+                        src={"/medias/carousel-card/profilePicture.png"}
+                        className={styles.profile}
+                      />
                     </div>
                     <div className={styles.borderOfCard}>
                       <img
-                        src={cause.rarity === "SPECIAL" ? "/medias/carousel-card/auora.svg" : "/medias/carousel-card/common.svg"}
+                        src={
+                          cause.rarity === "SPECIAL"
+                            ? "/medias/carousel-card/auora.svg"
+                            : "/medias/carousel-card/common.svg"
+                        }
                         className={styles.borderCard}
                         alt={
                           cause.rarity === "SPECIAL"
@@ -181,7 +198,9 @@ export default function CauseSelected() {
             <div className={styles.wheelSubheading}>
               Congratulations Your Support Matters!
             </div>
-            <button className={styles.buttonSelect}>CLICK TO DONATE</button>
+            <button className={styles.buttonSelect} onClick={nextPage}>
+              CLICK TO DONATE
+            </button>
           </div>
         </div>
       </div>
