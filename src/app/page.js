@@ -1,6 +1,4 @@
 "use client"; // Ensures dynamic execution
-import Head from "next/head";
-import dynamic from "next/dynamic";
 import React, { useEffect, useRef, useState } from "react";
 import Nav from "@/components/Nav/Nav";
 import StoryPage from "@/components/StoryPage/StoryPage";
@@ -8,17 +6,13 @@ import Mission from "@/components/Mission/Mission";
 import GlobeInterface from "@/components/GlobeInterface/GlobeInterface";
 import Footer from "@/components/Footer/Footer";
 import styles from "./page.module.css";
-import TextSlide from "@/components/TextSlide/TextSlide";
+
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import OkayModal from "@/components/OkayModal/OkayModal";
-import Intro from "@/components/Intro/Intro";
+
 import Invest from "@/components/Invest/Invest";
 import Calculator from "@/components/Calculator/Calculator";
-import CandyCrushEmbed from "@/components/CandyCrushEmbed/CandyCrushEmbed";
-import PacmanEmbed from "@/components/PacmanEmbed/PacmanEmbed";
-import GamePage from "@/components/GamePage/GamePage";
-import GamePageNavigator from "@/components/GamePageNavigator/GamePageNavigator";
 
 gsap.registerPlugin(ScrollTrigger);
 
