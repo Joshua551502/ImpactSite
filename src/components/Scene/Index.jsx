@@ -9,11 +9,22 @@ export default function Index({ scrollY }) {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1000);
+      if (typeof window !== "undefined") {
+        setIsMobile(window.innerWidth <= 1000);
+      }
     };
-    handleResize(); // check immediately
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    // ✅ Check before first call
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
   }, []);
 
   return (
