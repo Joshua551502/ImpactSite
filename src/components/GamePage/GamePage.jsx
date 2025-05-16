@@ -1,8 +1,12 @@
 import React from "react";
 import styles from "./GamePage.module.css";
 import MobileDisplay from "../MobileDisplay/MobileDisplay";
-import CandyCrushEmbed from "../CandyCrushEmbed/CandyCrushEmbed";
-import PacmanEmbed from "../PacmanEmbed/PacmanEmbed";
+import dynamic from "next/dynamic";
+
+const CandyCrushEmbed = dynamic(
+  () => import("../CandyCrushEmbed/CandyCrushEmbed"),
+  { ssr: false }
+);
 
 export default function GamePage({ nextPage }) {
    return (
