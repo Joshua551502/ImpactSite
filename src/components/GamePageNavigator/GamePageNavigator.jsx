@@ -1,4 +1,6 @@
 // GamePageNavigator.jsx
+"use client";
+
 import React, { useState } from "react";
 import styles from "./GamePageNavigator.module.css";
 import MobileDisplay from "../MobileDisplay/MobileDisplay";
