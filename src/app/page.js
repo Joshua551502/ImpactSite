@@ -206,13 +206,24 @@ export default function Home() {
         return scroller.scrollTop;
       },
       getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
+        if (typeof window !== "undefined") {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        } else {
+          // Server-side fallback to prevent crash
+          return {
+            top: 0,
+            left: 0,
+            width: 0,
+            height: 0,
+          };
+        }
       },
+      
       // Optional if you want horizontal scroll too
       // scrollLeft(value) {
       //   if (arguments.length) {
