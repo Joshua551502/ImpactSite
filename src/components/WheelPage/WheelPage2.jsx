@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
-import Confetti from "react-confetti";
+import dynamic from "next/dynamic";
+
+const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
 import styles from "./WheelPage2.module.css";
 import ungloablcompact from "@/assets/images/spin-wheel/worldPicture.png";
 
