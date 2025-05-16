@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 export default function CandyCrushEmbed() {
-  const [isClient, setIsClient] = useState(false);
+  const [canRender, setCanRender] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setCanRender(true); // Only render game after DOM is available
   }, []);
 
-  if (!isClient) return null;
+  if (!canRender) return null;
 
   return (
     <div style={{ width: "100%", height: "90vh", overflow: "hidden" }}>
