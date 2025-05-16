@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+
 import GamePageNavigator from "@/components/GamePageNavigator/GamePageNavigator";
 
-export default function GamePageNavigatorPage() {
+export default function GameNavigatorPage() {
   return <GamePageNavigator />;
 }
