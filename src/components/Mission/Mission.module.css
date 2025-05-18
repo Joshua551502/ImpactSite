@@ -211,7 +211,7 @@ margin: 0 auto;
 
 
 #missionText {
-  font-size: 90px;
+  font-size: 88px;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)),
     url("/medias/grassoverlay.jpg");
@@ -220,7 +220,7 @@ margin: 0 auto;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+  animation: bg-animation 60s cubic-bezier(0.3, 0, 0.7, 1) infinite;
   padding: 64px 0 20px;
   user-select: none;
   background-color: transparent;
@@ -234,7 +234,7 @@ margin: 0 auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: bg-animation 30s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+  animation: bg-animation 60s cubic-bezier(0.3, 0, 0.7, 1) infinite;
 }
 .mission {
   position: relative;
@@ -248,7 +248,7 @@ margin: 0 auto;
     padding: 10px 16px;
   }
   #missionText {
-    font-size: 60px;
+    font-size: 48px;
   }
 
   .subParagraph{

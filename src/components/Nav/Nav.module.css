@@ -318,11 +318,11 @@ position:absolute;
 }
 
 #comingSoon{
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 #comingSoon:hover{
-  opacity: 0.5; 
+  opacity: 0.2; 
   background-color: transparent !important;
  
 }

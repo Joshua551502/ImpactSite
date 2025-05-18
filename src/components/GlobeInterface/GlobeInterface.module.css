@@ -517,7 +517,7 @@ width: 100%;
 .meterBox{
     width: 140px;
     height: 60px;
-    background-color: #35353540;
+    background-color: #35353560;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -975,6 +975,7 @@ font-size: 11px;
 
 z-index: 0;
   transform: translateX(50%);
+  display: none;
  }
 
  .warningModal{

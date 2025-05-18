@@ -130,7 +130,7 @@ export default function Mission() {
   }, []);
 
   const words =
-    "We’re on a mission to help put back what we have broken and support those who believe in the same vision.".split(
+    "We're on a mission to accelerate a sustainable future by gamifying philanthropy and propelling environmental and social impact across borders.".split(
       " "
     );
 
@@ -177,15 +177,14 @@ export default function Mission() {
         </div>
 
         <div className={styles.subParagraph}>
-          An earth exchange centre for global impact causes and climate credits
-          offsetting through carbon capture. <br />
+          An earth exchange dApp to support truly sustainable causes and high
+          value climate credits through impact offsetting. <br />
           <br />
-          The platform provides the climate ecosystem with enterprise-grade
-          middleware, enabling high-integrity, interoperable, and efficient
-          climate markets. <br />
+          Our platform monitors the climate ecosystem and with enterprise-grade
+          AI trained data, enables greater visibility for impact claims and the
+          state of the planet. <br />
           <br />
-          The industry standard for on-chain democratized and decentralized
-          climate data showing the transparent traceability.
+          
         </div>
 
         <div className={styles.earthTextContainer}>
