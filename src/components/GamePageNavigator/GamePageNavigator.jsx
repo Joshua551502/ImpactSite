@@ -7,6 +7,7 @@ import MobileDisplay from "../MobileDisplay/MobileDisplay";
 import GamePage from "../GamePage/GamePage";
 import WheelPage from "../WheelPage/WheelPage2";
 import CauseSelected from "../WheelPage/CausesSelected";
+import PacmanEmbed from "../PacmanEmbed/PacmanEmbed";
 
 export default function GamePageNavigator() {
   const [page, setPage] = useState(1);
@@ -134,6 +135,8 @@ export default function GamePageNavigator() {
           →
         </button>
       </div>
+
+      <PacmanEmbed/>
     </div>
   );
 }

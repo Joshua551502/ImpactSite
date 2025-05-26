@@ -28,8 +28,6 @@ export default function Intro({ scrollY = 0 }) {
       // Apply parallax movement when user hasn't scrolled yet
       iceberg.style.transform = `translate(${x * 0.06}px, ${y * 0.06}px)`;
     }
-    
-    
 
     if (backdrop) {
       backdrop.style.transform = `translate(${x * 0.01}px, ${y * 0.01}px)`;
@@ -47,20 +45,20 @@ export default function Intro({ scrollY = 0 }) {
     const iceberg = icebergRef.current;
     const backdrop = container.querySelector(`.${styles.backdrop}`);
     const circle = container.querySelector(`.${styles.impactionCircle}`);
-  
+
     if (!hasScrolled && iceberg) {
       iceberg.style.transform = `translate(0px, 0px)`;
     }
-  
+
     if (backdrop) {
       backdrop.style.transform = `translate(0px, 0px)`;
     }
-  
+
     if (circle) {
       circle.style.transform = `translate(0px, 0px) translateX(50%)`;
     }
   };
-  
+
   useEffect(() => {
     const iceberg = icebergRef.current;
     if (!iceberg) return;
@@ -74,12 +72,33 @@ export default function Intro({ scrollY = 0 }) {
     if (scrollY <= 10 && hasScrolled) {
       setHasScrolled(false);
     }
-  
+
     // If user scrolls down enough, disable parallax
     if (scrollY > 10 && !hasScrolled) {
       setHasScrolled(true);
     }
   }, [scrollY]);
+  const backgroundRef = useRef(null);
+  const [fadeToBlack, setFadeToBlack] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFadeToBlack(true);
+    }, 200); // start fade shortly after mount
+    return () => clearTimeout(timer);
+  }, []);
+
+  const sceneRef = useRef(null);
+  const [fadeInScene, setFadeInScene] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFadeInScene(true);
+    }, 500); // 10 seconds delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
   
 
   return (
@@ -93,12 +112,26 @@ export default function Intro({ scrollY = 0 }) {
         <div className={styles.eclipseRays} />
 
         <div className={styles.ImpactionFrontCircle}>
-          {" "}
-          <Scene scrollY={scrollY} />
-
+          <div
+            className={`${styles.sceneFadeWrapper} ${
+              fadeInScene ? styles.sceneVisible : ""
+            }`}
+            ref={sceneRef}
+          >
+            <Scene scrollY={scrollY} />
+          </div>
         </div>
       </div>
       <div className={styles.skyMountain}>
+        <div
+          className={`${styles.backgroundDay} ${styles.backgroundDayStart}`}
+          ref={backgroundRef}
+        ></div>
+        <div
+          className={`${styles.backgroundDay} ${styles.backgroundDayEnd}`}
+          style={{ opacity: fadeToBlack ? 1 : 0 }}
+        ></div>
+
         <img
           src="medias/intro-images/backdrop.jpg"
           className={styles.backdrop}
@@ -106,7 +139,7 @@ export default function Intro({ scrollY = 0 }) {
         <div className={styles.iceburg} ref={icebergRef}>
           <img
             src="medias/intro-images/iceberg.png"
-            className={styles.iceburg}
+            className={styles.iceburgImage}
           />
         </div>
       </div>

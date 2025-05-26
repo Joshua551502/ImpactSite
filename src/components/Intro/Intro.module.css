@@ -21,26 +21,55 @@
     width: 100%;
     transition: transform 0.3s ease;
     position: absolute;
-    bottom: -100px;
+    bottom: 100px;
     left: -2.5%;
     
     overflow-y: hidden;
     transition: transform 0.5s ease;
+     mix-blend-mode: screen;
   }
+
+.backgroundDay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: opacity 10s ease;
+  z-index: 0;
+}
+
+.backgroundDayStart {
+  background-image: linear-gradient(#4289BF, #FFFFFF);
+  opacity: 1;
+}
+
+.backgroundDayEnd {
+  background-image: linear-gradient(#000, #000);
+  opacity: 1;
+}
+
+
   
   .iceburg {
-    width: 2500px;
-    height: 950px;
+    width: 100%;
+    height: 1200px;
     
-    position: fixed; /* ✅ pin it to the viewport */
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-100%);
+    position: fixed;
+    bottom: 70px;
+   left: 500px;
+ 
     
     z-index: 1;
     transition: transform 0.5s ease;
     pointer-events: none;
+
   }
+
+  .iceburgImage{
+    width: 100%;
+    height: 100%;
+  }
+
+
   
   
   .impactionCircle {
@@ -229,4 +258,18 @@
 
       top: -90px;
     }
-  } */
+  } */.sceneFadeWrapper {
+  opacity: 0;
+  transition: opacity 10s ease;
+  display: flex;              /* preserve layout if Scene uses flex */
+  align-items: center;        /* center vertically if needed */
+  justify-content: center;    /* center horizontally if needed */
+  width: 100%;                /* ensure it spans full width */
+  height: 100%;               /* keep the height */
+  pointer-events: none;       /* so it's inert when hidden */
+}
+
+.sceneVisible {
+  opacity: 1;
+  pointer-events: auto;
+}

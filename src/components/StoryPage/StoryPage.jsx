@@ -18,7 +18,7 @@ export default function StoryPage({ scrollY }) {
   const [isHovered, setIsHovered] = useState(false);
   const [loadingPercentage, setLoadingPercentage] = useState(0);
   const [loadingText, setLoadingText] = useState("Loading");
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
   const [backgroundColor, setBackgroundColor] = useState("black");
   const [glowing, setGlowing] = useState(false);
   const [textColor, setTextColor] = useState("black");
@@ -327,7 +327,7 @@ export default function StoryPage({ scrollY }) {
       <div ref={contentContainerRef} className={styles.contentContainer}>
         {/* <div ref={cursorRef} className={styles.customCursor} /> */}
 
-        <div className={`${styles.loading} ${isLoaded ? styles.fadeOut : ""}`}>
+        {/* <div className={`${styles.loading} ${isLoaded ? styles.fadeOut : ""}`}>
           <svg className={styles.progressCircle} viewBox="0 0 100 100">
             <circle
               className={styles.circleBackground}
@@ -404,7 +404,7 @@ export default function StoryPage({ scrollY }) {
               {loadingPercentage}%
             </text>
           </svg>
-        </div>
+        </div> */}
         <div className={`${styles.scenePage} ${isLoaded ? styles.fadeIn : ""}`}>
           <Intro scrollY={scrollY} />
         </div>
