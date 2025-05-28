@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Wheel } from "react-custom-roulette";
 import dynamic from "next/dynamic";
 
@@ -49,7 +49,19 @@ export default function WheelPage2({ nextPage }) {
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImage, setSelectedImage] = useState(null); // For displaying the corresponding image
   const [showConfetti, setShowConfetti] = useState(false);
+  const [fadeConfetti, setFadeConfetti] = useState(false);
 
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    handleResize(); // Set initial size
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const imageMapping = {
     "No Poverty": "/medias/sdg-results/1.png",
     "Zero Hunger": "/medias/sdg-results/2.png",
@@ -249,8 +261,12 @@ export default function WheelPage2({ nextPage }) {
     setData(updatedData);
 
     setTimeout(() => {
-      setShowConfetti(false);
-    }, 3000);
+      setFadeConfetti(true); // Start fade out
+      setTimeout(() => {
+        setShowConfetti(false); // Remove confetti after fade
+        setFadeConfetti(false); // Reset fade state
+      }, 1000); // Duration of fade effect
+    }, 6000); // Show full confetti for 2s before fading
   };
 
   return (
@@ -323,7 +339,27 @@ export default function WheelPage2({ nextPage }) {
             )}
 
             {showConfetti && (
-              <Confetti colors={["#0FBF89", "#4289BF", "#1F4059"]} />
+              <div
+                style={{
+                  position: "fixed",
+                  top: 0,
+                  left: 0,
+                  width: dimensions.width,
+                  height: dimensions.height,
+                  pointerEvents: "none",
+                  opacity: fadeConfetti ? 0 : 1,
+                  transition: "opacity 1s ease-in-out",
+                  zIndex: 1000,
+                }}
+              >
+                <Confetti
+                  width={dimensions.width}
+                  height={dimensions.height}
+                  colors={["#0FBF89", "#4289BF", "#1F4059"]}
+                  recycle={false}
+                  numberOfPieces={300}
+                />
+              </div>
             )}
           </div>
         </div>

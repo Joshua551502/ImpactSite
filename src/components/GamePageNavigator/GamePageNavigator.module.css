@@ -1,15 +1,20 @@
 /* GamePageNavigator.module.css */
 
 .navigatorWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(48, 48, 48);
-    padding: 40px 0;
-    height: 100%;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* This disables inner scroll */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(48, 48, 48);
+  z-index: 9999; /* Optional: ensures it's above any base page content */
+}
+
   .pageContainer {
     display: flex;
     justify-content: center;
@@ -264,4 +269,22 @@
     font-size: 8px;
     dominant-baseline: middle;
   }
-  
+  .homeButton {
+  position: absolute;
+  top: 12px;
+  left: 95%;
+  z-index: 10;
+
+  color: white;
+  border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+  transition: background 0.3s ease;
+  transform: translateX(-50%);
+
+  padding: 5px 5px;background-color: #00000000;
+}

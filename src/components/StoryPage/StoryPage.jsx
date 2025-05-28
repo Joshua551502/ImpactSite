@@ -164,59 +164,67 @@ export default function StoryPage({ scrollY }) {
     let waveDamping = 0.98;
     let waveStrength = 20;
     let autoDiff = 50;
-  
+
     function initCanvas() {
       let parent = canvas.parentElement;
       canvas.width = parent.clientWidth;
-      canvas.height = 200;
-  
+      canvas.height = 250;
+
       vertexes = [];
       diffPt = [];
-  
+
       for (let i = 0; i < verNum; i++) {
-        vertexes[i] = new Vertex((canvas.width / (verNum - 1)) * i, canvas.height / 4, canvas.height / 4);
+        vertexes[i] = new Vertex(
+          (canvas.width / (verNum - 1)) * i,
+          canvas.height / 4,
+          canvas.height / 4
+        );
         diffPt[i] = 0;
       }
     }
-  
+
     function update() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       autoDiff *= 0.98;
-  
+
       for (let i = 1; i < verNum - 1; i++) {
         diffPt[i] += (diffPt[i - 1] + diffPt[i + 1]) / 2 - diffPt[i];
         diffPt[i] *= waveDamping;
       }
-  
+
       for (let i = 0; i < vertexes.length; i++) {
         vertexes[i].updateY(diffPt[i]);
       }
-  
+
       draw();
     }
-  
+
     function draw() {
       ctx.beginPath();
       ctx.moveTo(0, canvas.height);
-  
+
       let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, "rgba(102, 102, 102, 0.1)");
-      gradient.addColorStop(1, "rgba(0, 0, 0, 0.9)");
+      gradient.addColorStop(0.0, "rgba(0, 0, 0, 0.9)");
+      gradient.addColorStop(0.9, "rgba(102, 102, 102, 0.1)");
+      gradient.addColorStop(1.0, "rgba(0, 0, 0, 0.9)");
       ctx.fillStyle = gradient;
-  
+
       ctx.lineTo(vertexes[0].x, vertexes[0].y);
-  
+
       for (let i = 1; i < vertexes.length - 1; i++) {
         const midX = (vertexes[i].x + vertexes[i + 1].x) / 2;
         const midY = (vertexes[i].y + vertexes[i + 1].y) / 2;
         ctx.quadraticCurveTo(vertexes[i].x, vertexes[i].y, midX, midY);
       }
-  
-      ctx.lineTo(vertexes[vertexes.length - 1].x, vertexes[vertexes.length - 1].y);
+
+      ctx.lineTo(
+        vertexes[vertexes.length - 1].x,
+        vertexes[vertexes.length - 1].y
+      );
       ctx.lineTo(canvas.width, canvas.height);
       ctx.fill();
     }
-  
+
     function Vertex(x, y, baseY) {
       this.baseY = baseY;
       this.x = x;
@@ -226,14 +234,14 @@ export default function StoryPage({ scrollY }) {
       this.friction = 0.05;
       this.deceleration = 0.99;
     }
-  
+
     Vertex.prototype.updateY = function (diffVal) {
       this.targetY = diffVal + this.baseY;
       this.vy += this.targetY - this.y;
       this.y += this.vy * this.friction;
       this.vy *= this.deceleration;
     };
-  
+
     canvas.addEventListener("mousemove", (e) => {
       let mouseX = e.offsetX;
       let index = Math.floor(((verNum - 1) * mouseX) / canvas.width);
@@ -241,23 +249,22 @@ export default function StoryPage({ scrollY }) {
         diffPt[index] = waveStrength;
       }
     });
-  
+
     // 🆕 Handle resize
     const handleResize = () => {
       initCanvas(); // Re-initialize everything on resize
     };
-  
+
     window.addEventListener("resize", handleResize);
-  
+
     initCanvas();
     const interval = setInterval(update, 1000 / 60);
-  
+
     return () => {
       clearInterval(interval);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
 
   useEffect(() => {
     if (loadingPercentage >= 100) {
@@ -325,9 +332,9 @@ export default function StoryPage({ scrollY }) {
         </div>
       </div>
       <div ref={contentContainerRef} className={styles.contentContainer}>
-        {/* <div ref={cursorRef} className={styles.customCursor} /> */}
+        <div ref={cursorRef} className={styles.customCursor} />
 
-        {/* <div className={`${styles.loading} ${isLoaded ? styles.fadeOut : ""}`}>
+        <div className={`${styles.loading} ${isLoaded ? styles.fadeOut : ""}`}>
           <svg className={styles.progressCircle} viewBox="0 0 100 100">
             <circle
               className={styles.circleBackground}
@@ -404,7 +411,7 @@ export default function StoryPage({ scrollY }) {
               {loadingPercentage}%
             </text>
           </svg>
-        </div> */}
+        </div>
         <div className={`${styles.scenePage} ${isLoaded ? styles.fadeIn : ""}`}>
           <Intro scrollY={scrollY} />
         </div>

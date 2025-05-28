@@ -246,16 +246,17 @@
 
   }
   
-  .unglobalCompact {
-    position: absolute; /* Ensures it's positioned relative to the nearest relative parent */
-    z-index: 10; /* Ensure it's higher than other elements */
-    top: 50%; /* Center vertically within the spinWheel */
-    left:50%; /* Center horizontally within the spinWheel */
-    transform: translate(-50%, -50%); /* Center the element */
-    width: 270px; /* Adjust size as needed */
-    height: auto; /* Maintain aspect ratio */
+.unglobalCompact {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%; /* Adjusted from 270px to be relative */
+  height: auto;
+  max-width: 270px; /* Optional limit */
+}
 
-  }
 
   .wheel{
     transform:  rotate(133deg);
@@ -269,4 +270,13 @@
     width: 100px;
     height: 100px;
     z-index: 20;
+  }@media (max-width: 500px) {
+  .spinWheel {
+    width: 80vw;
+    height: 80vw;
   }
+
+  .unglobalCompact {
+    width: 60%;
+  }
+}
