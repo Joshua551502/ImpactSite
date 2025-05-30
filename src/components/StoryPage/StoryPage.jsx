@@ -155,116 +155,160 @@ export default function StoryPage({ scrollY }) {
     };
   }, []);
 
-  useEffect(() => {
-    let canvas = canvasRef.current;
-    let ctx = canvas.getContext("2d");
-    let vertexes = [];
-    let diffPt = [];
-    const verNum = 30;
-    let waveDamping = 0.98;
-    let waveStrength = 20;
-    let autoDiff = 50;
+useEffect(() => {
+  const canvas = canvasRef.current;
+  const ctx = canvas.getContext("2d");
+  let vertexes = [];
+  let diffPt = [];
+  const verNum = 30;
+  let waveDamping = 0.98;
+  let waveStrength = 20;
+  let autoDiff = 50;
 
-    function initCanvas() {
-      let parent = canvas.parentElement;
-      canvas.width = parent.clientWidth;
-      canvas.height = 250;
+  let transitionStartTime = null;
+  const transitionDuration = 5000;
 
-      vertexes = [];
-      diffPt = [];
+  const initialGradient = [
+    { r: 66, g: 137, b: 191, a: 0.9 },
+    { r: 102, g: 102, b: 102, a: 0.1 }
+  ];
 
-      for (let i = 0; i < verNum; i++) {
-        vertexes[i] = new Vertex(
-          (canvas.width / (verNum - 1)) * i,
-          canvas.height / 4,
-          canvas.height / 4
-        );
-        diffPt[i] = 0;
-      }
+  const finalGradient = [
+    { r: 0, g: 0, b: 0, a: 0.9 },
+    { r: 102, g: 102, b: 102, a: 0.1 },
+    { r: 0, g: 0, b: 0, a: 0.9 }
+  ];
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function rgbaToString({ r, g, b, a }) {
+    return `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${a.toFixed(2)})`;
+  }
+
+  function initCanvas() {
+    let parent = canvas.parentElement;
+    canvas.width = parent.clientWidth;
+    canvas.height = 200;
+
+    vertexes = [];
+    diffPt = [];
+
+    for (let i = 0; i < verNum; i++) {
+      vertexes[i] = new Vertex(
+        (canvas.width / (verNum - 1)) * i,
+        canvas.height / 4,
+        canvas.height / 4
+      );
+      diffPt[i] = 0;
+    }
+  }
+
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    autoDiff *= 0.98;
+
+    for (let i = 1; i < verNum - 1; i++) {
+      diffPt[i] += (diffPt[i - 1] + diffPt[i + 1]) / 2 - diffPt[i];
+      diffPt[i] *= waveDamping;
     }
 
-    function update() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      autoDiff *= 0.98;
-
-      for (let i = 1; i < verNum - 1; i++) {
-        diffPt[i] += (diffPt[i - 1] + diffPt[i + 1]) / 2 - diffPt[i];
-        diffPt[i] *= waveDamping;
-      }
-
-      for (let i = 0; i < vertexes.length; i++) {
-        vertexes[i].updateY(diffPt[i]);
-      }
-
-      draw();
+    for (let i = 0; i < vertexes.length; i++) {
+      vertexes[i].updateY(diffPt[i]);
     }
 
-    function draw() {
-      ctx.beginPath();
-      ctx.moveTo(0, canvas.height);
+    draw();
+  }
 
-      let gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  function draw() {
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height);
+
+    let currentTime = performance.now();
+    if (transitionStartTime === null) transitionStartTime = currentTime;
+    const elapsed = currentTime - transitionStartTime;
+    const t = Math.min(elapsed / transitionDuration, 1);
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+
+    if (t < 1) {
+      const g0 = {
+        r: lerp(initialGradient[0].r, finalGradient[0].r, t),
+        g: lerp(initialGradient[0].g, finalGradient[0].g, t),
+        b: lerp(initialGradient[0].b, finalGradient[0].b, t),
+        a: lerp(initialGradient[0].a, finalGradient[0].a, t),
+      };
+
+      const g1 = {
+        r: lerp(initialGradient[1].r, finalGradient[1].r, t),
+        g: lerp(initialGradient[1].g, finalGradient[1].g, t),
+        b: lerp(initialGradient[1].b, finalGradient[1].b, t),
+        a: lerp(initialGradient[1].a, finalGradient[1].a, t),
+      };
+
+      gradient.addColorStop(0.0, rgbaToString(g0));
+      gradient.addColorStop(1.0, rgbaToString(g1));
+    } else {
       gradient.addColorStop(0.0, "rgba(0, 0, 0, 0.9)");
       gradient.addColorStop(0.9, "rgba(102, 102, 102, 0.1)");
       gradient.addColorStop(1.0, "rgba(0, 0, 0, 0.9)");
-      ctx.fillStyle = gradient;
-
-      ctx.lineTo(vertexes[0].x, vertexes[0].y);
-
-      for (let i = 1; i < vertexes.length - 1; i++) {
-        const midX = (vertexes[i].x + vertexes[i + 1].x) / 2;
-        const midY = (vertexes[i].y + vertexes[i + 1].y) / 2;
-        ctx.quadraticCurveTo(vertexes[i].x, vertexes[i].y, midX, midY);
-      }
-
-      ctx.lineTo(
-        vertexes[vertexes.length - 1].x,
-        vertexes[vertexes.length - 1].y
-      );
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.fill();
     }
 
-    function Vertex(x, y, baseY) {
-      this.baseY = baseY;
-      this.x = x;
-      this.y = y;
-      this.vy = 0;
-      this.targetY = 0;
-      this.friction = 0.05;
-      this.deceleration = 0.99;
+    ctx.fillStyle = gradient;
+    ctx.lineTo(vertexes[0].x, vertexes[0].y);
+
+    for (let i = 1; i < vertexes.length - 1; i++) {
+      const midX = (vertexes[i].x + vertexes[i + 1].x) / 2;
+      const midY = (vertexes[i].y + vertexes[i + 1].y) / 2;
+      ctx.quadraticCurveTo(vertexes[i].x, vertexes[i].y, midX, midY);
     }
 
-    Vertex.prototype.updateY = function (diffVal) {
-      this.targetY = diffVal + this.baseY;
-      this.vy += this.targetY - this.y;
-      this.y += this.vy * this.friction;
-      this.vy *= this.deceleration;
-    };
+    ctx.lineTo(vertexes[vertexes.length - 1].x, vertexes[vertexes.length - 1].y);
+    ctx.lineTo(canvas.width, canvas.height);
+    ctx.fill();
+  }
 
-    canvas.addEventListener("mousemove", (e) => {
-      let mouseX = e.offsetX;
-      let index = Math.floor(((verNum - 1) * mouseX) / canvas.width);
-      if (index > 0 && index < verNum - 1) {
-        diffPt[index] = waveStrength;
-      }
-    });
+  function Vertex(x, y, baseY) {
+    this.baseY = baseY;
+    this.x = x;
+    this.y = y;
+    this.vy = 0;
+    this.targetY = 0;
+    this.friction = 0.05;
+    this.deceleration = 0.99;
+  }
 
-    // 🆕 Handle resize
-    const handleResize = () => {
-      initCanvas(); // Re-initialize everything on resize
-    };
+  Vertex.prototype.updateY = function (diffVal) {
+    this.targetY = diffVal + this.baseY;
+    this.vy += this.targetY - this.y;
+    this.y += this.vy * this.friction;
+    this.vy *= this.deceleration;
+  };
 
-    window.addEventListener("resize", handleResize);
+  canvas.addEventListener("mousemove", (e) => {
+    let mouseX = e.offsetX;
+    let index = Math.floor(((verNum - 1) * mouseX) / canvas.width);
+    if (index > 0 && index < verNum - 1) {
+      diffPt[index] = waveStrength;
+    }
+  });
 
+  const handleResize = () => {
     initCanvas();
-    const interval = setInterval(update, 1000 / 60);
+  };
 
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  window.addEventListener("resize", handleResize);
+
+  initCanvas();
+  const interval = setInterval(update, 1000 / 60);
+
+  return () => {
+    clearInterval(interval);
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+
 
   useEffect(() => {
     if (loadingPercentage >= 100) {
@@ -332,7 +376,7 @@ export default function StoryPage({ scrollY }) {
         </div>
       </div>
       <div ref={contentContainerRef} className={styles.contentContainer}>
-        <div ref={cursorRef} className={styles.customCursor} />
+        {/* <div ref={cursorRef} className={styles.customCursor} /> */}
 
         <div className={`${styles.loading} ${isLoaded ? styles.fadeOut : ""}`}>
           <svg className={styles.progressCircle} viewBox="0 0 100 100">

@@ -96,7 +96,7 @@ export default function Intro({ scrollY = 0 }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setFadeInScene(true);
-    }, 500); // 10 seconds delay
+    }, 300); // 10 seconds delay
 
     return () => clearTimeout(timer);
   }, []);

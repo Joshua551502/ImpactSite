@@ -119,12 +119,44 @@ export default function GlobeInterface() {
             </div>
             <div className={styles.missionLine}></div>
             <div className={styles.missionFilters}>
-              <button>Clear</button>
-              <button>Search</button>
-              <button>UNSDG Impact</button>
-              <button>Location</button>
-              <button>Price</button>
-              <button>Date</button>
+              <button className={styles.clearButton}>Clear</button>
+
+              <div className={styles.searchContainer}>
+                <img
+                  src="/medias/search-icon.png"
+                  alt="Search Icon"
+                  className={styles.searchIcon}
+                />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className={styles.searchInput}
+                />
+              </div>
+
+              <select className={styles.filterSelect}>
+                <option>UNSDG Impact</option>
+                <option>Goal 1</option>
+                <option>Goal 2</option>
+              </select>
+
+              <select className={styles.filterSelect}>
+                <option>Location</option>
+                <option>USA</option>
+                <option>Europe</option>
+              </select>
+
+              <select className={styles.filterSelect}>
+                <option>Price</option>
+                <option>Low to High</option>
+                <option>High to Low</option>
+              </select>
+
+              <select className={styles.filterSelect}>
+                <option>Date</option>
+                <option>Newest</option>
+                <option>Oldest</option>
+              </select>
             </div>
 
             <div className={styles.featuredCause}>Featured Cause Campaigns</div>
