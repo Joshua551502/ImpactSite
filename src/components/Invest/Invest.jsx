@@ -103,7 +103,7 @@ const Invest = () => {
                 Technology isn’t a feature but another{" "}
                 <span className={styles.gradientContainer}>
                   <span className={styles.topGradient}>invisible system</span>{" "}
-                  like tree routes that spans the planet -{" "}
+                  like tree roots that spans the planet -{" "}
                   <span className={styles.topGradient}>a sixth sense.</span>
                 </span>
               </div>
